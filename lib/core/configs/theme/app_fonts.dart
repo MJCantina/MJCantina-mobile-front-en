@@ -7,7 +7,8 @@ class AppFonts {
   static final subtitle =  GoogleFonts.poppins(fontSize: 16, color: AppColors.grey, fontWeight: FontWeight.w400);
   static final titleField = GoogleFonts.poppins(fontSize: 16, color: AppColors.black, fontWeight: FontWeight.w600);
   static final buttonText = GoogleFonts.poppins(fontSize: 16, color: AppColors.white, fontWeight: FontWeight.bold);
-  static final profileDesc =  GoogleFonts.poppins(fontSize: 12, color: AppColors.grey, fontWeight: FontWeight.w400);
+  static final payText = GoogleFonts.poppins(fontSize: 16, color: AppColors.primary, fontWeight: FontWeight.bold);
+  static final profileDesc =  GoogleFonts.poppins(fontSize: 16, color: AppColors.grey, fontWeight: FontWeight.bold);
   static final removeText =  GoogleFonts.poppins(fontSize: 12, color: AppColors.white, fontWeight: FontWeight.w800);
    static final plateDesc = GoogleFonts.poppins(fontSize: 12, color: AppColors.black, fontWeight: FontWeight.w800);
 }
