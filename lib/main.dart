@@ -1,6 +1,7 @@
 import 'package:cantina_senai/common/widgets/appbar/appbarhome.dart';
 import 'package:cantina_senai/common/widgets/appbar/basicappbar.dart';
 import 'package:cantina_senai/common/widgets/appbar/waveappbar.dart';
+import 'package:cantina_senai/common/widgets/bottom_bar/bottombar.dart';
 import 'package:flutter/material.dart';
 
 
@@ -21,7 +22,8 @@ class _MainPageState extends State<MainPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-       appBar: WaveAppbar()
+       appBar: WaveAppbar(),
+       bottomNavigationBar: Bottombar(),
     ));
   }
 }
