@@ -14,8 +14,6 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(),
-    );
+    return const Placeholder();
   }
 }
