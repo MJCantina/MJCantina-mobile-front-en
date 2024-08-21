@@ -24,7 +24,7 @@ class InputField extends StatelessWidget {
         ),
         child: TextField(
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.only(left: 16),
+            contentPadding: const EdgeInsets.only(left: 16),
             hintText: title,
             hintStyle: AppFonts.profileDesc,
             border: InputBorder.none,

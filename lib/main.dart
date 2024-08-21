@@ -1,6 +1,4 @@
-import 'package:cantina_senai/common/widgets/appbar/appbarhome.dart';
-import 'package:cantina_senai/common/widgets/appbar/basicappbar.dart';
-import 'package:cantina_senai/common/widgets/appbar/waveappbar.dart';
+import 'package:cantina_senai/common/widgets/appbar/homebar.dart';
 import 'package:cantina_senai/common/widgets/bottom_bar/bottombar.dart';
 import 'package:flutter/material.dart';
 
@@ -19,10 +17,10 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-       appBar: WaveAppbar(),
+       appBar: HomeBar(),
        bottomNavigationBar: Bottombar(),
     ));
   }

@@ -23,7 +23,7 @@ class Paybutton extends StatelessWidget {
           minimumSize: Size.fromHeight(height ?? 64),
           backgroundColor: AppColors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          side: BorderSide(color: AppColors.primary, width: 2),
+          side: const BorderSide(color: AppColors.primary, width: 2),
           
            
         ),

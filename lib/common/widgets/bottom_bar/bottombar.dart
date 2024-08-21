@@ -1,7 +1,11 @@
-import 'package:cantina_senai/core/configs/theme/app_colors.dart';
+import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart'; // Importa o pacote flutter_svg
+import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 
 class Bottombar extends StatefulWidget {
+  const Bottombar({super.key});
+
   @override
   BottombarState createState() => BottombarState();
 }
@@ -12,51 +16,53 @@ class BottombarState extends State<Bottombar> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    // Define os tamanhos dos ícones
+    double iconSize = size.width * .16;
+    double largeIconSize = iconSize;
+    double smallIconSize = iconSize / 2;
+
     return Container(
-        margin: const EdgeInsets.all(20),
-        height: 80,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(.15),
-              blurRadius: 30,
-              offset: Offset(0, 10),
-            ),
-          ],
-          borderRadius: BorderRadius.circular(50),
-        ),
-        child: ListView.builder(
-          itemCount: 3,
-          scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.symmetric(horizontal: size.width * .024),
-          itemBuilder: (context, index) => InkWell(
+      margin: const EdgeInsets.all(20),
+      height: 80,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.15),
+            blurRadius: 30,
+            offset: const Offset(0, 10),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround, // Espaçamento igual ao redor dos itens
+        children: List.generate(
+          listOfSvgAssets.length,
+          (index) => InkWell(
             onTap: () {
-              setState(
-                () {
-                  currentIndex = index;
-                },
-              );
+              setState(() {
+                currentIndex = index;
+              });
             },
-            child: Row(
-              children: [
-                Icon(
-                  listOfIcons[index],
-                  size: size.width * .16,
-                  color: index == currentIndex
-                      ? AppColors.primary
-                      : AppColors.iconColor,
-                ),
-              ],
+            child: SvgPicture.asset(
+              listOfSvgAssets[index],
+              color: index == currentIndex
+                  ? AppColors.primary
+                  : AppColors.iconColor,
+              width: index == 1 ? largeIconSize : smallIconSize, // Ajusta o tamanho com base no índice
+              height: index == 1 ? largeIconSize : smallIconSize,
             ),
           ),
         ),
-      );
+      ),
+    );
   }
 
-  List<IconData> listOfIcons = [
-    Icons.home_rounded,
-    Icons.favorite_rounded,
-    Icons.settings_rounded,
+  List<String> listOfSvgAssets = [
+    AppVectors.wallet,
+    AppVectors.meiobottom,
+    AppVectors.user,
   ];
 }

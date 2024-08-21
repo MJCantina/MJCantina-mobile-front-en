@@ -16,4 +16,5 @@ class AppVectors {
   static const String wallet = '${basePath}wallet$format';
   static const String pix = '${basePath}pix$format';
   static const String card = '${basePath}card$format';
+  static const String notification = '${basePath}notification$format';
 }
