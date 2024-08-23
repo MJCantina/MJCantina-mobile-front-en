@@ -1,10 +1,18 @@
-import 'package:cantina_senai/common/widgets/appbar/homebar.dart';
-import 'package:cantina_senai/common/widgets/bottom_bar/bottombar.dart';
+import 'package:cantina_senai/firebase_options.dart';
+import 'package:cantina_senai/presentation/splash/splashscreen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 
-void main() {
-  runApp(const MainPage());
+void main () async {
+  
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
+  WidgetsFlutterBinding.ensureInitialized();
+    runApp(const MainPage());
+  
+  
 }
 
 class MainPage extends StatefulWidget {
@@ -19,9 +27,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-       appBar: HomeBar(),
-       bottomNavigationBar: Bottombar(),
-    ));
+      home: SplashPage(),
+      );
   }
 }

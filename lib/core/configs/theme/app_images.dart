@@ -4,6 +4,6 @@ class AppImages{
   
   static const String wave = '${basePath}wavebar.png';
   static const String wavegradient = '${basePath}wavegradient.png';
-  static const String logo = '${basePath}logo.png';
+  static const String logo = '${basePath}mjcantina.png';
 
 }
