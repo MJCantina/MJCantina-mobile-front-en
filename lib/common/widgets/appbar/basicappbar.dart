@@ -6,9 +6,7 @@ import 'package:cantina_senai/core/configs/theme/app_images.dart';
 
 class AppBarArrow extends StatelessWidget implements PreferredSizeWidget {
 
-  final VoidCallback onPressed;
   const AppBarArrow({ 
-    required this.onPressed,
     super.key
     });
 
@@ -24,7 +22,7 @@ class AppBarArrow extends StatelessWidget implements PreferredSizeWidget {
       ),
       leading: IconButton(
         onPressed: () {
-          onPressed;
+          Navigator.pop(context);
         },
         icon: const Icon(Icons.arrow_back_ios), color: AppColors.white, 
       ),
