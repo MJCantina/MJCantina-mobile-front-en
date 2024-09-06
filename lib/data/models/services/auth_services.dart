@@ -60,6 +60,7 @@ class AuthService extends GetxController {
   Future <void> login (String email, String password) async {
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      storeToken();
     } catch (e) {
       showSnack('Erro ao logar', e.toString());
     }
@@ -83,9 +84,5 @@ class AuthService extends GetxController {
       }
     }
   }
-
-
-
-
 
 }

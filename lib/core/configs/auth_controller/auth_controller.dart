@@ -9,13 +9,14 @@ class AuthController extends GetxController {
 
   login () async {
     await AuthService.to.login(email.text, pass.text);
-    await AuthService.to.storeToken();
+
     
 
   }
 
   registrar () async {
     await AuthService.to.createUser(email.text, pass.text, nameUser.text);
+
   }
 
   
