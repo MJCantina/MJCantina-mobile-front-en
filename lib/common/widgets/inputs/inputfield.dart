@@ -19,14 +19,13 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(name, style: AppFonts.titleField),
-          SizedBox(height: 16),
+          const SizedBox(height: 4),
           Container(
-            height: 56,
             decoration: BoxDecoration(
               color: AppColors.lightgrey,
               borderRadius: BorderRadius.circular(15)
@@ -34,7 +33,7 @@ class InputField extends StatelessWidget {
             child: TextField(
               controller: campo,
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.only(left: 16),
+                contentPadding: const EdgeInsets.all(16),
                 hintText: title,
                 hintStyle: AppFonts.profileDesc,
                 border: InputBorder.none,

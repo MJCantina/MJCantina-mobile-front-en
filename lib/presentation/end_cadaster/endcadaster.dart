@@ -1,24 +1,21 @@
-
-
 import 'package:cantina_senai/common/widgets/appbar/basicappbar.dart';
 import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
 import 'package:cantina_senai/common/widgets/inputs/inputfield.dart';
-import 'package:cantina_senai/core/configs/auth_controller/auth_controller.dart';
-import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
+import 'package:cantina_senai/presentation/autentica%C3%A7%C3%A3o/login/signin.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class EndCadaster extends StatefulWidget {
+  const EndCadaster({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<EndCadaster> createState() => _EndCadasterState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _EndCadasterState extends State<EndCadaster> {
 
-  final controller = Get.put(AuthController());
+  final TextEditingController _telefone = TextEditingController();
+  final TextEditingController _cpf = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,40 +35,28 @@ class _SignUpPageState extends State<SignUpPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Cadastre-se',
+                        'Ainda não acabou',
                         style: AppFonts.titleFont,
                         textAlign: TextAlign.start,
                       ),
-                      Text('Venha conhecer a melhor cantina', style: AppFonts.subtitle),
+                      Text('Preencha tudo corretamente', style: AppFonts.subtitle),
                     ],
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 16,
                 ),
-                InputField(name: 'Nome', title: 'Digite seu nome', campo: controller.nameUser,),
-                InputField(name: 'Email', title: 'Digite seu email', campo: controller.email ,),
-                InputField(name: 'Senha', title: 'Digite sua senha', campo: controller.pass,)
+                InputField(name: 'Telefone', title: 'Digite seu telefone', campo: _telefone,),
+                InputField(name: 'CPF', title: 'Digite seu cpf', campo: _cpf,),
               ],
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 32),
               child: Column(
                 children: [
-                  BasicAppButton(onPressed: () async {
-                   await controller.registrar();
-
-                  }, title: 'Criar'),
-                  GestureDetector(
-                    child: const Text(
-                      'Já possui conta? Entrar', 
-                      style: TextStyle(
-                        decoration: TextDecoration.underline, 
-                        fontSize: 16, 
-                        color: AppColors.black, 
-                        fontWeight: FontWeight.w600),
-                        ),
-                        ),
+                  BasicAppButton(onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> const SignInPage()));
+                  }, title: 'Continuar'),
                 ],
               ),
             )
