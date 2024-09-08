@@ -35,11 +35,10 @@ class InputField extends StatelessWidget {
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.all(16),
                 hintText: title,
-                hintStyle: AppFonts.profileDesc,
+                hintStyle: AppFonts.placeHolder,
                 border: InputBorder.none,
               ),
-          
-              style: AppFonts.titleField,
+              style: AppFonts.textHolder,
             ),
           ),
         ],
