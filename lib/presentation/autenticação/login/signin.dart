@@ -71,14 +71,9 @@ class _SignInPageState extends State<SignInPage> {
                       title: 'Continuar',
                     ),
                     GestureDetector(
-                      child: const Text(
+                      child: Text(
                         'Esqueci minha senha',
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          fontSize: 16,
-                          color: AppColors.black,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: AppFonts.titleField.copyWith(decoration: TextDecoration.underline),
                       ),
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
