@@ -10,12 +10,32 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateMixin {
+
+ late AnimationController _animationController; 
+ late Animation <Offset> _animation;
+
 
   void initState(){
     super.initState();
+    _animationController = AnimationController(vsync: this,
+    duration: const Duration(seconds: 1, milliseconds: 500));
+
+    _animation = Tween<Offset>(
+      begin: const Offset(0, -8),
+      end: const Offset(0, 0),
+    ).animate(CurvedAnimation(parent: _animationController, curve: Curves.easeOut));
     redirect();
+
+    _animationController.forward();
   }
+
+
+  void dispose(){
+    _animationController.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +49,9 @@ class _SplashPageState extends State<SplashPage> {
           ])
         ),
         child: Center(
+          child: SlideTransition(position: _animation,
           child: Image.asset(AppImages.logo),
+          )
         ),
       ),
     );
