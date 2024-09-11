@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:908460332354:android:67a801223504de8b0524db",
         "android_client_info": {
-          "package_name": "cantina.app"
+          "package_name": "com.example.cantina_senai"
         }
       },
       "oauth_client": [],

@@ -1,7 +1,9 @@
 import 'package:cantina_senai/core/configs/core_config/config.dart';
+import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
 import 'package:cantina_senai/presentation/splash/splashscreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 void main() async {
@@ -10,6 +12,13 @@ void main() async {
 
   // Inicialize o AuthService
   await initAuthService();
+
+  SystemChrome.setSystemUIOverlayStyle(
+  const SystemUiOverlayStyle(
+  statusBarColor: AppColors.primary,
+  statusBarIconBrightness: Brightness.light,
+));
+
 
   runApp(const MyApp());
 }

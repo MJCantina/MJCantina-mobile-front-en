@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Importando seus arquivos de tema personalizados
 import 'package:cantina_senai/core/configs/theme/app_images.dart';
+import 'package:get/get.dart';
 
 class AppBarArrow extends StatelessWidget implements PreferredSizeWidget {
 
@@ -22,9 +23,12 @@ class AppBarArrow extends StatelessWidget implements PreferredSizeWidget {
       ),
       leading: IconButton(
         onPressed: () {
-          Navigator.pop(context);
+          Get.back();
         },
-        icon: const Icon(Icons.arrow_back_ios), color: AppColors.white, 
+        icon: Padding(
+          padding: const EdgeInsets.only(bottom: 40),
+          child: Icon(Icons.arrow_back_ios),
+        ), color: AppColors.white, 
       ),
     );
   }

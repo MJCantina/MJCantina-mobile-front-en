@@ -8,12 +8,14 @@ class InputField extends StatelessWidget {
   final String name;
   final String title;
   final double ? height;
+  
   const InputField({
     required this.campo,
     required this.name,
     required this.title,
     this.height,
     super.key
+    
   });
 
   @override
@@ -38,6 +40,7 @@ class InputField extends StatelessWidget {
                 hintStyle: AppFonts.profileDesc,
                 border: InputBorder.none,
               ),
+              
           
               style: AppFonts.titleField,
             ),

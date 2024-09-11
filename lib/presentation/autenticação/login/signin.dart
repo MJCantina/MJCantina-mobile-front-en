@@ -4,10 +4,9 @@ import 'package:cantina_senai/common/widgets/inputs/inputfield.dart';
 import 'package:cantina_senai/core/configs/auth_controller/auth_controller.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
-import 'package:cantina_senai/data/models/services/auth_services.dart';
 import 'package:cantina_senai/presentation/forget/forget.dart';
-import 'package:cantina_senai/presentation/main_pages/home/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class SignInPage extends StatefulWidget {
@@ -15,6 +14,8 @@ class SignInPage extends StatefulWidget {
 
   @override
   State<SignInPage> createState() => _SignInPageState();
+
+  
 }
 
 class _SignInPageState extends State<SignInPage> {
@@ -22,64 +23,70 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: const AppBarArrow(),
-      body: Padding(
-          padding: const EdgeInsets.only(top: 16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
+        children: [
+          Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Login', style: AppFonts.titleFont, textAlign: TextAlign.start),
-                        Text('Aproveite tudo de bom e do \nmelhor', style: AppFonts.subtitle),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  InputField(name: 'Email', title: 'Digite seu email', campo: controller.email),
-                  InputField(name: 'Senha', title: 'Digite sua senha', campo: controller.pass),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 32),
-                child: Column(
-                  children: [
-                    BasicAppButton(
-                      onPressed: () async {
-                        await controller.login();
-                      },
-                      title: 'Continuar',
-                    ),
-                    GestureDetector(
-                      child: const Text(
-                        'Esqueci minha senha',
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          fontSize: 16,
-                          color: AppColors.black,
-                          fontWeight: FontWeight.w600,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Login', style: AppFonts.titleFont, textAlign: TextAlign.start),
+                            Text('Aproveite tudo de bom e do \nmelhor', style: AppFonts.subtitle),
+                          ],
                         ),
                       ),
-                      onTap: () {
-                        Get.to(const ForgetPage(),
-                        transition: Transition.rightToLeft,
-                        duration: const Duration(seconds: 1)
-                        );
-                      },
+                      const SizedBox(height: 16),
+                      InputField(name: 'Email', title: 'Digite seu email', campo: controller.email),
+                      InputField(name: 'Senha', title: 'Digite sua senha', campo: controller.pass),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 128),
+                    child: Column(
+                      children: [
+                        BasicAppButton(
+                          onPressed: () async {
+                            await controller.login();
+                          },
+                          title: 'Continuar',
+                        ),
+                        GestureDetector(
+                          child: const Text(
+                            'Esqueci minha senha',
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              fontSize: 16,
+                              color: AppColors.black,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          onTap: () {
+                            Get.to(const ForgetPage(),
+                            transition: Transition.rightToLeft,
+                            duration: const Duration(seconds: 1)
+                            );
+                          },
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
+                  )
+                ],
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

@@ -68,6 +68,7 @@ class AuthService extends GetxController {
         await user.updateDisplayName(name);
         await user.reload();
         _firebaseUser.value = _auth.currentUser;
+        
         storeToken();  // Armazena o token após criação do usuário
         showSnack('Sucesso', 'Usuário criado com sucesso');
       }
