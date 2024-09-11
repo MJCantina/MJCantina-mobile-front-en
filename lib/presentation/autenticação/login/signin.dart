@@ -28,10 +28,11 @@ class _SignInPageState extends State<SignInPage> {
         // Escutando o estado de autenticação
         if (AuthService.to.userIsAuthenticated.value) {
           Future.microtask(() {
-            // Navegando para a HomePage se o usuário estiver autenticado
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => const HomePage(),
-            ));
+            const CircularProgressIndicator();
+            Get.offAll(const HomePage(),
+            duration: const Duration(seconds: 2),
+            transition: Transition.rightToLeft
+            );
           });
           return const Center(child: CircularProgressIndicator());
         }
@@ -81,9 +82,10 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                       ),
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => const ForgetPage(),
-                        ));
+                        Get.to(const ForgetPage(),
+                        transition: Transition.rightToLeft,
+                        duration: const Duration(seconds: 1)
+                        );
                       },
                     ),
                   ],

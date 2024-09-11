@@ -36,7 +36,7 @@ class _ForgetPageState extends State<ForgetPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 16,),
+                const SizedBox(height: 16,),
                 InputField(campo: _emailController, name: 'Email', title: 'Digite seu email'),
               ],
             ),

@@ -30,7 +30,7 @@ class InputField extends StatelessWidget {
               color: AppColors.lightgrey,
               borderRadius: BorderRadius.circular(15)
             ),
-            child: TextField(
+            child: TextFormField(
               controller: campo,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.all(16),

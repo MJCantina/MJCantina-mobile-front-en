@@ -4,8 +4,8 @@ import 'package:cantina_senai/common/widgets/inputs/inputfield.dart';
 import 'package:cantina_senai/core/configs/auth_controller/auth_controller.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
-import 'package:cantina_senai/data/models/services/auth_services.dart';
-import 'package:cantina_senai/presentation/main_pages/home/home.dart';
+import 'package:cantina_senai/presentation/autentica%C3%A7%C3%A3o/login/signin.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,20 +23,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarArrow(),
-      body: Obx(() {
-        // Escutando o estado de autenticação
-        if (AuthService.to.userIsAuthenticated.value) {
-          Future.microtask(() {
-            // Navegando para a HomePage se o usuário estiver autenticado
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const HomePage()),
-            );
-          });
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        // Conteúdo da tela de cadastro quando o usuário não está autenticado
-        return Padding(
+      body: Padding(
           padding: const EdgeInsets.only(top: 16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,7 +74,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       onTap: () {
-                        // Implementar a navegação para a página de login se necessário
+                        Get.to(const SignInPage(),
+                        transition: Transition.rightToLeft,
+                        duration: const Duration(seconds: 1)
+                        );
                       },
                     ),
                   ],
@@ -95,8 +85,6 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ],
           ),
-        );
-      }),
-    );
+        ));
+      }
   }
-}

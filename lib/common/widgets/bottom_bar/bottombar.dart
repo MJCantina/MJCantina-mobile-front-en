@@ -11,13 +11,12 @@ class Bottombar extends StatefulWidget {
 }
 
 class BottombarState extends State<Bottombar> {
-  var currentIndex = 0;
+  var currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    // Define os tamanhos dos ícones
     double iconSize = size.width * .16;
     double largeIconSize = iconSize;
     double smallIconSize = iconSize / 2;
@@ -44,6 +43,7 @@ class BottombarState extends State<Bottombar> {
             onTap: () {
               setState(() {
                 currentIndex = index;
+                
               });
             },
             child: SvgPicture.asset(

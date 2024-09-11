@@ -43,7 +43,7 @@ class _EndCadasterState extends State<EndCadaster> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 InputField(name: 'Telefone', title: 'Digite seu telefone', campo: _telefone,),

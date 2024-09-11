@@ -1,6 +1,4 @@
 import 'package:cantina_senai/data/models/services/auth_services.dart';
-import 'package:cantina_senai/presentation/autentica%C3%A7%C3%A3o/cadastro/signup.dart';
-import 'package:cantina_senai/presentation/main_pages/home/home.dart';
 import 'package:cantina_senai/presentation/splash/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -9,7 +7,7 @@ class Checkauth extends StatelessWidget {
   const Checkauth({super.key});
 
   Future<bool> checkToken() async {
-    final storage =  FlutterSecureStorage();
+    const storage =  FlutterSecureStorage();
     String? token = await storage.read(key: 'firebase_token');
     return token != null && token.isNotEmpty;
   }
@@ -25,7 +23,7 @@ class Checkauth extends StatelessWidget {
 
         if (snapshot.data == true) {
           AuthService.to.userIsAuthenticated.value = true;
-          return const HomePage();
+          return const SplashPage();
         } else {
           AuthService.to.userIsAuthenticated.value = false;
           return const SplashPage();
