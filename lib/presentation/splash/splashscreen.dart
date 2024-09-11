@@ -1,10 +1,11 @@
+import 'package:cantina_senai/common/helpers/whitepage.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_images.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
 import 'package:cantina_senai/presentation/main_pages/home/home.dart';
 import 'package:cantina_senai/presentation/welcome/start.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart'; // Usando GetX para navegação
+import 'package:get/get.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -14,7 +15,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateMixin {
-
   late AnimationController _animationController;
   late Animation<Offset> _animation;
 
@@ -34,10 +34,29 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
       curve: Curves.easeOut,
     ));
 
-    _animationController.forward();
+    _animationController.forward().whenComplete(() async {
+      // Navegue para a tela branca de transição
+      Get.offAll(() => const WhiteScreen(),
+        transition: Transition.rightToLeft,
+        duration: const Duration(milliseconds: 500),
+      );
 
-    // Após a animação, chamar o redirecionamento controlado pelo AuthController
-    redirect();
+      // Aguarde um breve intervalo e depois navegue para a tela final
+      await Future.delayed(const Duration(seconds: 1));
+
+      final isAuthenticated = AuthService.to.userIsAuthenticated.value;
+
+      if (isAuthenticated) {
+        Get.offAll(() => const HomePage(),
+          transition: Transition.rightToLeft,
+          duration: const Duration(seconds: 2, milliseconds: 500),
+        );
+      } else {
+        Get.offAll(() => const StartPage(),
+          transition: Transition.fade,
+        );
+      }
+    });
   }
 
   @override
@@ -64,25 +83,5 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
         ),
       ),
     );
-  }
-
-  // Redirecionamento controlado pelo AuthController
-  Future<void> redirect() async {
-    await Future.delayed(const Duration(seconds: 3));  // Mantém o delay para mostrar a splash screen
-    final isAuthenticated = AuthService.to.userIsAuthenticated.value;
-
-    // Usa Get.offAll para redirecionar de acordo com o estado de autenticação
-    if (isAuthenticated) {
-      Get.offAll(() => const HomePage(),
-       transition: Transition.rightToLeft,
-      duration: const Duration(seconds: 1, milliseconds: 500)
-      );  // Se autenticado, vai para HomePage
-    } else {
-      Get.offAll(
-        () => const StartPage(),
-        transition: Transition.rightToLeft,
-        duration: const Duration(seconds: 1, milliseconds: 500)
-        );  // Se não autenticado, vai para a tela inicial
-    }
   }
 }

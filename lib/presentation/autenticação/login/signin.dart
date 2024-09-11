@@ -24,21 +24,7 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarArrow(),
-      body: Obx(() {
-        // Escutando o estado de autenticação
-        if (AuthService.to.userIsAuthenticated.value) {
-          Future.microtask(() {
-            const CircularProgressIndicator();
-            Get.offAll(const HomePage(),
-            duration: const Duration(seconds: 2),
-            transition: Transition.rightToLeft
-            );
-          });
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        // Conteúdo da tela de login quando o usuário não está autenticado
-        return Padding(
+      body: Padding(
           padding: const EdgeInsets.only(top: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,8 +79,7 @@ class _SignInPageState extends State<SignInPage> {
               )
             ],
           ),
-        );
-      }),
+        ),
     );
   }
 }

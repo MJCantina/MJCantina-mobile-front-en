@@ -5,6 +5,8 @@ import 'package:cantina_senai/core/configs/auth_controller/auth_controller.dart'
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/presentation/autentica%C3%A7%C3%A3o/login/signin.dart';
+import 'package:cantina_senai/presentation/end_cadaster/endcadaster.dart';
+import 'package:cantina_senai/presentation/forget/forget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -59,7 +61,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   children: [
                     BasicAppButton(
                       onPressed: () async {
-                        await controller.registrar();
+                        Get.to(const EndCadaster(),
+                        transition: Transition.rightToLeft,
+                        duration: const Duration(seconds: 1)
+                        );
                       },
                       title: 'Criar',
                     ),

@@ -1,33 +1,34 @@
 import 'package:cantina_senai/core/configs/core_config/config.dart';
-import 'package:cantina_senai/domain/entities/page_controller.dart';
-
-
+import 'package:cantina_senai/data/models/services/auth_services.dart';
+import 'package:cantina_senai/presentation/splash/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-void main () async {
-  
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await initConfigurations();
-  runApp(const MainPage());
-  
 
+  // Inicialize o AuthService
+  await initAuthService();
 
+  runApp(const MyApp());
 }
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+Future<void> initAuthService() async {
+  final authService = Get.put(AuthService());
 
-  @override
-  State<MainPage> createState() => _MainPageState();
+  // Aguarde o AuthService inicializar
+  await Future.delayed(Duration.zero); // Ou qualquer outra lógica de espera que você precisa
 }
 
-class _MainPageState extends State<MainPage> {
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return  const GetMaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Checkauth(),
-      );
+      home: const SplashPage(),  // A tela inicial é a SplashPage
+    );
   }
 }

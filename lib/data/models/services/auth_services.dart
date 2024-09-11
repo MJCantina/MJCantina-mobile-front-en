@@ -1,4 +1,7 @@
-
+import 'package:cantina_senai/core/configs/theme/app_colors.dart';
+import 'package:cantina_senai/presentation/main_pages/home/home.dart';
+import 'package:cantina_senai/presentation/splash/splashscreen.dart';
+import 'package:cantina_senai/presentation/welcome/start.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -13,20 +16,32 @@ class AuthService extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
+    
     // Vincula o stream do FirebaseAuth ao _firebaseUser
     _firebaseUser.bindStream(_auth.authStateChanges());
+
 
     // Sempre que _firebaseUser mudar, executa esta função
     ever(_firebaseUser, (User? user) {
       if (user != null) {
         userIsAuthenticated.value = true;
         storeToken();  // Armazena o token quando o usuário está autenticado
-      } else {
+        Get.offAll(const HomePage(),
+        transition: Transition.rightToLeft,
+        duration: const Duration(seconds: 1, milliseconds: 500)
+        ); // Navega para a home se autenticado
+      } else { 
         userIsAuthenticated.value = false;
+        Get.offAll(const SplashPage(),
+        transition: Transition.rightToLeft,
+        duration: const Duration(seconds: 1, milliseconds: 500),
+        ); // Navega para a tela inicial se não autenticado
       }
-    });
+    },
+    );
   }
+
+  // Verifica se há um token armazenado no Flutter Secure Storage
 
   User? get user => _firebaseUser.value;
   static AuthService get to => Get.find<AuthService>();
@@ -35,13 +50,14 @@ class AuthService extends GetxController {
     Get.snackbar(
       titulo,
       mensagem,
-      backgroundColor: Colors.grey,
+      backgroundColor: AppColors.primary,
       colorText: Colors.white,
       snackPosition: SnackPosition.BOTTOM,
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.all(16),
     );
   }
 
+  // Criação de usuário
   Future<void> createUser(String email, String password, String name) async {
     try {
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
@@ -60,24 +76,27 @@ class AuthService extends GetxController {
     }
   }
 
+  // Login do usuário
   Future<void> login(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       storeToken();  // Armazena o token após login
     } catch (e) {
-      showSnack('Erro ao fazer login', e.toString());
+      showSnack('Erro ao fazer login', 'Tente novamente');
     }
   }
 
+  // Logout do usuário
   Future<void> logout() async {
     try {
       await _auth.signOut();
-      await _storage.delete(key: 'firebase_token');
+      await _storage.delete(key: 'firebase_token');  // Remove o token armazenado
     } catch (e) {
       showSnack('Erro ao fazer logout', e.toString());
     }
   }
 
+  // Armazena o token no Flutter Secure Storage
   Future<void> storeToken() async {
     if (user != null) {
       String? token = await user!.getIdToken();

@@ -1,6 +1,7 @@
 import 'package:cantina_senai/common/widgets/appbar/basicappbar.dart';
 import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
 import 'package:cantina_senai/common/widgets/inputs/inputfield.dart';
+import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/presentation/autentica%C3%A7%C3%A3o/login/signin.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class _EndCadasterState extends State<EndCadaster> {
 
   final TextEditingController _telefone = TextEditingController();
   final TextEditingController _cpf = TextEditingController();
+  bool? value = false;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,23 @@ class _EndCadasterState extends State<EndCadaster> {
                 ),
                 InputField(name: 'Telefone', title: 'Digite seu telefone', campo: _telefone,),
                 InputField(name: 'CPF', title: 'Digite seu cpf', campo: _cpf,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(
+                  children: [
+                  Checkbox(value: value,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)), 
+                  activeColor: AppColors.primary,
+                  checkColor: AppColors.white,
+                  onChanged: (bool? newValue){
+                    setState(() {
+                      value = newValue;
+                    });
+                  }),
+                  Text('Eu li e aceito os termos e condições de uso', style: AppFonts.textHolder,)
+                                ],
+                              ),
+                ),
               ],
             ),
             Padding(
@@ -59,7 +78,9 @@ class _EndCadasterState extends State<EndCadaster> {
                   }, title: 'Continuar'),
                 ],
               ),
-            )
+            ),
+            
+
           ],
         ),
       ),
