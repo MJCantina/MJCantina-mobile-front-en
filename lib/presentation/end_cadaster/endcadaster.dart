@@ -48,8 +48,33 @@ class _EndCadasterState extends State<EndCadaster> {
                 const SizedBox(
                   height: 16,
                 ),
-                InputField(name: 'Telefone', title: 'Digite seu telefone', campo: _telefone,),
-                InputField(name: 'CPF', title: 'Digite seu cpf', campo: _cpf,),
+                InputField(name: 'Telefone', 
+                title: 'Digite seu telefone', 
+                campo: _telefone,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira seu telefone';
+                  }
+                  final phoneExp = RegExp(r'^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$');
+                  if (!phoneExp.hasMatch(value)) {
+                    return 'Telefone inválido. Utilize o formato correto';
+                  }
+                  return null;
+                },
+                ),
+                InputField(name: 'CPF', 
+                title: 'Digite seu cpf', 
+                campo: _cpf,
+                validator: (value){
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira seu CPF';
+                  }
+                  if (!RegExp(r'^\d{11}$').hasMatch(value)) {
+                    return 'Por favor, insira um CPF válido';
+                  }
+                  return null;
+                },
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Row(

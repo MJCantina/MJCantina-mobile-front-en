@@ -23,4 +23,13 @@ class AuthController extends GetxController {
     }
   }
 
+  Future<void> sendPasswordResetEmail() async {
+    try {
+      await AuthService.to.sendPasswordResetEmail(email.text);
+      Get.snackbar('Sucesso', 'Link de redefinição de senha enviado para ${email.text}.', backgroundColor: Colors.green);
+    } catch (e) {
+      Get.snackbar('Erro', e.toString(), backgroundColor: Colors.red);
+    }
+  }
+
 }

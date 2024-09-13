@@ -1,4 +1,3 @@
-import 'package:cantina_senai/core/configs/auth_controller/auth_controller.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
@@ -8,15 +7,14 @@ import 'package:flutter/material.dart';
 // Importando seus arquivos de tema personalizados
 import 'package:cantina_senai/core/configs/theme/app_images.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
 class HomeBar extends StatelessWidget implements PreferredSizeWidget {
   final String? userName; // Adiciona uma propriedade para o nome do usuário
 
   const HomeBar({
-    Key? key,
+    super.key,
     this.userName, // Adiciona o nome do usuário como parâmetro
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

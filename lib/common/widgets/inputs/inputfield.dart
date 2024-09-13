@@ -8,11 +8,13 @@ class InputField extends StatelessWidget {
   final String name;
   final String title;
   final double ? height;
+  final String? Function(String?) validator;
   
   const InputField({
     required this.campo,
     required this.name,
     required this.title,
+    required this.validator,
     this.height,
     super.key
     
@@ -40,6 +42,7 @@ class InputField extends StatelessWidget {
                 hintStyle: AppFonts.profileDesc,
                 border: InputBorder.none,
               ),
+              validator: validator,
               
           
               style: AppFonts.titleField,

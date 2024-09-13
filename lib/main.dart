@@ -35,9 +35,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const SplashPage(),  // A tela inicial é a SplashPage
+      home: SplashPage(),  // A tela inicial é a SplashPage
     );
   }
 }

@@ -25,8 +25,8 @@ class AppBarArrow extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () {
           Get.back();
         },
-        icon: Padding(
-          padding: const EdgeInsets.only(bottom: 40),
+        icon: const Padding(
+          padding: EdgeInsets.only(bottom: 40),
           child: Icon(Icons.arrow_back_ios),
         ), color: AppColors.white, 
       ),
