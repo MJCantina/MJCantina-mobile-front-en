@@ -6,6 +6,8 @@ class AuthController extends GetxController {
   final email = TextEditingController();
   final pass = TextEditingController();
   final nameUser = TextEditingController();
+  final telefone = TextEditingController();
+  final cpf = TextEditingController();
 
   Future<void> login() async {
     try {
@@ -27,6 +29,15 @@ class AuthController extends GetxController {
     try {
       await AuthService.to.sendPasswordResetEmail(email.text);
       Get.snackbar('Sucesso', 'Link de redefinição de senha enviado para ${email.text}.', backgroundColor: Colors.green);
+    } catch (e) {
+      Get.snackbar('Erro', e.toString(), backgroundColor: Colors.red);
+    }
+  }
+
+  Future<void> ctSend () async {
+    try {
+      await AuthService.to.salvarInformacoesAdicionais(cpf.text, telefone.text);
+      Get.snackbar('Sucesso', 'Dados salvos com sucesso', backgroundColor: Colors.green);
     } catch (e) {
       Get.snackbar('Erro', e.toString(), backgroundColor: Colors.red);
     }

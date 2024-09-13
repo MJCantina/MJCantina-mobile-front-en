@@ -1,6 +1,7 @@
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/presentation/main_pages/home/home.dart';
 import 'package:cantina_senai/presentation/splash/splashscreen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -160,4 +161,48 @@ Future<void> login(String email, String password) async {
       showSnack('Erro ao enviar link de redefinição de senha', e.toString());
     }
   }
+
+  Future<void> salvarInformacoesAdicionais(String telefone, String cpf) async {
+  try {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      // Verifica se o telefone ou o CPF já estão salvos no Firestore (em uma única consulta)
+      final query = await FirebaseFirestore.instance
+          .collection('users')
+          .where('telefone', isEqualTo: telefone)
+          .get();
+
+      final cpfQuery = await FirebaseFirestore.instance
+          .collection('users')
+          .where('cpf', isEqualTo: cpf)
+          .get();
+
+      if (query.docs.isNotEmpty || cpfQuery.docs.isNotEmpty) {
+        throw Exception('Telefone ou CPF já estão em uso.');
+      }
+
+      // Mostrar indicador de progresso após a verificação
+      Get.dialog(
+        const Center(child: CircularProgressIndicator()),
+        barrierDismissible: false,
+      );
+
+      // Salva os dados no Firestore
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .set({
+        'telefone': telefone,
+        'cpf': cpf,
+      }, SetOptions(merge: true));
+
+      Get.back(); // Fecha o indicador de progresso
+    }
+  } catch (e) {
+    Get.back(); // Fecha o indicador de progresso em caso de erro
+    showSnack('Erro ao salvar dados', e.toString());
+  }
+}
+
+
 }

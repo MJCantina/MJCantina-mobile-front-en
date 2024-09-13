@@ -2,9 +2,9 @@ import 'package:cantina_senai/common/widgets/appbar/basicappbar.dart';
 import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
 import 'package:cantina_senai/common/widgets/inputs/inputfield.dart';
 import 'package:cantina_senai/core/configs/auth_controller/auth_controller.dart';
-import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/presentation/autentica%C3%A7%C3%A3o/login/signin.dart';
+import 'package:cantina_senai/presentation/end_cadaster/endcadaster.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,12 +18,13 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final controller = Get.put(AuthController());
-  final _formKey = GlobalKey<FormState>(); // Adiciona uma GlobalKey para o Form
+  final _formKey = GlobalKey<FormState>(); 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true, // Permite redimensionar quando o teclado aparece
+      resizeToAvoidBottomInset:
+          true, // Permite redimensionar quando o teclado aparece
       appBar: const AppBarArrow(),
       body: SingleChildScrollView(
         child: Padding(
@@ -55,8 +56,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     const SizedBox(height: 16),
                     InputField(
-                      name: 'Nome', 
-                      title: 'Digite seu nome', 
+                      name: 'Nome',
+                      title: 'Digite seu nome',
                       campo: controller.nameUser,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -79,8 +80,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       },
                     ),
                     InputField(
-                      name: 'Email', 
-                      title: 'Digite seu email', 
+                      name: 'Email',
+                      title: 'Digite seu email',
                       campo: controller.email,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -93,8 +94,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       },
                     ),
                     InputField(
-                      name: 'Senha', 
-                      title: 'Digite sua senha', 
+                      name: 'Senha',
+                      title: 'Digite sua senha',
                       campo: controller.pass,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -110,24 +111,23 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).viewInsets.top + 64, // Ajusta o espaço inferior quando o teclado aparece
+                    top: MediaQuery.of(context).viewInsets.top +
+                        64, // Ajusta o espaço inferior quando o teclado aparece
                   ),
                   child: Column(
                     children: [
                       BasicAppButton(
                         onPressed: () {
-                          // Chama a validação do formulário
                           if (_formKey.currentState!.validate()) {
                             controller.registrar();
-                          }
+                          }                          
                         },
-                        title: 'Criar',
+                        title: 'Criar'
                       ),
                       GestureDetector(
-                        child: Text(
-                          'Já possui conta? Entrar',
-                          style: AppFonts.titleField.copyWith(decoration: TextDecoration.underline)
-                        ),
+                        child: Text('Já possui conta? Entrar',
+                            style: AppFonts.titleField.copyWith(
+                                decoration: TextDecoration.underline)),
                         onTap: () {
                           Get.to(const SignInPage(),
                               transition: Transition.rightToLeft,
@@ -145,4 +145,3 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 }
-
