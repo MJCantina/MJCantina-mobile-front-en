@@ -38,7 +38,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
       // Navegue para a tela branca de transição
       Get.offAll(() => const WhiteScreen(),
         transition: Transition.rightToLeft,
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(seconds: 1),
       );
 
       // Aguarde um breve intervalo e depois navegue para a tela final

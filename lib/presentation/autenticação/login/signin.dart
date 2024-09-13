@@ -7,6 +7,7 @@ import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/presentation/forget/forget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -91,14 +92,9 @@ class _SignInPageState extends State<SignInPage> {
                             title: 'Continuar',
                           ),
                           GestureDetector(
-                            child: const Text(
+                            child: Text(
                               'Esqueci minha senha',
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                fontSize: 16,
-                                color: AppColors.black,
-                                fontWeight: FontWeight.w600,
-                              ),
+                              style: AppFonts.titleField.copyWith(decoration: TextDecoration.underline)
                             ),
                             onTap: () {
                               Get.to(const ForgetPage(),

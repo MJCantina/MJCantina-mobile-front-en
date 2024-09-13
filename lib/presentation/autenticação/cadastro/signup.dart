@@ -124,14 +124,9 @@ class _SignUpPageState extends State<SignUpPage> {
                         title: 'Criar',
                       ),
                       GestureDetector(
-                        child: const Text(
+                        child: Text(
                           'Já possui conta? Entrar',
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            fontSize: 16,
-                            color: AppColors.black,
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style: AppFonts.titleField.copyWith(decoration: TextDecoration.underline)
                         ),
                         onTap: () {
                           Get.to(const SignInPage(),

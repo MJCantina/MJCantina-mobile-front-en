@@ -7,7 +7,6 @@ class InputField extends StatelessWidget {
   final TextEditingController campo;
   final String name;
   final String title;
-  final double ? height;
   final String? Function(String?) validator;
   
   const InputField({
@@ -15,7 +14,6 @@ class InputField extends StatelessWidget {
     required this.name,
     required this.title,
     required this.validator,
-    this.height,
     super.key
     
   });
@@ -39,13 +37,14 @@ class InputField extends StatelessWidget {
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.all(16),
                 hintText: title,
-                hintStyle: AppFonts.profileDesc,
+                hintStyle: AppFonts.placeHolder,
                 border: InputBorder.none,
+                
               ),
               validator: validator,
               
           
-              style: AppFonts.titleField,
+              style: AppFonts.textHolder,
             ),
           ),
         ],

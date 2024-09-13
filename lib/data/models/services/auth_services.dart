@@ -109,14 +109,30 @@ void onInit() {
 
 
   // Login do usuário
-  Future<void> login(String email, String password) async {
-    try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
-      storeToken();  // Armazena o token após login
-    } catch (e) {
-      showSnack('Erro ao fazer login', 'Tente novamente');
-    }
+Future<void> login(String email, String password) async {
+  try {
+    // Mostrar indicador de progresso
+    Get.dialog(
+      const Center(child: CircularProgressIndicator()),
+      barrierDismissible: false,
+    );
+
+    // Realizar login
+    await _auth.signInWithEmailAndPassword(email: email, password: password);
+
+    // Armazena o token após login
+    await storeToken();
+
+    // Fechar o indicador de progresso ao final do login
+    Get.back();
+    
+  } catch (e) {
+    // Fechar o indicador de progresso em caso de erro
+    Get.back();
+    showSnack('Erro ao fazer login', 'Tente novamente');
   }
+}
+
 
   // Logout do usuário
   Future<void> logout() async {

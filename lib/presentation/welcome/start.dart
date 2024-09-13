@@ -25,11 +25,11 @@ class _StartPageState extends State<StartPage> with SingleTickerProviderStateMix
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
     );
 
     _animation = Tween<Offset>(
-      begin: const Offset(0, -1), // Começa fora da tela (deslizando de cima)
+      begin: const Offset(0, -3), // Começa fora da tela (deslizando de cima)
       end: Offset.zero,            // Termina na posição normal
     ).animate(CurvedAnimation(
       parent: _animationController,
@@ -37,7 +37,7 @@ class _StartPageState extends State<StartPage> with SingleTickerProviderStateMix
     ));
 
     _animationBottom = Tween<Offset>(
-      begin: const Offset(0, 1), // Começa fora da tela (deslizando de cima)
+      begin: const Offset(0, 3), // Começa fora da tela (deslizando de cima)
       end: Offset.zero,            // Termina na posição normal
     ).animate(CurvedAnimation(
       parent: _animationController,
