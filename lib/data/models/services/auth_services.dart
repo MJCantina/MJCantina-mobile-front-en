@@ -23,24 +23,23 @@ class AuthService extends GetxController {
     _firebaseUser.bindStream(_auth.authStateChanges());
 
     // Verifica o estado de autenticação e navega para a tela apropriada
-    ever(_firebaseUser, (User? user) async {
-      if (user != null) {
-        await user.reload(); // Sempre recarrega o usuário para garantir que as informações estão atualizadas
-        if (user.emailVerified) {
-          userIsAuthenticated.value = true;
-          Get.offAll(const HomePage(),
-            transition: Transition.rightToLeft,
-            duration: const Duration(seconds: 1, milliseconds: 500),
-          );
-        } 
-      } else {
-        userIsAuthenticated.value = false;
-        Get.offAll(const SplashPage(),
-          transition: Transition.rightToLeft,
-          duration: const Duration(seconds: 1, milliseconds: 500),
-        );
-      }
-    });
+    ever(_firebaseUser, (User? user) {
+    if (user != null && user.emailVerified) {
+      userIsAuthenticated.value = true;
+      Get.offAll(const HomePage(),
+        transition: Transition.rightToLeft,
+        duration: const Duration(seconds: 1, milliseconds: 500),
+      );
+    } else if (user == null) {
+      userIsAuthenticated.value = false;
+      Get.offAll(const SplashPage(),
+        transition: Transition.rightToLeft,
+        duration: const Duration(seconds: 1, milliseconds: 500),
+      );
+    }
+  });
+
+
   }
 
   User? get user => _firebaseUser.value;
@@ -77,56 +76,63 @@ class AuthService extends GetxController {
   }
 
   Future<void> salvarInformacoesAdicionais(String telefone, String cpf) async {
-    try {
-      User? user = _auth.currentUser;
+  try {
+    User? user = _auth.currentUser;
 
-      if (user != null) {
-        final query = await FirebaseFirestore.instance
-            .collection('users')
-            .where('telefone', isEqualTo: telefone)
-            .get();
+    if (user != null) {
+      final query = await FirebaseFirestore.instance
+          .collection('users')
+          .where('telefone', isEqualTo: telefone)
+          .get();
 
-        final cpfQuery = await FirebaseFirestore.instance
-            .collection('users')
-            .where('cpf', isEqualTo: cpf)
-            .get();
+      final cpfQuery = await FirebaseFirestore.instance
+          .collection('users')
+          .where('cpf', isEqualTo: cpf)
+          .get();
 
-        if (query.docs.isNotEmpty || cpfQuery.docs.isNotEmpty) {
-          throw Exception('Telefone ou CPF já estão em uso.');
-        }
-
-        Get.dialog(
-          const Center(child: CircularProgressIndicator()),
-          barrierDismissible: false,
-        );
-
-        await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
-          'telefone': telefone,
-          'cpf': cpf,
-        }, SetOptions(merge: true));
-
-        Get.back();
-
-        await user.sendEmailVerification();
-        showSnack('Confirmação', 'Código de confirmação enviado. Verifique seu e-mail.');
-
-        Get.to(const ConfirmEmail());
-
-        while (!user.emailVerified) {
-        await Future.delayed(const Duration(seconds: 10));
-        await user.reload();
-        if (user.emailVerified) {
-          userIsAuthenticated.value = true;
-          break;
-        }
+      if (query.docs.isNotEmpty || cpfQuery.docs.isNotEmpty) {
+        throw Exception('Telefone ou CPF já estão em uso.');
       }
-        storeToken();
-      }
-    } catch (e) {
+
+      Get.dialog(
+        const Center(child: CircularProgressIndicator()),
+        barrierDismissible: false,
+      );
+
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+        'telefone': telefone,
+        'cpf': cpf,
+      }, SetOptions(merge: true));
+
       Get.back();
-      showSnack('Erro ao salvar dados', e.toString());
+
+      await user.sendEmailVerification();
+      showSnack('Confirmação', 'Código de confirmação enviado. Verifique seu e-mail.');
+
+      Get.to(const ConfirmEmail());
+
+      while (!user!.emailVerified) {
+      await Future.delayed(const Duration(seconds: 1));
+      await user.reload();
+      user = _auth.currentUser; // Atualiza o usuário
+      print('Email verificado: ${user?.emailVerified}'); 
+      print('verificando...');
+      if (user!.emailVerified) {
+        userIsAuthenticated.value = true;
+        storeToken();
+        _firebaseUser.value = user;
+        print('pronto');
+        break;
+      }
     }
+
+    }
+  } catch (e) {
+    Get.back();
+    showSnack('Erro ao salvar dados', e.toString());
   }
+}
+
 
   Future<void> login(String email, String password) async {
     try {
