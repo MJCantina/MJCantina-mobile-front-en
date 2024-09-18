@@ -1,10 +1,7 @@
-import 'package:cantina_senai/common/widgets/appbar/appbar.dart';
 import 'package:cantina_senai/common/widgets/appbar/homebar.dart';
-import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
 import 'package:cantina_senai/common/widgets/bottom_bar/bottombar.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
-import 'package:cantina_senai/presentation/end_cadaster/endcadaster.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

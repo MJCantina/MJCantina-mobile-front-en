@@ -9,7 +9,7 @@ class Checkauth extends StatelessWidget {
   Future<bool> checkToken() async {
     const storage =  FlutterSecureStorage();
     String? token = await storage.read(key: 'firebase_token');
-    return token!.isNotEmpty;
+    return token.isNotEmpty;
   }
 
   @override

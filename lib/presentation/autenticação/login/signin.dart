@@ -2,12 +2,10 @@ import 'package:cantina_senai/common/widgets/appbar/basicappbar.dart';
 import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
 import 'package:cantina_senai/common/widgets/inputs/inputfield.dart';
 import 'package:cantina_senai/core/configs/auth_controller/auth_controller.dart';
-import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
-import 'package:cantina_senai/presentation/forget/forget.dart';
+import 'package:cantina_senai/presentation/autentica%C3%A7%C3%A3o/forget/forget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});

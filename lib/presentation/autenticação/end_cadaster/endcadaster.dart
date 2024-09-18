@@ -4,7 +4,6 @@ import 'package:cantina_senai/common/widgets/inputs/inputfield.dart';
 import 'package:cantina_senai/core/configs/auth_controller/auth_controller.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
-import 'package:cantina_senai/presentation/autentica%C3%A7%C3%A3o/login/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,8 +15,6 @@ class EndCadaster extends StatefulWidget {
 }
 
 class _EndCadasterState extends State<EndCadaster> {
-
-
   bool? value = false;
   final _key = GlobalKey<FormState>();
   final controller = Get.put(AuthController());
@@ -52,52 +49,59 @@ class _EndCadasterState extends State<EndCadaster> {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 16,
+                    const SizedBox(height: 16),
+                    InputField(
+                      name: 'Telefone',
+                      title: 'Digite seu telefone',
+                      campo: controller.telefone,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor, insira seu telefone';
+                        }
+                        final phoneExp = RegExp(r'^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$');
+                        if (!phoneExp.hasMatch(value)) {
+                          return 'Telefone inválido. Utilize o formato correto';
+                        }
+                        return null;
+                      },
                     ),
-                    InputField(name: 'Telefone', 
-                    title: 'Digite seu telefone', 
-                    campo: controller.telefone,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Por favor, insira seu telefone';
-                      }
-                      final phoneExp = RegExp(r'^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$');
-                      if (!phoneExp.hasMatch(value)) {
-                        return 'Telefone inválido. Utilize o formato correto';
-                      }
-                      return null;
-                    },
-                    ),
-                    InputField(name: 'CPF', 
-                    title: 'Digite seu cpf', 
-                    campo: controller.cpf,
-                    validator: (value){
-                      if (value == null || value.isEmpty) {
-                        return 'Por favor, insira seu CPF';
-                      }
-                      if (!RegExp(r'^\d{11}$').hasMatch(value)) {
-                        return 'Por favor, insira um CPF válido';
-                      }
-                      return null;
-                    },
+                    InputField(
+                      name: 'CPF',
+                      title: 'Digite seu CPF',
+                      campo: controller.cpf,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor, insira seu CPF';
+                        }
+                        if (!RegExp(r'^\d{11}$').hasMatch(value)) {
+                          return 'Por favor, insira um CPF válido';
+                        }
+                        return null;
+                      },
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Row(
-                      children: [
-                      Checkbox(value: value,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)), 
-                      activeColor: AppColors.primary,
-                      checkColor: AppColors.white,
-                      onChanged: (bool? newValue){
-                        setState(() {
-                          value = newValue;
-                        });
-                      }),
-                      Text('Eu li e aceito os termos e condições de uso', style: AppFonts.textHolder,)
-                                    ],
-                                  ),
+                        children: [
+                          Checkbox(
+                            value: value,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            activeColor: AppColors.primary,
+                            checkColor: AppColors.white,
+                            onChanged: (bool? newValue) {
+                              setState(() {
+                                value = newValue;
+                              });
+                            },
+                          ),
+                          Text(
+                            'Eu li e aceito os termos e condições de uso',
+                            style: AppFonts.textHolder,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -105,11 +109,14 @@ class _EndCadasterState extends State<EndCadaster> {
                   padding: const EdgeInsets.only(top: 128),
                   child: Column(
                     children: [
-                      BasicAppButton(onPressed: () {
-                        if (_key.currentState!.validate()) {
-                          controller.ctSend();
-                        }
-                      }, title: 'Continuar'),
+                      BasicAppButton(
+                        onPressed: () async {
+                          if (_key.currentState!.validate())  {
+                            await controller.ctSend();
+                          }
+                        },
+                        title: 'Continuar',
+                      ),
                     ],
                   ),
                 ),
