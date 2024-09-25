@@ -6,6 +6,7 @@ class AppFonts {
   static final titleFont = GoogleFonts.poppins(fontSize: 32, color: AppColors.black, fontWeight: FontWeight.w700);
   static final subtitle =  GoogleFonts.poppins(fontSize: 16, color: AppColors.grey, fontWeight: FontWeight.w400);
   static final titleField = GoogleFonts.poppins(fontSize: 16, color: AppColors.black, fontWeight: FontWeight.w600);
+  static final textFont = GoogleFonts.poppins(fontSize: 16, color: AppColors.black, fontWeight: FontWeight.w400);
   static final buttonText = GoogleFonts.poppins(fontSize: 16, color: AppColors.white, fontWeight: FontWeight.bold);
   static final payText = GoogleFonts.poppins(fontSize: 16, color: AppColors.primary, fontWeight: FontWeight.bold);
   static final profileDesc =  GoogleFonts.poppins(fontSize: 16, color: AppColors.grey, fontWeight: FontWeight.bold);

@@ -7,9 +7,9 @@ class Checkauth extends StatelessWidget {
   const Checkauth({super.key});
 
   Future<bool> checkToken() async {
-    const storage =  FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
     String? token = await storage.read(key: 'firebase_token');
-    return token.isNotEmpty;
+    return token!.isNotEmpty;
   }
 
   @override
@@ -18,7 +18,7 @@ class Checkauth extends StatelessWidget {
       future: checkToken(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator(); 
+          return const CircularProgressIndicator();
         }
 
         if (snapshot.data == true) {
