@@ -10,7 +10,7 @@ class BasicAppButton extends StatefulWidget {
     required this.onPressed,
     required this.title,
     this.height,
-    super.key
+    super.key,
   });
 
   @override

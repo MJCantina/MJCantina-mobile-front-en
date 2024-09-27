@@ -65,6 +65,7 @@ class HomeBar extends StatelessWidget implements PreferredSizeWidget {
                       IconButton(
                         onPressed: () {
                           AuthService.to.logout();
+                          
                         },
                         icon: SvgPicture.asset(AppVectors.notification),
                       ),

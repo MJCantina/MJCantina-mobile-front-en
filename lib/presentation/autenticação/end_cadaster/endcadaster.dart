@@ -111,9 +111,15 @@ class _EndCadasterState extends State<EndCadaster> {
                     children: [
                       BasicAppButton(
                         onPressed: () async {
-                          if (_key.currentState!.validate())  {
+                          if (_key.currentState!.validate() && value == true)  {
                             await controller.ctSend();
-                          }
+                          }else{
+                            Get.snackbar('Termos e condições', 'Aceite os termos de uso',
+                            backgroundColor: AppColors.primary,
+                            colorText: Colors.white,
+                            snackPosition: SnackPosition.BOTTOM,
+                            margin: const EdgeInsets.all(16),
+                            );                          }
                         },
                         title: 'Continuar',
                       ),
