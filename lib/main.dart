@@ -24,7 +24,7 @@ void main() async {
 }
 
 Future<void> initAuthService() async {
-  final authService = Get.put(AuthService());
+  Get.put(AuthService());
 
   // Aguarde o AuthService inicializar
   await Future.delayed(Duration.zero); // Ou qualquer outra lógica de espera que você precisa

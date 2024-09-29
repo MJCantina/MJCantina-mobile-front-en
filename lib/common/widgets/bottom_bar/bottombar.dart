@@ -36,14 +36,14 @@ class BottombarState extends State<Bottombar> {
         borderRadius: BorderRadius.circular(50),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround, // Espaçamento igual ao redor dos itens
+        mainAxisAlignment: MainAxisAlignment
+            .spaceAround, // Espaçamento igual ao redor dos itens
         children: List.generate(
           listOfSvgAssets.length,
           (index) => InkWell(
             onTap: () {
               setState(() {
                 currentIndex = index;
-                
               });
             },
             child: SvgPicture.asset(
@@ -51,7 +51,9 @@ class BottombarState extends State<Bottombar> {
               color: index == currentIndex
                   ? AppColors.primary
                   : AppColors.iconColor,
-              width: index == 1 ? largeIconSize : smallIconSize, // Ajusta o tamanho com base no índice
+              width: index == 1
+                  ? largeIconSize
+                  : smallIconSize, // Ajusta o tamanho com base no índice
               height: index == 1 ? largeIconSize : smallIconSize,
             ),
           ),

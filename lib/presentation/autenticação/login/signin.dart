@@ -4,7 +4,6 @@ import 'package:cantina_senai/common/widgets/inputs/inputfield.dart';
 import 'package:cantina_senai/core/configs/auth_controller/auth_controller.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/presentation/autentica%C3%A7%C3%A3o/forget/forget.dart';
-import 'package:cantina_senai/presentation/notification/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -96,7 +95,7 @@ class _SignInPageState extends State<SignInPage> {
                               style: AppFonts.titleField.copyWith(decoration: TextDecoration.underline)
                             ),
                             onTap: () {
-                              Get.to(const Notifications(),
+                              Get.to(const ForgetPage(),
                               transition: Transition.rightToLeft,
                               duration: const Duration(seconds: 1)
                               );
