@@ -1,7 +1,7 @@
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
-import 'package:cantina_senai/presentation/configuration/configurations.dart';
+import 'package:cantina_senai/presentation/pedidos/pagepedidos.dart';
 import 'package:flutter/material.dart';
 
 // Importando seus arquivos de tema personalizados
@@ -66,7 +66,7 @@ class HomeBar extends StatelessWidget implements PreferredSizeWidget {
                       IconButton(
                         onPressed: () {
                           Get.to(
-                            const Configurations(),
+                            const PagePedidos(),
                             transition: Transition.rightToLeft,
                             duration: const Duration(seconds: 1),
                           );

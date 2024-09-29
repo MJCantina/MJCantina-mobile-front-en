@@ -15,7 +15,6 @@ class _PerfilState extends State<Perfil> {
     return Scaffold(
       appBar: WaveAppbar(),
       body: Padding(padding: EdgeInsets.all(16)),
-      bottomNavigationBar: Bottombar(),
     );
   }
 }

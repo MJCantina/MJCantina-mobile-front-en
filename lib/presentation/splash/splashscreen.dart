@@ -1,8 +1,8 @@
 import 'package:cantina_senai/common/helpers/whitepage.dart';
+import 'package:cantina_senai/common/widgets/bottom_bar/bottombar.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_images.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
-import 'package:cantina_senai/presentation/main_pages/home/home.dart';
 import 'package:cantina_senai/presentation/welcome/start.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -47,7 +47,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
       final isAuthenticated = AuthService.to.userIsAuthenticated.value;
 
       if (isAuthenticated) {
-        Get.offAll(() => const HomePage(),
+        Get.offAll(() => const Bottombar(),
           transition: Transition.rightToLeft,
           duration: const Duration(seconds: 2, milliseconds: 500),
         );

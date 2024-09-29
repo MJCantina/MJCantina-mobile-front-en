@@ -8,6 +8,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "animations",
+      "rootUri": "file:///C:/Users/vanes/AppData/Local/Pub/Cache/hosted/pub.dev/animations-2.0.11",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "args",
       "rootUri": "file:///C:/Users/vanes/AppData/Local/Pub/Cache/hosted/pub.dev/args-2.5.0",
       "packageUri": "lib/",
@@ -434,7 +440,7 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2024-09-28T03:03:34.261186Z",
+  "generated": "2024-09-29T21:34:01.051908Z",
   "generator": "pub",
   "generatorVersion": "3.4.4",
   "flutterRoot": "file:///D:/flutter",
