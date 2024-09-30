@@ -5,10 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:cantina_senai/core/configs/theme/app_images.dart';
 
 class WaveAppbar extends StatelessWidget implements PreferredSizeWidget {
-
-  const WaveAppbar({ 
-    super.key
-    });
+  const WaveAppbar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +17,18 @@ class WaveAppbar extends StatelessWidget implements PreferredSizeWidget {
           fit: BoxFit.cover, // Ajusta a imagem para cobrir a AppBar
         ),
       ),
-
-      leading:IconButton(onPressed: (){
-        Navigator.pop(context);
-      }, icon: const Icon(Icons.arrow_back_ios, color: AppColors.white,
+      leading: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: const Icon(
+          Icons.arrow_back_ios,
+          color: AppColors.white,
+        ),
       ),
-      ), 
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(128); 
+  Size get preferredSize => const Size.fromHeight(128);
 }

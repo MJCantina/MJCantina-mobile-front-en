@@ -1,5 +1,4 @@
 import 'package:cantina_senai/common/widgets/appbar/homebar.dart';
-import 'package:cantina_senai/common/widgets/bottom_bar/bottombar.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
 import 'package:flutter/material.dart';

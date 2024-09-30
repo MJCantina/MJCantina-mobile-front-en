@@ -10,11 +10,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class HomeBar extends StatelessWidget implements PreferredSizeWidget {
-  final String? userName; // Adiciona uma propriedade para o nome do usuário
+  final String? userName;
 
   const HomeBar({
-    super.key,
-    this.userName, // Adiciona o nome do usuário como parâmetro
+    required this.userName,
+    super.key
   });
 
   @override
