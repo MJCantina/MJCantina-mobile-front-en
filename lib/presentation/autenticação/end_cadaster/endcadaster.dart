@@ -119,7 +119,8 @@ class _EndCadasterState extends State<EndCadaster> {
                             colorText: Colors.white,
                             snackPosition: SnackPosition.BOTTOM,
                             margin: const EdgeInsets.all(16),
-                            );                          }
+                            );
+                            }
                         },
                         title: 'Continuar',
                       ),
