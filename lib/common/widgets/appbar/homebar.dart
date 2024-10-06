@@ -1,19 +1,20 @@
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
-import 'package:cantina_senai/data/models/services/auth_services.dart';
+import 'package:cantina_senai/presentation/pedidos/pagepedidos.dart';
 import 'package:flutter/material.dart';
 
 // Importando seus arquivos de tema personalizados
 import 'package:cantina_senai/core/configs/theme/app_images.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class HomeBar extends StatelessWidget implements PreferredSizeWidget {
-  final String? userName; // Adiciona uma propriedade para o nome do usuário
+  final String? userName;
 
   const HomeBar({
-    super.key,
-    this.userName, // Adiciona o nome do usuário como parâmetro
+    required this.userName,
+    super.key
   });
 
   @override
@@ -64,10 +65,13 @@ class HomeBar extends StatelessWidget implements PreferredSizeWidget {
                       Text(greeting, style: AppFonts.titleFont),
                       IconButton(
                         onPressed: () {
-                          AuthService.to.logout();
-                          
+                          Get.to(
+                            const PagePedidos(),
+                            transition: Transition.rightToLeft,
+                            duration: const Duration(seconds: 1),
+                          );
                         },
-                        icon: SvgPicture.asset(AppVectors.notification),
+                        icon: SvgPicture.asset(AppVectors.pedidos),
                       ),
                     ],
                   ),

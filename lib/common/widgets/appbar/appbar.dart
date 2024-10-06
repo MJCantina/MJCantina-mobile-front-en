@@ -12,7 +12,7 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      toolbarHeight: 135, // Altura da AppBar
+      toolbarHeight: 136, // Altura da AppBar
       flexibleSpace: FlexibleSpaceBar(
         background: Image.asset(
           AppImages.wave, // Caminho da imagem no background
@@ -23,5 +23,5 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(135); 
+  Size get preferredSize => const Size.fromHeight(136); 
 }

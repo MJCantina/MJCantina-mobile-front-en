@@ -68,7 +68,6 @@ class _ForgetPageState extends State<ForgetPage> {
                 },
                 title: 'Enviar'),
               )
-              
             ],
           ),
         ),

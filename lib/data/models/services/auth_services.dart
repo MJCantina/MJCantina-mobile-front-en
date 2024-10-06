@@ -1,7 +1,7 @@
+import 'package:cantina_senai/common/widgets/bottom_bar/bottombar.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/presentation/autentica%C3%A7%C3%A3o/confirmation/confirmation.dart';
 import 'package:cantina_senai/presentation/autentica%C3%A7%C3%A3o/end_cadaster/endcadaster.dart';
-import 'package:cantina_senai/presentation/main_pages/home/home.dart';
 import 'package:cantina_senai/presentation/splash/splashscreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,7 +26,7 @@ class AuthService extends GetxController {
     ever(_firebaseUser, (User? user) {
     if (user != null && user.emailVerified) {
       userIsAuthenticated.value = true;
-      Get.offAll(const HomePage(),
+      Get.offAll(const Bottombar(),
         transition: Transition.rightToLeft,
         duration: const Duration(seconds: 1, milliseconds: 500),
       );

@@ -1,5 +1,4 @@
 class AppVectors {
-
   static const String basePath = 'assets/icons/';
   static const String format = '.svg';
 
@@ -12,10 +11,13 @@ class AppVectors {
   static const String profile = '${basePath}profile$format';
   static const String search = '${basePath}search$format';
   static const String seta = '${basePath}seta$format';
+  static const String arrowright = '${basePath}arrowright$format';
   static const String user = '${basePath}user$format';
   static const String wallet = '${basePath}wallet$format';
   static const String pix = '${basePath}pix$format';
   static const String card = '${basePath}card$format';
-  static const String notification = '${basePath}notification$format';
+  static const String pedidos = '${basePath}pedidos$format';
   static const String confirmation = '${basePath}smsnotification$format';
+  static const String trash = '${basePath}trash$format';
+  static const String logout = '${basePath}logout$format';
 }

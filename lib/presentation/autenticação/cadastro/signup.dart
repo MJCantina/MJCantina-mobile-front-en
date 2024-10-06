@@ -55,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     const SizedBox(height: 16),
                     InputField(
-                      name: 'Nome',
+                      name: 'Nome Parcial',
                       title: 'Digite seu nome',
                       campo: controller.nameUser,
                       validator: (value) {
