@@ -1,5 +1,4 @@
 import 'package:cantina_senai/common/widgets/appbar/perfilbar.dart';
-import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
@@ -69,12 +68,12 @@ class _PerfilState extends State<Perfil> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SvgPicture.asset(AppVectors.user),
-                            SizedBox(height: 12),
+                            const SizedBox(height: 12),
                             Text(
                               'Configurações',
                               style: AppFonts.textFont,
                             ),
-                            SizedBox(height: 4),
+                            const SizedBox(height: 4),
                             Text(
                               'Altere as configurações do seu jeito',
                               style: AppFonts.textFont,
