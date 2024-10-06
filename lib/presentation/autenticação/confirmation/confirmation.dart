@@ -1,5 +1,6 @@
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
+import 'package:cantina_senai/presentation/welcome/start.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -23,7 +24,7 @@ class _ConfirmEmailState extends State<ConfirmEmail> {
           padding: const EdgeInsets.only(top: 8.0),
           child: IconButton(
           onPressed: () {
-            Get.back();
+            Get.offAll(const StartPage());
           },
           icon: const Padding(
             padding: EdgeInsets.only(bottom: 40),
