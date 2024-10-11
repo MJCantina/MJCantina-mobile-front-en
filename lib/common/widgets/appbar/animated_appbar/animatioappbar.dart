@@ -1,4 +1,3 @@
-import 'package:cantina_senai/common/widgets/appbar/appbar.dart';
 import 'package:cantina_senai/common/widgets/appbar/simpleappbar.dart';
 import 'package:flutter/material.dart';
 

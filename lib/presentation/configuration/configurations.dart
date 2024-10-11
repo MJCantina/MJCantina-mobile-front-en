@@ -1,7 +1,6 @@
 import 'package:cantina_senai/common/widgets/appbar/basicappbar.dart';
 import 'package:cantina_senai/common/widgets/base_button/listbutton.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
-import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +21,7 @@ class _ConfigurationsState extends State<Configurations> {
       body: ListView(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -60,7 +59,7 @@ class _ConfigurationsState extends State<Configurations> {
                       title: 'Sair',
                       icon: AppVectors.logout,
                     ),
-                    Container(width: double.infinity,child: Text('Versão 0.0.1', style: GoogleFonts.poppins(fontSize: 10, color: AppColors.grey, fontWeight: FontWeight.w400),textAlign: TextAlign.center,))
+                    SizedBox(width: double.infinity,child: Text('Versão 0.0.1', style: GoogleFonts.poppins(fontSize: 10, color: AppColors.grey, fontWeight: FontWeight.w400),textAlign: TextAlign.center,))
                   ],
                 ),
               ],

@@ -15,7 +15,6 @@ class InputField extends StatelessWidget {
     required this.title,
     required this.validator,
     super.key
-    
   });
 
   @override
@@ -42,8 +41,6 @@ class InputField extends StatelessWidget {
                 
               ),
               validator: validator,
-              
-          
               style: AppFonts.textHolder,
             ),
           ),

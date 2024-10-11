@@ -3,7 +3,7 @@ import 'package:cantina_senai/presentation/configuration/configurations.dart';
 import 'package:cantina_senai/presentation/main_pages/home/home.dart';
 import 'package:cantina_senai/presentation/main_pages/perfil/perfil.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart'; // Importa o pacote flutter_svg
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:animations/animations.dart';
 
@@ -17,7 +17,6 @@ class Bottombar extends StatefulWidget {
 class BottombarState extends State<Bottombar> {
   var currentIndex = 1;
 
-  // Lista de páginas a serem exibidas
   final List<Widget> pages = [
     const Configurations(),
     const HomePage(),
@@ -70,7 +69,7 @@ class BottombarState extends State<Bottombar> {
               },
               child: SvgPicture.asset(
                 listOfSvgAssets[index],
-                color: index == currentIndex
+                color : index == currentIndex
                     ? AppColors.primary
                     : AppColors.iconColor,
                 width: index == 1

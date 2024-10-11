@@ -16,13 +16,13 @@ class Listbutton extends StatefulWidget {
 class _ListbuttonState extends State<Listbutton> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: TextButton(
         onPressed: widget.onPressed,
         style: TextButton.styleFrom(
           overlayColor: AppColors.grey,
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20)),
             side: BorderSide(

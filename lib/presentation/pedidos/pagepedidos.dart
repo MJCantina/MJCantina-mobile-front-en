@@ -1,6 +1,5 @@
 import 'package:cantina_senai/common/widgets/appbar/basicappbar.dart';
 import 'package:cantina_senai/common/widgets/base_button/listbutton.dart';
-import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
 import 'package:flutter/material.dart';
 

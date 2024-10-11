@@ -1,4 +1,6 @@
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
+import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
+import 'package:cantina_senai/data/models/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:cantina_senai/core/configs/theme/app_images.dart';
 
@@ -7,8 +9,13 @@ class Perfilbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    var user = AuthService.to.user?.displayName;
+    var userEmail = AuthService.to.user?.email;
+
     return AppBar(
-      toolbarHeight: 180,
+      scrolledUnderElevation: 8.0,
+      shadowColor: Colors.black.withOpacity(0.25), // Cor da sombra com opacidade
+      toolbarHeight: 244,
       flexibleSpace: Stack(
         children: [
           Positioned(
@@ -21,28 +28,54 @@ class Perfilbar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
           Positioned(
-            top: 72,
-            left: 16,
-            child: Container(
-              width: 104,
-              height: 104,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle, // Define como circular
-                border: Border.all(
-                  color: AppColors.white, // Cor da borda
-                  width: 4, // Espessura da borda
+              top: 72,
+              left: 16,
+              child: Container(
+                width: 104,
+                height: 104,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle, // Define como circular
+                  border: Border.all(
+                    color: AppColors.white, // Cor da borda
+                    width: 4, // Espessura da borda
+                  ),
                 ),
+                child: const CircleAvatar(
+                  backgroundImage: AssetImage('assets/imgs/profile.png'),
+                ),
+              )),
+          Positioned(
+            top: 180,
+            right: 0,
+            left: 0,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16, top: 4),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          user!,
+                          style: AppFonts.titleField.copyWith(fontSize: 20),
+                        ),
+                        Text(userEmail!,
+                            style: AppFonts.placeHolder.copyWith(fontSize: 12)),
+                      ],
+                    ),
+                  )
+                ],
               ),
-              child: const CircleAvatar(
-                backgroundColor: AppColors.grey,
-              ),
-            )
-          )
+            ),
+          ),
         ],
       ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(180);
+  Size get preferredSize => const Size.fromHeight(244);
 }
