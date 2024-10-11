@@ -1,3 +1,4 @@
+import 'package:cantina_senai/common/widgets/appbar/appbar.dart';
 import 'package:cantina_senai/common/widgets/appbar/basicappbar.dart';
 import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
 import 'package:cantina_senai/common/widgets/inputs/inputfield.dart';
@@ -22,7 +23,7 @@ class _EndCadasterState extends State<EndCadaster> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarArrow(),
+      appBar: const BasicAppBar(),
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Padding(

@@ -13,6 +13,7 @@ class AppFonts {
   static final removeText =  GoogleFonts.poppins(fontSize: 12, color: AppColors.white, fontWeight: FontWeight.w800);
   static final category =  GoogleFonts.poppins(fontSize: 12, color: AppColors.primary, fontWeight: FontWeight.w600);
   static final plateDesc = GoogleFonts.poppins(fontSize: 12, color: AppColors.black, fontWeight: FontWeight.w800);
+  static final textDesc = GoogleFonts.poppins(fontSize: 12, color: AppColors.grey, fontWeight: FontWeight.w400);
   static final placeHolder = GoogleFonts.poppins(fontSize: 14, color: AppColors.grey, fontWeight: FontWeight.w500);
   static final textHolder = GoogleFonts.poppins(fontSize: 14, color: AppColors.black, fontWeight: FontWeight.w500);
 }

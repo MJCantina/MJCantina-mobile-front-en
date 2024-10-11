@@ -1,3 +1,4 @@
+import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,27 +19,28 @@ class _ListbuttonState extends State<Listbutton> {
     return Container(
       width: double.infinity,
       child: TextButton(
-          onPressed: widget.onPressed,
-          style: TextButton.styleFrom(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-              side: BorderSide(
-                color: Color(0xffeeeeee),
-                width: 1,
-              ),
+        onPressed: widget.onPressed,
+        style: TextButton.styleFrom(
+          overlayColor: AppColors.grey,
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            side: BorderSide(
+              color: Color(0xffeeeeee),
+              width: 1,
             ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                widget.title,
-                style: AppFonts.textFont,
-              ),
-              SvgPicture.asset(widget.icon), // Ícone sempre presente
-            ],
-          )),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              widget.title,
+              style: AppFonts.textFont,
+            ),
+            SvgPicture.asset(widget.icon), // Ícone sempre presente
+          ],
+        )),
     );
   }
 }

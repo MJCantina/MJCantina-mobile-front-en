@@ -4,7 +4,6 @@ class AppVectors {
 
   static const String carteira = '${basePath}carteira$format';
   static const String contexto = '${basePath}contexto$format';
-  static const String coracaored = '${basePath}coracaored$format';
   static const String coracaowhite = '${basePath}coracaowhite$format';
   static const String hamburguer = '${basePath}hamburguer$format';
   static const String meiobottom = '${basePath}meiobottom$format';
@@ -20,4 +19,8 @@ class AppVectors {
   static const String confirmation = '${basePath}smsnotification$format';
   static const String trash = '${basePath}trash$format';
   static const String logout = '${basePath}logout$format';
+  static const String configred = '${basePath}configurationRed$format';
+  static const String walletred = '${basePath}walletRed$format';
+  static const String profilered = '${basePath}profileRed$format';
+  static const String coracaored = '${basePath}coracaoRed$format';
 }

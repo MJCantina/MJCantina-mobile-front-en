@@ -1,3 +1,4 @@
+import 'package:cantina_senai/common/widgets/appbar/appbar.dart';
 import 'package:cantina_senai/common/widgets/appbar/basicappbar.dart';
 import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
 import 'package:cantina_senai/common/widgets/inputs/inputfield.dart';
@@ -22,7 +23,7 @@ class _ForgetPageState extends State<ForgetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarArrow(),
+      appBar: const BasicAppBar(),
       body: Padding(
         padding: const EdgeInsets.only(top: 16),
         child: Form(

@@ -15,14 +15,12 @@ class _PagePedidosState extends State<PagePedidos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarArrow(),
+      appBar: const AppBarArrow(namePage: 'Pedidos',),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Pedidos', style: AppFonts.titleFont, textAlign: TextAlign.start),
-            const SizedBox(height: 18),
             Wrap(
               spacing: 12,
               children: [

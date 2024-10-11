@@ -8,7 +8,7 @@ class Perfilbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      toolbarHeight: 180,// Altura da AppBar
+      toolbarHeight: 180,
       flexibleSpace: Stack(
         children: [
           Positioned(

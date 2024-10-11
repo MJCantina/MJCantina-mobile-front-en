@@ -1,8 +1,10 @@
 
+import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // Importando seus arquivos de tema personalizados
 import 'package:cantina_senai/core/configs/theme/app_images.dart';
+import 'package:get/get.dart';
 
 class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
 
@@ -18,6 +20,15 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
           AppImages.wave, // Caminho da imagem no background
           fit: BoxFit.cover, // Ajusta a imagem para cobrir a AppBar
         ),
+      ),
+      leading: IconButton(
+        onPressed: () {
+          Get.back();
+        },
+        icon: const Padding(
+          padding: EdgeInsets.only(bottom: 40),
+          child: Icon(Icons.arrow_back_ios),
+        ), color: AppColors.white, 
       ),
     );
   }
