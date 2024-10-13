@@ -63,7 +63,7 @@ class _PerfilState extends State<Perfil> {
                 child: cardPerfil(
                     icon: AppVectors.coracaored,
                     title: 'Favoritos',
-                    subtitle: 'Aqui estão seus produtos favoritados',
+                    subtitle: 'Aqui estão os seus produtos favoritos',
                     onTap: () {
                       Get.to(Configurations(),
                           transition: Transition.rightToLeft,
