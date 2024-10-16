@@ -23,14 +23,15 @@ class _ConfirmEmailState extends State<ConfirmEmail> {
         leading: Padding(
           padding: const EdgeInsets.only(top: 8.0),
           child: IconButton(
-          onPressed: () {
-            Get.offAll(const StartPage());
-          },
-          icon: const Padding(
-            padding: EdgeInsets.only(bottom: 40),
-            child: Icon(Icons.arrow_back_ios),
-          ), color: AppColors.white, 
-                ),
+            onPressed: () {
+              Get.offAll(const StartPage());
+            },
+            icon: const Padding(
+              padding: EdgeInsets.only(bottom: 40),
+              child: Icon(Icons.arrow_back_ios),
+            ),
+            color: AppColors.white,
+          ),
         ),
       ),
       body: Column(
@@ -39,30 +40,39 @@ class _ConfirmEmailState extends State<ConfirmEmail> {
           Column(
             children: [
               SvgPicture.asset(AppVectors.confirmation),
-              Text('Confirme sua conta', style: GoogleFonts.poppins(fontSize: 32, color: AppColors.white, fontWeight: FontWeight.w700)),
-              Text('Foi enviado um email de confirmação \n para ativar sua conta. \nAntes de reenviar verifique a caixa de \n span e lixeira.', style: GoogleFonts.poppins(fontSize: 16, color: AppColors.white, fontWeight: FontWeight.w400), textAlign: TextAlign.center,),
+              Text('Confirme sua conta',
+                  style: GoogleFonts.poppins(
+                      fontSize: 32,
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w700)),
+              Text(
+                'Foi enviado um email de confirmação \n para ativar sua conta. \nAntes de reenviar verifique a caixa de \n span e lixeira.',
+                style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: AppColors.white,
+                    fontWeight: FontWeight.w400),
+                textAlign: TextAlign.center,
+              ),
             ],
           ),
-          
           Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: ElevatedButton(
-            onPressed: (){
-
-            },
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size.fromHeight(54),
-              backgroundColor: AppColors.white,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
-              
-              
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(54),
+                  backgroundColor: AppColors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15))),
+              child: Text(
+                'Reenviar',
+                style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: AppColors.black,
+                    fontWeight: FontWeight.w700),
+              ),
             ),
-            child: Text(
-              'Reenviar', style: GoogleFonts.poppins(fontSize: 16, color: AppColors.black, fontWeight: FontWeight.w700),
-            ),
-          ),
-        )
-
+          )
         ],
       ),
     );

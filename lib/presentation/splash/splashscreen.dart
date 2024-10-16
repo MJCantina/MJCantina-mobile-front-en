@@ -49,7 +49,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
       if (isAuthenticated) {
         Get.offAll(() => const Bottombar(),
           transition: Transition.rightToLeft,
-          duration: const Duration(seconds: 2, milliseconds: 500),
+          duration: const Duration(seconds: 1, milliseconds: 500),
         );
       } else {
         Get.offAll(() => const StartPage(),

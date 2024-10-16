@@ -26,7 +26,7 @@ class _ListbuttonState extends State<Listbutton> {
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20)),
             side: BorderSide(
-              color: Color(0xffeeeeee),
+              color: AppColors.bordergrey,
               width: 1,
             ),
           ),

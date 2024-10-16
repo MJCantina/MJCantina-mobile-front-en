@@ -23,4 +23,5 @@ class AppVectors {
   static const String walletred = '${basePath}walletRed$format';
   static const String profilered = '${basePath}profileRed$format';
   static const String coracaored = '${basePath}coracaoRed$format';
+  static const String reserve = '${basePath}reserve$format';
 }

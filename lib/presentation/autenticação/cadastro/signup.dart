@@ -1,4 +1,4 @@
-import 'package:cantina_senai/common/widgets/appbar/appbar.dart';
+import 'package:cantina_senai/common/widgets/appbar/basicappbar.dart';
 import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
 import 'package:cantina_senai/common/widgets/inputs/inputfield.dart';
 import 'package:cantina_senai/core/configs/auth_controller/auth_controller.dart';
@@ -56,7 +56,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     const SizedBox(height: 16),
                     InputField(
                       name: 'Nome Parcial',
-                      title: 'Digite seu nome',
+                      title: 'Digite seu nome parcial',
                       campo: controller.nameUser,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -67,7 +67,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           return 'Nome inválido. Utilize apenas letras e espaços';
                         }
                         if (value.trim().split(' ').length < 2) {
-                          return 'Informe o nome completo';
+                          return 'Informe o nome parcial';
                         }
                         if (value.length < 3) {
                           return 'Nome muito curto';

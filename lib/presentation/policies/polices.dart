@@ -1,4 +1,4 @@
-import 'package:cantina_senai/common/widgets/appbar/appbar.dart';
+import 'package:cantina_senai/common/widgets/appbar/basicappbar.dart';
 import 'package:flutter/material.dart';
 
 class Polices extends StatefulWidget {
