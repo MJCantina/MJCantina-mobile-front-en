@@ -32,9 +32,9 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              'Cardapio',
+              'Cardápio do Rei',
               style: GoogleFonts.poppins(fontSize: 20, color: AppColors.black, fontWeight: FontWeight.w600),
             ),
           ),
