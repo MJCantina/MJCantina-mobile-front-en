@@ -173,4 +173,28 @@ class AuthService extends GetxController {
       showSnack('Erro ao enviar link de redefinição de senha', e.toString());
     }
   }
+
+
+  Future<String?> getPhoneNumber() async {
+  try {
+    User? user = _auth.currentUser; 
+
+    if (user != null) {
+
+      DocumentSnapshot doc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+
+      if (doc.exists) {
+        return doc['telefone'] as String?;
+      }
+    }
+    return null;
+  } catch (e) {
+    showSnack('Erro ao obter telefone', e.toString());
+    return null;
+  }
+}
+
 }

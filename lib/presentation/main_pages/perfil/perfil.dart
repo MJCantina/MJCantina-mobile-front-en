@@ -3,6 +3,7 @@ import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
 import 'package:cantina_senai/presentation/configuration/configurations.dart';
+import 'package:cantina_senai/presentation/main_pages/perfil/profile_configs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -41,6 +42,7 @@ class _PerfilState extends State<Perfil> {
                   ],
                 ),
               ),
+<<<<<<< Updated upstream
               Wrap(
                 children: [
                     Container(
@@ -84,6 +86,21 @@ class _PerfilState extends State<Perfil> {
                     ),
                 ],
               )
+=======
+              SizedBox(
+                width: screenWidth - 32,
+                child: cardPerfil(
+                    icon: AppVectors.profilered,
+                    title: 'Perfil',
+                    subtitle: 'Preencha ou edite as informações do seu perfil',
+                    onTap: () {
+                      Get.to(
+                        const ProfileConfigs(),
+                        transition: Transition.rightToLeft,
+                        duration: const Duration(seconds: 1));
+                    }),
+              ),
+>>>>>>> Stashed changes
             ],
           ),
         ));

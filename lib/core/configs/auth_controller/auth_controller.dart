@@ -36,7 +36,7 @@ class AuthController extends GetxController {
 
   Future<void> ctSend () async {
     try {
-      await AuthService.to.salvarInformacoesAdicionais(cpf.text, telefone.text);
+      await AuthService.to.salvarInformacoesAdicionais(telefone.text, cpf.text);
       Get.snackbar('Sucesso', 'Dados salvos com sucesso', backgroundColor: Colors.green);
     } catch (e) {
       Get.snackbar('Erro', e.toString(), backgroundColor: Colors.red);
