@@ -24,4 +24,5 @@ class AppVectors {
   static const String profilered = '${basePath}profileRed$format';
   static const String coracaored = '${basePath}coracaoRed$format';
   static const String reserve = '${basePath}reserve$format';
+  static const String pedidosred = '${basePath}pedidosRed$format';
 }

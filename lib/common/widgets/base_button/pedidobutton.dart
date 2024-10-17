@@ -55,7 +55,7 @@ class _PedidobuttonState extends State<Pedidobutton> {
                             color: AppColors.primary,
                             width: 4,
                             style: BorderStyle.solid)),
-                  ) : SizedBox(height: 0,),
+                  ) : const SizedBox(height: 0,),
                   const SizedBox(width: 12),
                   SvgPicture.asset(widget.icon),
                 ],
