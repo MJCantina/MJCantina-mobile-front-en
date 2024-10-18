@@ -1,5 +1,5 @@
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
-import 'package:cantina_senai/presentation/configuration/configurations.dart';
+import 'package:cantina_senai/presentation/main_pages/carrinho/carrinho.dart';
 import 'package:cantina_senai/presentation/main_pages/home/home.dart';
 import 'package:cantina_senai/presentation/main_pages/perfil/perfil.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +15,9 @@ class Bottombar extends StatefulWidget {
 }
 
 class BottombarState extends State<Bottombar> {
-  var currentIndex = 1;
+  var currentIndex = 0; // Inicialmente na HomePage
 
   final List<Widget> pages = [
-    const Configurations(),
     const HomePage(),
     const Perfil(),
   ];
@@ -57,15 +56,19 @@ class BottombarState extends State<Bottombar> {
           borderRadius: BorderRadius.circular(50),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment
-              .spaceAround, // Espaçamento igual ao redor dos itens
+          mainAxisAlignment: MainAxisAlignment.spaceAround, // Espaçamento igual ao redor dos itens
           children: List.generate(
             listOfSvgAssets.length,
             (index) => InkWell(
               onTap: () {
-                setState(() {
-                  currentIndex = index;
-                });
+                if (index == 0) {
+                  // Exibir o BottomSheet ao clicar no ícone do carrinho
+                  _showBottomSheet(context);
+                } else {
+                  setState(() {
+                    currentIndex = index - 1; // Atualiza o índice para as outras páginas
+                  });
+                }
               },
               child: SvgPicture.asset(
                 listOfSvgAssets[index],
@@ -83,10 +86,46 @@ class BottombarState extends State<Bottombar> {
       ),
     );
   }
+ void _showBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true, // Permite ajustar a altura do BottomSheet
+    backgroundColor: Colors.transparent, // Deixa a cor de fundo transparente
+    builder: (context) {
+      return GestureDetector(
+        onTap: () {
+          Navigator.pop(context); // Fecha o BottomSheet ao clicar fora
+        },
+        child: DraggableScrollableSheet(
+          initialChildSize: 0.65, // Altura inicial de 65% da tela
+          minChildSize: 0.3, // Altura mínima
+          maxChildSize: 0.75, // Altura máxima ao expandir
+          builder: (context, scrollController) {
+            return GestureDetector(
+              onTap: () {}, // Evita fechar o BottomSheet ao clicar dentro dele
+              child: ClipRRect(
+                
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  topRight: Radius.circular(50),
+                ),
+                child: Container( 
+                  color: Colors.white, // Define a cor de fundo
+                  child: Carrinho(), // Aqui você coloca seu widget Carrinho
+                ),
+              ),
+            );
+          },
+        ),
+      );
+    },
+  );
+}
+
 
   List<String> listOfSvgAssets = [
-    AppVectors.wallet,
-    AppVectors.meiobottom,
-    AppVectors.user,
+    AppVectors.wallet, // Carrinho
+    AppVectors.meiobottom, // Home
+    AppVectors.user, // Perfil
   ];
 }
