@@ -1,4 +1,3 @@
-import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +17,8 @@ class ConfigChange extends StatefulWidget {
 }
 
 class _ConfigChangeState extends State<ConfigChange> {
-
   
+  @override
   Widget build(BuildContext context) {
 
     var size = MediaQuery.of(context).size;
