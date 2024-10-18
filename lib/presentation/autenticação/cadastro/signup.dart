@@ -95,6 +95,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     InputField(
                       name: 'Senha',
                       title: 'Digite sua senha',
+                      isPassword: true,
                       campo: controller.pass,
                       validator: (value) {
                         if (value == null || value.isEmpty) {

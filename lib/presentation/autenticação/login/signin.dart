@@ -33,7 +33,6 @@ class _SignInPageState extends State<SignInPage> {
               child: Form(
                 key: _formKey,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,6 +64,7 @@ class _SignInPageState extends State<SignInPage> {
                         InputField(name: 'Senha', 
                         title: 'Digite sua senha', 
                         campo: controller.pass,
+                        isPassword: true,
                         validator: (value){
                           if(value == null || value.isEmpty){
                             return 'Por favor, insira sua senha';
@@ -77,37 +77,35 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 128),
-                      child: Column(
-                        children: [
-                          BasicAppButton(
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                await controller.login();
-                              }
-                            },
-                            title: 'Continuar',
+                    Column(
+                      children: [
+                        BasicAppButton(
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              await controller.login();
+                            }
+                          },
+                          title: 'Continuar',
+                        ),
+                        GestureDetector(
+                          child: Text(
+                            'Esqueci minha senha',
+                            style: AppFonts.titleField.copyWith(decoration: TextDecoration.underline)
                           ),
-                          GestureDetector(
-                            child: Text(
-                              'Esqueci minha senha',
-                              style: AppFonts.titleField.copyWith(decoration: TextDecoration.underline)
-                            ),
-                            onTap: () {
-                              Get.to(const ForgetPage(),
-                              transition: Transition.rightToLeft,
-                              duration: const Duration(seconds: 1)
-                              );
-                            },
-                          ),
-                        ],
-                      ),
+                          onTap: () {
+                            Get.to(const ForgetPage(),
+                            transition: Transition.rightToLeft,
+                            duration: const Duration(seconds: 1)
+                            );
+                          },
+                        ),
+                      ],
                     )
                   ],
                 ),
               ),
             ),
+            const SizedBox(height: 16,)
         ],
       ),
     );
