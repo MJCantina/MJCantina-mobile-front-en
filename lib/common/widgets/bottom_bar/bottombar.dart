@@ -72,7 +72,7 @@ class BottombarState extends State<Bottombar> {
               },
               child: SvgPicture.asset(
                 listOfSvgAssets[index],
-                color : index == currentIndex
+                color : index - 1 == currentIndex
                     ? AppColors.primary
                     : AppColors.iconColor,
                 width: index == 1
