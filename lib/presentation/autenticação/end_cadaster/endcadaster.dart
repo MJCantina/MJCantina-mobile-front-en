@@ -4,6 +4,8 @@ import 'package:cantina_senai/common/widgets/inputs/inputfield.dart';
 import 'package:cantina_senai/core/configs/auth_controller/auth_controller.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
+import 'package:cantina_senai/presentation/configuration/configurations.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,6 +23,7 @@ class _EndCadasterState extends State<EndCadaster> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: const BasicAppBar(),
       resizeToAvoidBottomInset: true,
@@ -45,7 +48,8 @@ class _EndCadasterState extends State<EndCadaster> {
                             style: AppFonts.titleFont,
                             textAlign: TextAlign.start,
                           ),
-                          Text('Preencha tudo corretamente', style: AppFonts.subtitle),
+                          Text('Preencha tudo corretamente',
+                              style: AppFonts.subtitle),
                         ],
                       ),
                     ),
@@ -58,7 +62,8 @@ class _EndCadasterState extends State<EndCadaster> {
                         if (value == null || value.isEmpty) {
                           return 'Por favor, insira seu telefone';
                         }
-                        final phoneExp = RegExp(r'^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$');
+                        final phoneExp =
+                            RegExp(r'^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$');
                         if (!phoneExp.hasMatch(value)) {
                           return 'Telefone inválido. Utilize o formato correto';
                         }
@@ -80,7 +85,7 @@ class _EndCadasterState extends State<EndCadaster> {
                       },
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
                       child: Row(
                         children: [
                           Checkbox(
@@ -96,9 +101,24 @@ class _EndCadasterState extends State<EndCadaster> {
                               });
                             },
                           ),
-                          Text(
-                            'Eu li e aceito os termos e condições de uso',
-                            style: AppFonts.textHolder,
+                          SizedBox(
+                            width: size.width * 0.8,
+                            child: RichText(
+                              text: TextSpan(
+                                  text: 'Eu li e aceito os ',
+                                  style: AppFonts.textHolder,
+                                  children: [
+                                    TextSpan(
+                                        text: 'termos e condições de uso',
+                                        style: AppFonts.textHolder.copyWith(
+                                            decoration:
+                                                TextDecoration.underline),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            Get.to(Configurations());
+                                          }),
+                                  ]),
+                            ),
                           ),
                         ],
                       ),
@@ -111,16 +131,18 @@ class _EndCadasterState extends State<EndCadaster> {
                     children: [
                       BasicAppButton(
                         onPressed: () async {
-                          if (_key.currentState!.validate() && value == true)  {
+                          if (_key.currentState!.validate() && value == true) {
                             await controller.ctSend();
-                          }else{
-                            Get.snackbar('Termos e condições', 'Aceite os termos de uso',
-                            backgroundColor: AppColors.primary,
-                            colorText: Colors.white,
-                            snackPosition: SnackPosition.BOTTOM,
-                            margin: const EdgeInsets.all(16),
+                          } else {
+                            Get.snackbar(
+                              'Termos e condições',
+                              'Aceite os termos de uso',
+                              backgroundColor: AppColors.primary,
+                              colorText: Colors.white,
+                              snackPosition: SnackPosition.BOTTOM,
+                              margin: const EdgeInsets.all(16),
                             );
-                            }
+                          }
                         },
                         title: 'Continuar',
                       ),

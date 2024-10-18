@@ -20,38 +20,58 @@ class _ProfileConfigsState extends State<ProfileConfigs> {
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarArrow(namePage: 'Perfil'),
-        body: Column(
-          children: [
-            ConfigChange(title: 'Nome Parcial', config: '$user'),
-            ConfigChange(title: 'Email', config: '$userEmail'),
-            ConfigChange(title: 'Senha', config: 'Toque para mudar'),
-            FutureBuilder<String?>(
-              future: AuthService.to.getPhoneNumber(), // Função assíncrona
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const ConfigChange(
-                    title: 'Telefone',
-                    config: 'Carregando...',
-                  );
-                } else if (snapshot.hasError) {
-                  return const ConfigChange(
-                    title: 'Telefone',
-                    config: 'Erro ao carregar telefone',
-                  );
-                } else if (!snapshot.hasData || snapshot.data == null) {
-                  return const ConfigChange(
-                    title: 'Telefone',
-                    config: 'Telefone não disponível',
-                  );
-                } else {
-                  return ConfigChange(
-                    title: 'Telefone',
-                    config: snapshot.data!,
-                  );
-                }
-              },
-            ),
-          ],
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Wrap(
+            runSpacing: 16,
+            children: [
+              ConfigChange(
+                title: 'Nome Parcial',
+                config: '$user',
+                onTap: () => {},
+              ),
+              ConfigChange(
+                title: 'Email',
+                config: '$userEmail',
+                onTap: () => {},
+              ),
+              ConfigChange(
+                title: 'Senha',
+                config: 'Toque para mudar senha',
+                onTap: () => {},
+              ),
+              FutureBuilder<String?>(
+                future: AuthService.to.getPhoneNumber(), // Função assíncrona
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return ConfigChange(
+                      title: 'Telefone',
+                      config: 'Carregando...',
+                      onTap: ()=>{},
+                    );
+                  } else if (snapshot.hasError) {
+                    return  ConfigChange(
+                      title: 'Telefone',
+                      config: 'Erro ao carregar telefone',
+                      onTap: ()=>{},
+                    );
+                  } else if (!snapshot.hasData || snapshot.data == null) {
+                    return  ConfigChange(
+                      title: 'Telefone',
+                      config: 'Telefone não disponível',
+                      onTap: ()=>{},
+                    );
+                  } else {
+                    return ConfigChange(
+                      title: 'Telefone',
+                      config: snapshot.data!,
+                      onTap: ()=>{},
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

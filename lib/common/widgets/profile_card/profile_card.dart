@@ -1,58 +1,56 @@
+import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
+import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ConfigChange extends StatefulWidget {
-
   final String title;
   final String config;
+  final VoidCallback onTap;
 
-  const ConfigChange({
-    required this.title,
-    required this.config,
-    super.key
-    });
+  const ConfigChange({required this.title, required this.config, required this.onTap, super.key});
 
   @override
   State<ConfigChange> createState() => _ConfigChangeState();
 }
 
 class _ConfigChangeState extends State<ConfigChange> {
-
-  
+  @override
   Widget build(BuildContext context) {
-
-    var size = MediaQuery.of(context).size;
-
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 16),
-        child: Container(
-                  width: size.width * 0.90,
-                  height: size.height * 0.10,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: const Color(0xFFEEEEEE)),
-                    borderRadius: BorderRadius.circular(24)
-                    
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+                color: AppColors.bordergrey,
+                width: 1,
+                style: BorderStyle.solid)),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    widget.title,
+                    style: AppFonts.titleField,
                   ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(widget.title, style: AppFonts.titleField,),
-                            Text(widget.config, style: AppFonts.subtitle,)
-                          ],
-                        ),
-                      ),
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_forward_ios_rounded))
-                    ],
+                  Text(
+                    widget.config,
+                    style: AppFonts.subtitle,
                   ),
-                ),
+                ],
+              ),
+              SvgPicture.asset(AppVectors.arrowright)
+            ],
+          ),
+        ),
       ),
     );
   }
