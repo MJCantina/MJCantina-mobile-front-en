@@ -12,15 +12,14 @@ import 'package:get/get.dart';
 class HomeBar extends StatelessWidget implements PreferredSizeWidget {
   final String? userName;
 
-  const HomeBar({
-    required this.userName,
-    super.key
-  });
+  const HomeBar({required this.userName, super.key});
 
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
     final hour = now.hour;
+
+    var pedido = true;
 
     String greeting;
     if (hour >= 5 && hour < 12) {
@@ -71,7 +70,9 @@ class HomeBar extends StatelessWidget implements PreferredSizeWidget {
                             duration: const Duration(seconds: 1),
                           );
                         },
-                        icon: SvgPicture.asset(AppVectors.pedidos),
+                        icon: pedido == true
+                            ? SvgPicture.asset(AppVectors.pedidosred)
+                            : SvgPicture.asset(AppVectors.pedidos),
                       ),
                     ],
                   ),

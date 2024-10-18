@@ -12,7 +12,7 @@ class _PolicesState extends State<Polices> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: AppBarArrow(),
+      appBar: BasicAppBar(),
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(

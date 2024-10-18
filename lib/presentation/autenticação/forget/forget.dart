@@ -22,7 +22,7 @@ class _ForgetPageState extends State<ForgetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarArrow(),
+      appBar: const BasicAppBar(),
       body: Padding(
         padding: const EdgeInsets.only(top: 16),
         child: Form(

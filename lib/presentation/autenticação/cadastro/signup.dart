@@ -24,7 +24,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       resizeToAvoidBottomInset:
           true, // Permite redimensionar quando o teclado aparece
-      appBar: const AppBarArrow(),
+      appBar: const BasicAppBar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(top: 16.0),
@@ -56,7 +56,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     const SizedBox(height: 16),
                     InputField(
                       name: 'Nome Parcial',
-                      title: 'Digite seu nome',
+                      title: 'Digite seu nome parcial',
                       campo: controller.nameUser,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -67,7 +67,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           return 'Nome inválido. Utilize apenas letras e espaços';
                         }
                         if (value.trim().split(' ').length < 2) {
-                          return 'Informe o nome completo';
+                          return 'Informe o nome parcial';
                         }
                         if (value.length < 3) {
                           return 'Nome muito curto';

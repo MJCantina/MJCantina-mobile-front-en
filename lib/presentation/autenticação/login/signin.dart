@@ -25,7 +25,7 @@ class _SignInPageState extends State<SignInPage> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: const AppBarArrow(),
+      appBar: const BasicAppBar(),
       body: ListView(
         children: [
           Padding(

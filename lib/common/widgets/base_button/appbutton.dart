@@ -26,6 +26,7 @@ class _BasicAppButtonState extends State<BasicAppButton> {
       child: ElevatedButton(
         onPressed: widget.onPressed,
         style: ElevatedButton.styleFrom(
+          overlayColor: AppColors.grey,
           minimumSize: Size.fromHeight(widget.height ?? 54),
           backgroundColor: AppColors.primary,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))

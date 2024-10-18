@@ -35,9 +35,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashPage(),  // A tela inicial é a SplashPage
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
+          systemOverlayStyle: SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light, statusBarBrightness: Brightness.light)
+        ),
+        scaffoldBackgroundColor: AppColors.white,
+      ),
+      home: const SplashPage(),  // A tela inicial é a SplashPage
     );
   }
 }

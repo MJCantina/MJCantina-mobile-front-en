@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:cantina_senai/core/configs/theme/app_images.dart';
 import 'package:get/get.dart';
 
-class AppBarArrow extends StatelessWidget implements PreferredSizeWidget {
+class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
 
-  const AppBarArrow({ 
+  const BasicAppBar({ 
     super.key
     });
-
   @override
   Widget build(BuildContext context) {
     return AppBar(

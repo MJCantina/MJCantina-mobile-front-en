@@ -1,14 +1,14 @@
-
+import 'package:cantina_senai/core/configs/theme/app_images.dart';
 import 'package:flutter/material.dart';
 
-// Importando seus arquivos de tema personalizados
-import 'package:cantina_senai/core/configs/theme/app_images.dart';
+class Simpleappbar extends StatefulWidget {
+  const Simpleappbar({super.key});
 
-class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
+  @override
+  State<Simpleappbar> createState() => _SimpleappbarState();
+}
 
-  const BasicAppBar({ 
-    super.key
-    });
+class _SimpleappbarState extends State<Simpleappbar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -18,10 +18,7 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
           AppImages.wave, // Caminho da imagem no background
           fit: BoxFit.cover, // Ajusta a imagem para cobrir a AppBar
         ),
-      ),
+      )
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(136); 
 }

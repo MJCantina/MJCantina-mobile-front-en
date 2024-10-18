@@ -1,4 +1,4 @@
-import 'package:cantina_senai/common/widgets/appbar/appbar.dart';
+import 'package:cantina_senai/common/widgets/appbar/simpleappbar.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -10,7 +10,7 @@ class AnimatedAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return SlideTransition(
       position: animation,
-      child: const BasicAppBar(), // Usando sua app bar aqui
+      child: const Simpleappbar(),
     );
   }
 
