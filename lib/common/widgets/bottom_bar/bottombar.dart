@@ -111,7 +111,7 @@ class BottombarState extends State<Bottombar> {
                 ),
                 child: Container( 
                   color: Colors.white, // Define a cor de fundo
-                  child: Carrinho(), // Aqui você coloca seu widget Carrinho
+                  child: const Carrinho(), // Aqui você coloca seu widget Carrinho
                 ),
               ),
             );

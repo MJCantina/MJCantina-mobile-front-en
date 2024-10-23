@@ -49,7 +49,7 @@ class Perfilbar extends StatelessWidget implements PreferredSizeWidget {
             right: 0,
             left: 0,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -115,7 +115,7 @@ class _EndCadasterState extends State<EndCadaster> {
                                                 TextDecoration.underline),
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
-                                            Get.to(Configurations());
+                                            Get.to(const Configurations());
                                           }),
                                   ]),
                             ),
