@@ -60,7 +60,10 @@ class _ConfigurationsState extends State<Configurations> {
                         title: 'Sair',
                         icon: AppVectors.logout,
                       ),
-                      SizedBox(width: double.infinity,child: Text('Versão 0.0.1', style: GoogleFonts.poppins(fontSize: 10, color: AppColors.grey, fontWeight: FontWeight.w400),textAlign: TextAlign.center,))
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: SizedBox(width: double.infinity,child: Text('Versão 0.0.1', style: GoogleFonts.poppins(fontSize: 10, color: AppColors.grey, fontWeight: FontWeight.w400),textAlign: TextAlign.center,)),
+                      )
                     ],
                   ),
                 ],

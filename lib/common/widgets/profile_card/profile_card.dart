@@ -7,9 +7,9 @@ import 'package:flutter_svg/svg.dart';
 class ConfigChange extends StatefulWidget {
   final String title;
   final String config;
-  final VoidCallback onTap;
+  final VoidCallback onPressed;
 
-  const ConfigChange({required this.title, required this.config, required this.onTap, super.key});
+  const ConfigChange({required this.title, required this.config, required this.onPressed, super.key});
 
   @override
   State<ConfigChange> createState() => _ConfigChangeState();
@@ -18,40 +18,43 @@ class ConfigChange extends StatefulWidget {
 class _ConfigChangeState extends State<ConfigChange> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: widget.onTap,
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-                color: AppColors.bordergrey,
-                width: 1,
-                style: BorderStyle.solid)),
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    widget.title,
-                    style: AppFonts.titleField,
-                  ),
-                  Text(
-                    widget.config,
-                    style: AppFonts.subtitle,
-                  ),
-                ],
+    return SizedBox(
+      width: double.infinity,
+      child: TextButton(
+        onPressed: widget.onPressed,
+        style: TextButton.styleFrom(
+              overlayColor: AppColors.grey,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                side: BorderSide(
+                  color: AppColors.bordergrey,
+                  width: 1,
+                ),
               ),
-              SvgPicture.asset(AppVectors.arrowright)
-            ],
-          ),
+            ),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      widget.title,
+                      style: AppFonts.titleField,
+                    ),
+                    Text(
+                      widget.config,
+                      style: AppFonts.placeHolder,
+                    ),
+                  ],
+                ),
+                SvgPicture.asset(AppVectors.arrowright)
+              ],
+            ),
         ),
-      ),
     );
   }
 }

@@ -13,7 +13,7 @@ class AppBarArrow extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        toolbarHeight: 200,
+        toolbarHeight: 196,
         flexibleSpace: Stack(
           children: [
             Positioned(
@@ -53,5 +53,5 @@ class AppBarArrow extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(200);
+  Size get preferredSize => const Size.fromHeight(196);
 }

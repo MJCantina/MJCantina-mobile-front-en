@@ -24,10 +24,10 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: const BasicAppBar(),
-      body: ListView(
-        children: [
+      body: SingleChildScrollView(
+        child:
           Padding(
               padding: const EdgeInsets.only(top: 16),
               child: Form(
@@ -105,8 +105,7 @@ class _SignInPageState extends State<SignInPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 16,)
-        ],
+
       ),
     );
   }

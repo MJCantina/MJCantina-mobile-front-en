@@ -28,17 +28,17 @@ class _ProfileConfigsState extends State<ProfileConfigs> {
               ConfigChange(
                 title: 'Nome Parcial',
                 config: '$user',
-                onTap: () => {},
+                onPressed: () => {},
               ),
               ConfigChange(
                 title: 'Email',
                 config: '$userEmail',
-                onTap: () => {},
+                onPressed: () => {},
               ),
               ConfigChange(
                 title: 'Senha',
                 config: 'Toque para mudar senha',
-                onTap: () => {},
+                onPressed: () => {},
               ),
               FutureBuilder<String?>(
                 future: AuthService.to.getPhoneNumber(), // Função assíncrona
@@ -47,25 +47,25 @@ class _ProfileConfigsState extends State<ProfileConfigs> {
                     return ConfigChange(
                       title: 'Telefone',
                       config: 'Carregando...',
-                      onTap: ()=>{},
+                      onPressed: ()=>{},
                     );
                   } else if (snapshot.hasError) {
                     return  ConfigChange(
                       title: 'Telefone',
                       config: 'Erro ao carregar telefone',
-                      onTap: ()=>{},
+                      onPressed: ()=>{},
                     );
                   } else if (!snapshot.hasData || snapshot.data == null) {
                     return  ConfigChange(
                       title: 'Telefone',
                       config: 'Telefone não disponível',
-                      onTap: ()=>{},
+                      onPressed: ()=>{},
                     );
                   } else {
                     return ConfigChange(
                       title: 'Telefone',
                       config: snapshot.data!,
-                      onTap: ()=>{},
+                      onPressed: ()=>{},
                     );
                   }
                 },
