@@ -17,7 +17,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final controller = Get.put(AuthController());
-  final _formKey = GlobalKey<FormState>(); 
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -109,35 +109,27 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).viewInsets.top +
-                        64, // Ajusta o espaço inferior quando o teclado aparece
-                  ),
-                  child: Column(
-                    children: [
-                      BasicAppButton(
+                Column(
+                  children: [
+                    BasicAppButton(
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
-                            await controller.registrar();   
+                            await controller.registrar();
                           }
-
-                                                
                         },
-                        title: 'Criar'
-                      ),
-                      GestureDetector(
-                        child: Text('Já possui conta? Entrar',
-                            style: AppFonts.titleField.copyWith(
-                                decoration: TextDecoration.underline)),
-                        onTap: () {
-                          Get.to(const SignInPage(),
-                              transition: Transition.rightToLeft,
-                              duration: const Duration(seconds: 1));
-                        },
-                      ),
-                    ],
-                  ),
+                        title: 'Criar'),
+                    GestureDetector(
+                      child: Text('Já possui conta? Entrar',
+                          style: AppFonts.titleField
+                              .copyWith(decoration: TextDecoration.underline)),
+                      onTap: () {
+                        Get.to(const SignInPage(),
+                            transition: Transition.rightToLeft,
+                            duration: const Duration(seconds: 1));
+                      },
+                    ),
+                    const SizedBox(height: 16,)
+                  ],
                 ),
               ],
             ),
