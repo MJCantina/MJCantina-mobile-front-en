@@ -89,29 +89,46 @@ class BottombarState extends State<Bottombar> {
  void _showBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
-    isScrollControlled: true, // Permite ajustar a altura do BottomSheet
-    backgroundColor: Colors.transparent, // Deixa a cor de fundo transparente
+    isDismissible: true,
+    enableDrag: true,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
     builder: (context) {
       return GestureDetector(
         onTap: () {
           Navigator.pop(context); // Fecha o BottomSheet ao clicar fora
         },
         child: DraggableScrollableSheet(
-          initialChildSize: 0.65, // Altura inicial de 65% da tela
+          initialChildSize: 0.7, // Altura inicial de 65% da tela
           minChildSize: 0.3, // Altura mínima
           maxChildSize: 0.75, // Altura máxima ao expandir
           builder: (context, scrollController) {
             return GestureDetector(
               onTap: () {}, // Evita fechar o BottomSheet ao clicar dentro dele
               child: ClipRRect(
-                
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(50),
                   topRight: Radius.circular(50),
                 ),
-                child: Container( 
+                child: Container(
                   color: Colors.white, // Define a cor de fundo
-                  child: const Carrinho(), // Aqui você coloca seu widget Carrinho
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 100, // Largura da linha cinza
+                        height: 6, // Altura da linha cinza
+                        margin: const EdgeInsets.symmetric(vertical: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade300, // Cor da linha
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      const Expanded(
+                        child: Carrinho(),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
@@ -121,6 +138,7 @@ class BottombarState extends State<Bottombar> {
     },
   );
 }
+
 
 
   List<String> listOfSvgAssets = [

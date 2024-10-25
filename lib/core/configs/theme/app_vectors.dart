@@ -27,4 +27,5 @@ class AppVectors {
   static const String pedidosred = '${basePath}pedidosRed$format';
   static const String eye = '${basePath}eye$format';
   static const String eyeslash = '${basePath}eyeslash$format';
+  static const String bagHappy = '${basePath}bagHappy$format';
 }

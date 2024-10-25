@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                             ? 16.0
                             : 10.0, 
                             left: index == 0 
-                            ? 16 
+                            ? 16
                             : 0),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
