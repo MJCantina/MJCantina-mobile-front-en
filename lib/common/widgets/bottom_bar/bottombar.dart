@@ -1,3 +1,4 @@
+import 'package:cantina_senai/common/widgets/modals/modalcart.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
 import 'package:cantina_senai/presentation/main_pages/carrinho/carrinho.dart';
 import 'package:cantina_senai/presentation/main_pages/home/home.dart';
@@ -56,23 +57,24 @@ class BottombarState extends State<Bottombar> {
           borderRadius: BorderRadius.circular(50),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround, // Espaçamento igual ao redor dos itens
+          mainAxisAlignment: MainAxisAlignment
+              .spaceAround, // Espaçamento igual ao redor dos itens
           children: List.generate(
             listOfSvgAssets.length,
             (index) => InkWell(
               onTap: () {
                 if (index == 0) {
-                  // Exibir o BottomSheet ao clicar no ícone do carrinho
-                  _showBottomSheet(context);
+                  showCart(context);
                 } else {
                   setState(() {
-                    currentIndex = index - 1; // Atualiza o índice para as outras páginas
+                    currentIndex =
+                        index - 1;
                   });
                 }
               },
               child: SvgPicture.asset(
                 listOfSvgAssets[index],
-                color : index - 1 == currentIndex
+                color: index - 1 == currentIndex
                     ? AppColors.primary
                     : AppColors.iconColor,
                 width: index == 1
@@ -86,60 +88,6 @@ class BottombarState extends State<Bottombar> {
       ),
     );
   }
- void _showBottomSheet(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    isDismissible: true,
-    enableDrag: true,
-    isScrollControlled: true,
-    backgroundColor: Colors.transparent,
-    builder: (context) {
-      return GestureDetector(
-        onTap: () {
-          Navigator.pop(context); // Fecha o BottomSheet ao clicar fora
-        },
-        child: DraggableScrollableSheet(
-          initialChildSize: 0.7, // Altura inicial de 65% da tela
-          minChildSize: 0.3, // Altura mínima
-          maxChildSize: 0.75, // Altura máxima ao expandir
-          builder: (context, scrollController) {
-            return GestureDetector(
-              onTap: () {}, // Evita fechar o BottomSheet ao clicar dentro dele
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(50),
-                  topRight: Radius.circular(50),
-                ),
-                child: Container(
-                  color: Colors.white, // Define a cor de fundo
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        width: 100, // Largura da linha cinza
-                        height: 6, // Altura da linha cinza
-                        margin: const EdgeInsets.symmetric(vertical: 12),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade300, // Cor da linha
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      const Expanded(
-                        child: Carrinho(),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
-      );
-    },
-  );
-}
-
-
 
   List<String> listOfSvgAssets = [
     AppVectors.wallet, // Carrinho

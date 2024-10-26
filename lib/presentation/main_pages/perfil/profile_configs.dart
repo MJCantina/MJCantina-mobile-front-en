@@ -1,5 +1,5 @@
 import 'package:cantina_senai/common/widgets/appbar/appbararrow.dart';
-import 'package:cantina_senai/common/widgets/profile_card/profile_card.dart';
+import 'package:cantina_senai/common/widgets/base_button/profilebutton.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
 import 'package:flutter/material.dart';
 
