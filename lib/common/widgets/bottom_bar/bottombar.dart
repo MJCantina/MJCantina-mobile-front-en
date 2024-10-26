@@ -1,6 +1,5 @@
 import 'package:cantina_senai/common/widgets/modals/modalcart.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
-import 'package:cantina_senai/presentation/main_pages/carrinho/carrinho.dart';
 import 'package:cantina_senai/presentation/main_pages/home/home.dart';
 import 'package:cantina_senai/presentation/main_pages/perfil/perfil.dart';
 import 'package:flutter/material.dart';
@@ -74,6 +73,7 @@ class BottombarState extends State<Bottombar> {
               },
               child: SvgPicture.asset(
                 listOfSvgAssets[index],
+                // ignore: deprecated_member_use
                 color: index - 1 == currentIndex
                     ? AppColors.primary
                     : AppColors.iconColor,
