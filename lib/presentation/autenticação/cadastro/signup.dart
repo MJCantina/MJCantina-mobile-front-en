@@ -60,7 +60,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       campo: controller.nameUser,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Por favor, insira seu nome';
+                          return 'Por favor, insira seu nome parcial';
                         }
                         final nameExp = RegExp(r'^[A-Za-zÀ-ú\s]+$');
                         if (!nameExp.hasMatch(value)) {
