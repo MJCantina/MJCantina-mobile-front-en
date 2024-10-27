@@ -7,11 +7,13 @@ class Pedidobutton extends StatefulWidget {
   final VoidCallback onPressed;
   final String title;
   final String icon;
+  final String status;
 
   const Pedidobutton(
       {required this.onPressed,
       required this.title,
       required this.icon,
+      required this.status,
       super.key});
 
   @override
@@ -21,7 +23,6 @@ class Pedidobutton extends StatefulWidget {
 class _PedidobuttonState extends State<Pedidobutton> {
   @override
   Widget build(BuildContext context) {
-    var pedido = true;
     return SizedBox(
       width: double.infinity,
       child: TextButton(
@@ -46,16 +47,29 @@ class _PedidobuttonState extends State<Pedidobutton> {
               ),
               Row(
                 children: [
-                  pedido == true ? Container(
-                    width: 18,
-                    height: 18,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        border: Border.all(
-                            color: AppColors.primary,
-                            width: 4,
-                            style: BorderStyle.solid)),
-                  ) : const SizedBox(height: 0,),
+                  widget.status == 'andamento'
+                      ? Container(
+                          width: 18,
+                          height: 18,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              border: Border.all(
+                                  color: AppColors.primary,
+                                  width: 4,
+                                  style: BorderStyle.solid)),
+                        )
+                      : widget.status == 'faturado' 
+                      ? Container(
+                          width: 18,
+                          height: 18,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              border: Border.all(
+                                  color: AppColors.blue,
+                                  width: 4,
+                                  style: BorderStyle.solid)),
+                        )
+                        : const SizedBox(),
                   const SizedBox(width: 12),
                   SvgPicture.asset(widget.icon),
                 ],
