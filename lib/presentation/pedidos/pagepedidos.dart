@@ -33,7 +33,7 @@ class _PagePedidosState extends State<PagePedidos> {
                       Pedidobutton(
                         status: 'andamento',
                           onPressed: () {
-                            Get.to(const DetalhePedido(),
+                            Get.to(const DetalhePedido(status: 'andamento',),
                                 transition: Transition.rightToLeft,
                                 duration: const Duration(seconds: 1));
                           },
@@ -42,7 +42,7 @@ class _PagePedidosState extends State<PagePedidos> {
                       Pedidobutton(
                         status: 'faturado',
                           onPressed: () {
-                            Get.to(const DetalhePedido(),
+                            Get.to(const DetalhePedido(status: 'faturado',),
                                 transition: Transition.rightToLeft,
                                 duration: const Duration(seconds: 1));
                           },
@@ -51,7 +51,7 @@ class _PagePedidosState extends State<PagePedidos> {
                       Pedidobutton(
                         status: '',
                           onPressed: () {
-                            Get.to(const DetalhePedido(),
+                            Get.to(const DetalhePedido(status: 'feito',),
                                 transition: Transition.rightToLeft,
                                 duration: const Duration(seconds: 1));
                           },
