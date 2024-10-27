@@ -1,4 +1,5 @@
-import 'package:cantina_senai/common/widgets/modals/modalcart.dart';
+import 'package:cantina_senai/common/widgets/modals/cart.dart';
+import 'package:cantina_senai/common/widgets/modals/emptycart.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
 import 'package:cantina_senai/presentation/main_pages/home/home.dart';
 import 'package:cantina_senai/presentation/main_pages/perfil/perfil.dart';
@@ -24,6 +25,8 @@ class BottombarState extends State<Bottombar> {
 
   @override
   Widget build(BuildContext context) {
+    var vazio = true;
+
     Size size = MediaQuery.of(context).size;
 
     double iconSize = size.width * .16;
@@ -63,11 +66,14 @@ class BottombarState extends State<Bottombar> {
             (index) => InkWell(
               onTap: () {
                 if (index == 0) {
-                  showCart(context);
+                  if (vazio == true) {
+                    emptyCart(context);
+                  } else {
+                    cartItem(context);
+                  }
                 } else {
                   setState(() {
-                    currentIndex =
-                        index - 1;
+                    currentIndex = index - 1;
                   });
                 }
               },
