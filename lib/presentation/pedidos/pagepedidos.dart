@@ -31,28 +31,31 @@ class _PagePedidosState extends State<PagePedidos> {
                     runSpacing: 12,
                     children: [
                       Pedidobutton(
+                        status: 'andamento',
                           onPressed: () {
-                            Get.to(const DetalhePedido(),
+                            Get.to(const DetalhePedido(status: 'andamento',),
                                 transition: Transition.rightToLeft,
                                 duration: const Duration(seconds: 1));
                           },
                           title: 'Pedido #7556',
                           icon: AppVectors.arrowright),
                       Pedidobutton(
+                        status: 'faturado',
                           onPressed: () {
-                            Get.to(const DetalhePedido(),
+                            Get.to(const DetalhePedido(status: 'faturado',),
                                 transition: Transition.rightToLeft,
                                 duration: const Duration(seconds: 1));
                           },
-                          title: 'Pedido #7556',
+                          title: 'Pedido #2589',
                           icon: AppVectors.arrowright),
                       Pedidobutton(
+                        status: '',
                           onPressed: () {
-                            Get.to(const DetalhePedido(),
+                            Get.to(const DetalhePedido(status: 'feito',),
                                 transition: Transition.rightToLeft,
                                 duration: const Duration(seconds: 1));
                           },
-                          title: 'Pedido #7556',
+                          title: 'Pedido #1687',
                           icon: AppVectors.arrowright),
                     ],
                   )

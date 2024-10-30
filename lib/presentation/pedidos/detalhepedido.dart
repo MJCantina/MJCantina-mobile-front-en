@@ -9,7 +9,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DetalhePedido extends StatefulWidget {
-  const DetalhePedido({super.key});
+  final String status;
+  const DetalhePedido({required this.status, super.key});
 
   @override
   State<DetalhePedido> createState() => _DetalhePedidoState();
@@ -34,25 +35,64 @@ class _DetalhePedidoState extends State<DetalhePedido> {
                     runSpacing: 20,
                     children: [
                       moduleBorder(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Em andamento', style: AppFonts.textFont,),
-                            Container(
-                              width: 18,
-                              height: 18,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                border: Border.all(
-                                  color: AppColors.primary,
-                                  width: 4,
-                                  style: BorderStyle.solid
+                          child: widget.status == 'andamento'
+                              ? Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Em andamento',
+                                      style: AppFonts.textFont,
+                                    ),
+                                    Container(
+                                      width: 18,
+                                      height: 18,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          border: Border.all(
+                                              color: AppColors.primary,
+                                              width: 4,
+                                              style: BorderStyle.solid)),
+                                    )
+                                  ],
                                 )
-                              ),
-                            )
-                          ],
-                        )
-                      ),
+                              : widget.status == 'faturado'
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Pedido faturado',
+                                          style: AppFonts.textFont,
+                                        ),
+                                        Container(
+                                          width: 18,
+                                          height: 18,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                              border: Border.all(
+                                                  color: AppColors.blue,
+                                                  width: 4,
+                                                  style: BorderStyle.solid)),
+                                        )
+                                      ],
+                                    )
+                                  : Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Pedido Feito',
+                                          style: AppFonts.textFont,
+                                        ),
+                                        const SizedBox(
+                                          width: 18,
+                                          height: 18,
+                                        )
+                                      ],
+                                    )),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Row(
@@ -79,20 +119,22 @@ class _DetalhePedidoState extends State<DetalhePedido> {
                         ),
                       ),
                       moduleBorder(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Wrap(
-                              spacing: 12,
-                              children: [
-                                SvgPicture.asset(AppVectors.reserve),
-                                Text('No balcão', style: AppFonts.textFont)
-                              ],
-                            ),
-                            Text('#7556', style: AppFonts.boldtitle,)
-                          ],
-                        )
-                      )
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Wrap(
+                            spacing: 12,
+                            children: [
+                              SvgPicture.asset(AppVectors.reserve),
+                              Text('No balcão', style: AppFonts.textFont)
+                            ],
+                          ),
+                          Text(
+                            '#7556',
+                            style: AppFonts.boldtitle,
+                          )
+                        ],
+                      ))
                     ],
                   ),
                   Padding(
@@ -130,14 +172,13 @@ class _DetalhePedidoState extends State<DetalhePedido> {
                     ),
                   ),
                   moduleBorder(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Total', style: AppFonts.boldtitle),
-                        Text('R\$3,80', style: AppFonts.boldtitle)
-                      ],
-                    )
-                  ),
+                      child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Total', style: AppFonts.boldtitle),
+                      Text('R\$3,80', style: AppFonts.boldtitle)
+                    ],
+                  )),
                   SizedBox(
                       width: double.infinity,
                       child: Text(
