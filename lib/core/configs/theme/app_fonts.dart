@@ -6,7 +6,7 @@ class AppFonts {
   static final titleFont = GoogleFonts.poppins(
       fontSize: 32, color: AppColors.black, fontWeight: FontWeight.w700);
   static final boldtitle = GoogleFonts.poppins(
-      fontSize: 20, color: AppColors.black, fontWeight: FontWeight.w700);
+      fontSize: 20, color: AppColors.black, fontWeight: FontWeight.w700); 
   static final subtitle = GoogleFonts.poppins(
       fontSize: 16, color: AppColors.grey, fontWeight: FontWeight.w400);
   static final titleField = GoogleFonts.poppins(
