@@ -29,7 +29,7 @@ class _DetalhePedidoState extends State<DetalhePedido> {
           child: ListView(
             children: [
               Wrap(
-                runSpacing: 28,
+                runSpacing: 16,
                 children: [
                   Wrap(
                     runSpacing: 20,
@@ -179,6 +179,21 @@ class _DetalhePedidoState extends State<DetalhePedido> {
                       Text('R\$3,80', style: AppFonts.boldtitle)
                     ],
                   )),
+                  widget.status == 'faturado'
+                      ? ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              overlayColor: AppColors.grey,
+                              minimumSize: const Size.fromHeight(54),
+                              backgroundColor: AppColors.primary,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15))),
+                          child: Text(
+                            'Pedir agora',
+                            style: AppFonts.buttonText,
+                          ),
+                        )
+                      : const SizedBox(width: 0),
                   SizedBox(
                       width: double.infinity,
                       child: Text(

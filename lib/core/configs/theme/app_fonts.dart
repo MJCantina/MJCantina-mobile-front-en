@@ -31,6 +31,8 @@ class AppFonts {
       fontSize: 12, color: AppColors.black, fontWeight: FontWeight.w600);
   static final labelRed = GoogleFonts.poppins(
       fontSize: 12, color: AppColors.primary, fontWeight: FontWeight.w600);
+  static final labelWhite = GoogleFonts.poppins(
+      fontSize: 12, color: AppColors.white, fontWeight: FontWeight.w600);
   static final placeHolder = GoogleFonts.poppins(
       fontSize: 14, color: AppColors.grey, fontWeight: FontWeight.w500);
   static final textHolder = GoogleFonts.poppins(
