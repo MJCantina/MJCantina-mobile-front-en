@@ -6,7 +6,7 @@ class AppFonts {
   static final titleFont = GoogleFonts.poppins(
       fontSize: 32, color: AppColors.black, fontWeight: FontWeight.w700);
   static final boldtitle = GoogleFonts.poppins(
-      fontSize: 20, color: AppColors.black, fontWeight: FontWeight.w700); 
+      fontSize: 20, color: AppColors.black, fontWeight: FontWeight.w700);
   static final subtitle = GoogleFonts.poppins(
       fontSize: 16, color: AppColors.grey, fontWeight: FontWeight.w400);
   static final titleField = GoogleFonts.poppins(
@@ -23,6 +23,8 @@ class AppFonts {
       fontSize: 12, color: AppColors.white, fontWeight: FontWeight.w800);
   static final category = GoogleFonts.poppins(
       fontSize: 12, color: AppColors.primary, fontWeight: FontWeight.w600);
+      static final categorySelected = GoogleFonts.poppins(
+      fontSize: 12, color: AppColors.white, fontWeight: FontWeight.w600);
   static final plateDesc = GoogleFonts.poppins(
       fontSize: 12, color: AppColors.black, fontWeight: FontWeight.w800);
   static final textDesc = GoogleFonts.poppins(
@@ -35,4 +37,6 @@ class AppFonts {
       fontSize: 14, color: AppColors.grey, fontWeight: FontWeight.w500);
   static final textHolder = GoogleFonts.poppins(
       fontSize: 14, color: AppColors.black, fontWeight: FontWeight.w500);
+  static final cartTxt = GoogleFonts.poppins(
+      fontSize: 10, color: AppColors.white, fontWeight: FontWeight.w600);
 }

@@ -19,7 +19,9 @@ class _FavoriteButtonState extends State<FavoriteButton> {
   bool _favoritar = false;
 
   void _alternarEstadoCurtida() {
-    _favoritar = !_favoritar;
+    setState(() {
+  _favoritar = !_favoritar;
+});
   }
 
   @override

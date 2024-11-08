@@ -1,7 +1,5 @@
 import 'package:cantina_senai/common/widgets/appbar/homebar.dart';
-import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
 import 'package:cantina_senai/common/widgets/base_button/favorite_button.dart';
-import 'package:cantina_senai/common/widgets/base_button/profilebutton.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/core/configs/theme/app_images.dart';
@@ -17,17 +15,29 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Map> categories = [
-    {'name': 'Salgados'},
-    {'name': 'Bebidas'},
-    {'name': 'Lanches'},
-    {'name': 'Pratos feitos'},
-    {'name': 'Sobremesas'},
+  List<Map<String, dynamic>> categories = [
+    {'name': 'Salgados', 'isSelected': false},
+    {'name': 'Bebidas', 'isSelected': false},
+    {'name': 'Lanches', 'isSelected': false},
+    {'name': 'Pratos feitos', 'isSelected': false},
+    {'name': 'Sobremesas', 'isSelected': false},
   ];
+
+  void _selectCategory(int index) {
+    setState(() {
+      for (var i = 0; i < categories.length; i++) {
+        categories[i]['isSelected'] = i == index;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    double padding = size.width * 0.04;
+    double paddingbottom = size.width * 0.02;
+    double categoryItemWidth = size.width * 0.3;
+
     return SafeArea(
       child: Scaffold(
         appBar: HomeBar(
@@ -36,29 +46,33 @@ class _HomePageState extends State<HomePage> {
         body: ListView(
           children: [
             Padding(
-                padding: const EdgeInsets.all(16),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Últimos pedidos',
-                    style: GoogleFonts.poppins(
-                        fontSize: 20,
-                        color: AppColors.black,
-                        fontWeight: FontWeight.w600),
+              padding: EdgeInsets.all(padding),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Últimos pedidos',
+                  style: GoogleFonts.poppins(
+                    fontSize: size.width * 0.05,
+                    color: AppColors.black,
+                    fontWeight: FontWeight.w600,
                   ),
-                )),
+                ),
+              ),
+            ),
             Padding(
-                padding: const EdgeInsets.all(16),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Cardapio',
-                    style: GoogleFonts.poppins(
-                        fontSize: 20,
-                        color: AppColors.black,
-                        fontWeight: FontWeight.w600),
+              padding: EdgeInsets.all(padding),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Cardápio',
+                  style: GoogleFonts.poppins(
+                    fontSize: size.width * 0.05,
+                    color: AppColors.black,
+                    fontWeight: FontWeight.w600,
                   ),
-                )),
+                ),
+              ),
+            ),
             SizedBox(
               height: 40,
               child: ListView.builder(
@@ -67,104 +81,110 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.only(
-                        right: index == categories.length - 1 ? 16.0 : 10.0,
-                        left: index == 0 ? 16 : 0),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 12),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFFEDED),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        categories[index]['name'],
-                        style: AppFonts.category,
+                      right: index == categories.length - 1 ? padding : 10.0,
+                      left: index == 0 ? padding : 0,
+                    ),
+                    child: GestureDetector(
+                      onTap: () => _selectCategory(index),
+                      child: Container(
+                        width: categoryItemWidth,
+                        padding: EdgeInsets.symmetric(horizontal: padding),
+                        decoration: BoxDecoration(
+                          color: categories[index]['isSelected']
+                              ? AppColors.primary
+                              : const Color(0xFFFFEDED),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Center(
+                          child: Text(
+                            categories[index]['name'],
+                            style: categories[index]['isSelected']
+                                ? AppFonts.categorySelected
+                                : AppFonts.category,
+                          ),
+                        ),
                       ),
                     ),
                   );
                 },
               ),
             ),
-            SizedBox(
-              width: size.width,
-              height: 200,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: padding, vertical: padding),
               child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: 1,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 8,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.symmetric(vertical: paddingbottom),
                     child: Container(
-                      height: 140,
+                      height: 110,
                       width: size.width,
                       child: Row(
                         children: [
                           SizedBox(
-                            width: size.width * 0.4,
+                            width: size.width * 0.35,
                             child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  AppImages.burger,
-                                  fit: BoxFit.cover,
-                                )),
-                          ), // Exemplo com largura de 10 (ajuste conforme necessário)
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                AppImages.burger,
+                                fit: BoxFit.cover,      
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: size.width * 0.05),
+                          Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'X-Salada',
-                                              style: AppFonts.boldtitle,
-                                            ),
-                                            FavoriteButton(
-                                              onPressed: () {},
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          width: size.width * 0.5,
-                                          child: Text(
-                                            'feito com pão, carne,  queijo, alface e tomate', // Corrigi a ortografia de "alface"
-                                            style: AppFonts.placeHolder,
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
-                                            softWrap: true,
-                                          ),
-                                        ),
-                                      ],
+                                    Text(
+                                      'X-Salada',
+                                      style: AppFonts.boldtitle.copyWith(
+                                          fontSize: size.width * 0.045),
+                                    ),
+                                    FavoriteButton(
+                                      onPressed: () {},
                                     ),
                                   ],
+                                ),
+                                Text(
+                                  'feito com pão, carne, queijo, alface e tomate',
+                                  style: AppFonts.placeHolder.copyWith(
+                                      fontSize: size.width * 0.04),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  softWrap: true,
                                 ),
                                 Row(
                                   children: [
                                     Text(
                                       'R\$9,00',
-                                      style: AppFonts.titleField,
+                                      style: AppFonts.titleField.copyWith(
+                                          fontSize: size.width * 0.04),
                                     ),
-                                    ElevatedButton(
-                                      onPressed: () {},
-                                      style: ElevatedButton.styleFrom(
+                                    SizedBox(width: size.width * 0.035),
+                                    Padding(
+                                      padding: const EdgeInsets.only(bottom: 8),
+                                      child: ElevatedButton(
+                                        onPressed: () {},
+                                        style: ElevatedButton.styleFrom(
                                           overlayColor: AppColors.grey,
                                           backgroundColor: AppColors.primary,
-                                          minimumSize: Size(32, 32),
+                                          minimumSize: Size(size.width * 0.03, 35),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15))),
-                                      child: Icon(
-                                        Icons.add_shopping_cart_outlined,
-                                        color: AppColors.white,
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          'Add ao carrinho',
+                                          style: AppFonts.cartTxt.copyWith(
+                                              fontSize: size.width * 0.025),
+                                        ),
                                       ),
                                     ),
                                   ],
