@@ -1,11 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:cantina_senai/common/widgets/appbar/homebar.dart';
 import 'package:cantina_senai/common/widgets/base_button/favorite_button.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
-import 'package:cantina_senai/core/configs/theme/app_images.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -51,11 +50,8 @@ class _HomePageState extends State<HomePage> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Últimos pedidos',
-                  style: GoogleFonts.poppins(
-                    fontSize: size.width * 0.05,
-                    color: AppColors.black,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style:
+                      AppFonts.boldtitle.copyWith(fontSize: size.width * 0.05),
                 ),
               ),
             ),
@@ -65,11 +61,8 @@ class _HomePageState extends State<HomePage> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Cardápio',
-                  style: GoogleFonts.poppins(
-                    fontSize: size.width * 0.05,
-                    color: AppColors.black,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style:
+                      AppFonts.boldtitle.copyWith(fontSize: size.width * 0.05),
                 ),
               ),
             ),
@@ -110,91 +103,144 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: padding, vertical: padding),
-              child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 8,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(vertical: paddingbottom),
-                    child: Container(
-                      height: 110,
-                      width: size.width,
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: size.width * 0.35,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.asset(
-                                AppImages.burger,
-                                fit: BoxFit.cover,      
+              padding:
+                  EdgeInsets.symmetric(horizontal: padding, vertical: padding),
+              child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('products')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  }
+                  if (!snapshot.hasData) {
+                    return const Text('Nenhum produto encontrado.');
+                  }
+                  final products = snapshot.data!.docs
+                      .map((doc) => doc.data() as Map<String, dynamic>)
+                      .toList();
+
+                  return ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: products.length,
+                    itemBuilder: (context, index) {
+                      final product = products[index];
+                      return Padding(
+                        padding: EdgeInsets.symmetric(vertical: paddingbottom),
+                        child: Container(
+                          height: 110,
+                          width: size.width,
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: size.width * 0.35,
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.network(
+                                      product['imageUrl'],
+                                      fit: BoxFit.cover,
+                                      loadingBuilder: (BuildContext context,
+                                          Widget child,
+                                          ImageChunkEvent? loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child;
+                                        } else {
+                                          return Center(
+                                            child: CircularProgressIndicator(
+                                              value: loadingProgress
+                                                          .expectedTotalBytes !=
+                                                      null
+                                                  ? loadingProgress
+                                                          .cumulativeBytesLoaded /
+                                                      (loadingProgress
+                                                              .expectedTotalBytes ??
+                                                          1)
+                                                  : null,
+                                            ),
+                                          );
+                                        }
+                                      },
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        return Center(
+                                            child: Text(
+                                                'Erro ao carregar imagem'));
+                                      },
+                                    )),
                               ),
-                            ),
-                          ),
-                          SizedBox(width: size.width * 0.05),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              SizedBox(width: size.width * 0.05),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Text(
-                                      'X-Salada',
-                                      style: AppFonts.boldtitle.copyWith(
-                                          fontSize: size.width * 0.045),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          product[
+                                              'title'], // Carrega o título do Firestore
+                                          style: AppFonts.boldtitle.copyWith(
+                                              fontSize: size.width * 0.045),
+                                        ),
+                                        FavoriteButton(
+                                          onPressed: () {},
+                                        ),
+                                      ],
                                     ),
-                                    FavoriteButton(
-                                      onPressed: () {},
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  'feito com pão, carne, queijo, alface e tomate',
-                                  style: AppFonts.placeHolder.copyWith(
-                                      fontSize: size.width * 0.04),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  softWrap: true,
-                                ),
-                                Row(
-                                  children: [
                                     Text(
-                                      'R\$9,00',
-                                      style: AppFonts.titleField.copyWith(
+                                      product[
+                                          'description'], // Carrega a descrição do Firestore
+                                      style: AppFonts.placeHolder.copyWith(
                                           fontSize: size.width * 0.04),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                      softWrap: true,
                                     ),
-                                    SizedBox(width: size.width * 0.035),
-                                    Padding(
-                                      padding: const EdgeInsets.only(bottom: 8),
-                                      child: ElevatedButton(
-                                        onPressed: () {},
-                                        style: ElevatedButton.styleFrom(
-                                          overlayColor: AppColors.grey,
-                                          backgroundColor: AppColors.primary,
-                                          minimumSize: Size(size.width * 0.03, 35),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(8),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'R\$${product['price']}', // Carrega o preço do Firestore
+                                          style: AppFonts.titleField.copyWith(
+                                              fontSize: size.width * 0.04),
+                                        ),
+                                        SizedBox(width: size.width * 0.035),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
+                                          child: ElevatedButton(
+                                            onPressed: () {},
+                                            style: ElevatedButton.styleFrom(
+                                              overlayColor: AppColors.grey,
+                                              backgroundColor:
+                                                  AppColors.primary,
+                                              minimumSize:
+                                                  Size(size.width * 0.03, 35),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                            ),
+                                            child: Text(
+                                              'Add ao carrinho',
+                                              style: AppFonts.cartTxt.copyWith(
+                                                  fontSize: size.width * 0.025),
+                                            ),
                                           ),
                                         ),
-                                        child: Text(
-                                          'Add ao carrinho',
-                                          style: AppFonts.cartTxt.copyWith(
-                                              fontSize: size.width * 0.025),
-                                        ),
-                                      ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                   );
                 },
               ),
