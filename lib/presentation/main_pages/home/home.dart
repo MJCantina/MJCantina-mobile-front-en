@@ -90,8 +90,6 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
-
-            
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: ListView.builder(
@@ -99,74 +97,77 @@ class _HomePageState extends State<HomePage> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 5,
                 itemBuilder: (context, index) {
-                  return SizedBox(
-                    child: Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: SizedBox(
-                            width: size.width * 0.35,
-                            child: Image.asset(AppImages.burger),
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: SizedBox(
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: SizedBox(
+                              width: size.width * 0.35,
+                              child: Image.asset(AppImages.burger),
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 12),
-                        SizedBox(
-                          width: size.width * 0.65 - 44,
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'X-salada',
-                                    style: AppFonts.boldtitle,
-                                  ),
-                                  FavoriteButton(onPressed: () {
-                                    
-                                  }),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 4),
-                                child: Text(
-                                  'Feito com pão, hamburguer de carne, queijo, alface e tomate',
-                                  style: AppFonts.textDesc,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
+                          const SizedBox(width: 12),
+                          SizedBox(
+                            width: size.width * 0.65 - 44,
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'X-salada',
+                                      style: AppFonts.boldtitle,
+                                    ),
+                                    FavoriteButton(onPressed: () {
+                                      
+                                    }),
+                                  ],
                                 ),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'R\$10,00',
-                                    style: AppFonts.titleField,
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 4),
+                                  child: Text(
+                                    'Feito com pão, hamburguer de carne, queijo, alface e tomate',
+                                    style: AppFonts.textDesc,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
                                   ),
-                                  ElevatedButton(
-                                    onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                                      overlayColor: AppColors.grey,
-                                      backgroundColor: AppColors.primary,
-                                      minimumSize: const Size(0, 30),
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'R\$10,00',
+                                      style: AppFonts.titleField,
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        overlayColor: AppColors.grey,
+                                        backgroundColor: AppColors.primary,
+                                        minimumSize: const Size(0, 30),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                      child: Text(
+                                        'Add ao carrinho',
+                                        style: AppFonts.labelWhite,
                                       ),
                                     ),
-                                    child: Text(
-                                      'Add ao carrinho',
-                                      style: AppFonts.labelWhite,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 },

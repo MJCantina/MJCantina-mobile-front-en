@@ -4,6 +4,8 @@ import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
 import 'package:cantina_senai/presentation/configuration/configurations.dart';
 import 'package:cantina_senai/presentation/main_pages/perfil/profile_configs.dart';
+import 'package:cantina_senai/presentation/pagamento/finalscreen/erropagamento.dart';
+import 'package:cantina_senai/presentation/pagamento/finalscreen/pedidoefetivado.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -67,7 +69,7 @@ class _PerfilState extends State<Perfil> {
                       title: 'Favoritos',
                       subtitle: 'Aqui estão os seus produtos favoritos',
                       onTap: () {
-                        Get.to(const Configurations(),
+                        Get.to(const Erropagamento(),
                             transition: Transition.rightToLeft,
                             duration: const Duration(seconds: 1));
                       }),
@@ -81,7 +83,7 @@ class _PerfilState extends State<Perfil> {
                       subtitle: 'Edite seus métodos de pagamento',
                       onTap: () {
                         Get.to(
-                          const Configurations(),
+                          const Pedidoefetivado(),
                           transition: Transition.rightToLeft,
                           duration: const Duration(seconds: 1));
                       }),
