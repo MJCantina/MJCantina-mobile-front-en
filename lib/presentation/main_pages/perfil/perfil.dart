@@ -34,21 +34,24 @@ class _PerfilState extends State<Perfil> {
                       const EdgeInsets.symmetric(vertical: 8),
                   child: Text(
                     'Gerenciar conta',
-                    style: AppFonts.titleField,
+                    style: AppFonts.titleField(context),
                   ),
                 ),
                 SizedBox(
                   width: screenWidth - 32,
                   child: cardPerfil(
-                      icon: AppVectors.profilered,
-                      title: 'Perfil',
-                      subtitle: 'Preencha ou edite as informações do seu perfil',
-                      onTap: () {
-                        Get.to(
-                          const ProfileConfigs(),
-                          transition: Transition.rightToLeft,
-                          duration: const Duration(seconds: 1));
-                      }),
+                    context: context, // Passando o BuildContext
+                    icon: AppVectors.profilered,
+                    title: 'Perfil',
+                    subtitle: 'Preencha ou edite as informações do seu perfil',
+                    onTap: () {
+                      Get.to(
+                        const ProfileConfigs(),
+                        transition: Transition.rightToLeft,
+                        duration: const Duration(seconds: 1),
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
@@ -63,6 +66,7 @@ class _PerfilState extends State<Perfil> {
                 SizedBox(
                   width: (screenWidth - 48) / 2,
                   child: cardPerfil(
+                    context: context,
                       icon: AppVectors.coracaored,
                       title: 'Favoritos',
                       subtitle: 'Aqui estão os seus produtos favoritos',
@@ -76,6 +80,7 @@ class _PerfilState extends State<Perfil> {
                 SizedBox(
                   width: (screenWidth - 48) / 2,
                   child: cardPerfil(
+                    context: context,
                       icon: AppVectors.walletred,
                       title: 'Pagamento',
                       subtitle: 'Edite seus métodos de pagamento',
@@ -92,6 +97,7 @@ class _PerfilState extends State<Perfil> {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
             child: cardPerfil(
+              context: context,
                 icon: AppVectors.configred,
                 title: 'Configurações',
                 subtitle: 'Altere as configurações do seu jeito',
@@ -109,6 +115,7 @@ class _PerfilState extends State<Perfil> {
 }
 
 Widget cardPerfil({
+  required BuildContext context,
   required String icon,
   required String title,
   required String subtitle,
@@ -119,16 +126,17 @@ Widget cardPerfil({
     child: Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: AppColors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.15),
-              blurRadius: 10,
-              spreadRadius: -2,
-              offset: const Offset(0, 1),
-            )
-          ]),
+        borderRadius: BorderRadius.circular(20),
+        color: AppColors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.15),
+            blurRadius: 10,
+            spreadRadius: -2,
+            offset: const Offset(0, 1),
+          ),
+        ],
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,13 +145,13 @@ Widget cardPerfil({
           const SizedBox(height: 12),
           Text(
             title,
-            style: AppFonts.titleField,
+            style: AppFonts.titleField(context),
           ),
           const SizedBox(height: 4),
           Text(
             subtitle,
-            style: AppFonts.textDesc,
-          )
+            style: AppFonts.textDesc(context),
+          ),
         ],
       ),
     ),

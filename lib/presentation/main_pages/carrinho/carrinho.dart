@@ -28,7 +28,7 @@ class _CarrinhoState extends State<Carrinho> {
                     child: SvgPicture.asset(AppVectors.bagHappy),
                   ),
                   const SizedBox(height: 2),
-                  Text('Sua sacola está vazia!', style: AppFonts.textFont),
+                  Text('Sua sacola está vazia!', style: AppFonts.textFont(context)),
                 ],
               ),
             ),

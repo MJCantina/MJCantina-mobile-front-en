@@ -34,7 +34,7 @@ class _BasicAppButtonState extends State<BasicAppButton> {
            
         ),
         child: Text(
-          widget.title, style: AppFonts.buttonText,
+          widget.title, style: AppFonts.buttonText(context),
         ),
       ),
     );

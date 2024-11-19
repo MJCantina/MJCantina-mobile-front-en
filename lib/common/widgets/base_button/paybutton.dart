@@ -28,7 +28,7 @@ class Paybutton extends StatelessWidget {
            
         ),
         child: Text(
-          title, style: AppFonts.payText,
+          title, style: AppFonts.payText(context),
         )
       ),
     );
