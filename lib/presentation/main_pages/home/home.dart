@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                       return Padding(
                         padding: EdgeInsets.symmetric(vertical: paddingbottom),
                         child: Container(
-                          height: 110,
+                          height: 130,
                           width: size.width,
                           child: Row(
                             children: [
@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                                     borderRadius: BorderRadius.circular(12),
                                     child: Image.network(
                                       product['imageUrl'],
-                                      fit: BoxFit.cover,
+                                      fit: BoxFit.fill,
                                       loadingBuilder: (BuildContext context,
                                           Widget child,
                                           ImageChunkEvent? loadingProgress) {
@@ -163,7 +163,8 @@ class _HomePageState extends State<HomePage> {
                                       },
                                       errorBuilder:
                                           (context, error, stackTrace) {
-                                        return Center(
+                                            debugPrint('Erro ao carregar imagem da URL: ${product['imageUrl']}');
+                                        return const Center(
                                             child: Text(
                                                 'Erro ao carregar imagem'));
                                       },
@@ -182,7 +183,7 @@ class _HomePageState extends State<HomePage> {
                                       children: [
                                         Text(
                                           product[
-                                              'title'], // Carrega o título do Firestore
+                                              'title'], 
                                           style: AppFonts.boldtitle.copyWith(
                                               fontSize: size.width * 0.045),
                                         ),
@@ -193,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     Text(
                                       product[
-                                          'description'], // Carrega a descrição do Firestore
+                                          'description'], 
                                       style: AppFonts.placeHolder.copyWith(
                                           fontSize: size.width * 0.04),
                                       overflow: TextOverflow.ellipsis,
@@ -203,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                                     Row(
                                       children: [
                                         Text(
-                                          'R\$${product['price']}', // Carrega o preço do Firestore
+                                          'R\$${product['price']}', 
                                           style: AppFonts.titleField.copyWith(
                                               fontSize: size.width * 0.04),
                                         ),
