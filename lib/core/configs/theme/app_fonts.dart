@@ -11,7 +11,7 @@ class AppFonts {
 
   static TextStyle titleFont(BuildContext context) {
     return GoogleFonts.poppins(
-      fontSize: _getFontSize(context, 0.085),  // 8.5% da largura da tela
+      fontSize: _getFontSize(context, 0.07),  // 8.5% da largura da tela
       color: AppColors.black,
       fontWeight: FontWeight.w700,
     );

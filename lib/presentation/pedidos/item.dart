@@ -28,8 +28,8 @@ class ItemPage extends StatelessWidget {
               ),
               // IconButton sobrepondo a imagem
               Positioned(
-                top: 20, // Ajuste para colocar o ícone no topo
-                left: 10, // Ajuste para colocar o ícone à esquerda
+                top: screenHeight * 0.045, // Ajuste para colocar o ícone no topo
+                left: screenWidth * 0.02, // Ajuste para colocar o ícone à esquerda
                 child: IconButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -39,7 +39,7 @@ class ItemPage extends StatelessWidget {
               ),
               // Restante do conteúdo, abaixo da imagem
               Positioned(
-                top: screenHeight * 0.425,  // Ajusta com base no tamanho da tela
+                top: screenHeight * 0.45,  // Ajusta com base no tamanho da tela
                 left: 5,
                 right: 10,
                 child: Row(
@@ -54,15 +54,15 @@ class ItemPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(14),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            offset: Offset(2, 2),
-                            blurRadius: 10,
-                            spreadRadius: 5,
+                            color: Colors.black.withOpacity(0.1), // Sombra fraca
+                            blurRadius: 10, // Suavidade da borda
+                            spreadRadius: 3, // Espalhamento da sombra
+                            offset: Offset(0, 3), // Deslocamento da sombra (x, y)
                           ),
                         ],
                       ),
-                      width: screenWidth * 0.4, // Tornando o width responsivo
-                      height: 100,
+                      width: screenWidth * 0.35, // Tornando o width responsivo
+                      height: screenHeight * 0.09,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -84,9 +84,11 @@ class ItemPage extends StatelessWidget {
                         ],
                       ),
                     ),
+                    SizedBox(width: screenWidth * 0.02,),
                     Container(
                       margin: const EdgeInsets.all(0),
                       width: screenWidth * 0.5, // Ajustando a largura do botão
+                      height: screenHeight * 0.09,
                       child: ButtonItem(
                         onPressed: () {},
                         title: 'Adicionar ao carrinho',
