@@ -5,11 +5,13 @@ class CounterButton extends StatefulWidget {
   final VoidCallback onPressed;
   final String title;
   final double? height;
+  final double? width;
 
   const CounterButton({
     required this.onPressed,
     required this.title,
     this.height,
+    this.width,
     super.key,
   });
 
@@ -42,7 +44,7 @@ class _CounterButtonState extends State<CounterButton> {
 
     return SizedBox(
       width: screenWidth * 0.4, // 60% da largura da tela
-      height: screenHeight * 0.085, // 8% da altura da tela
+      height: screenHeight * 0.070, // 8% da altura da tela
       child: ElevatedButton(
         onPressed: widget.onPressed,
         style: ElevatedButton.styleFrom(

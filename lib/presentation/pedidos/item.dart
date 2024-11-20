@@ -1,12 +1,15 @@
 import 'package:cantina_senai/common/widgets/base_button/buttonItem.dart';
 import 'package:cantina_senai/common/widgets/base_button/counter.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
-import 'package:cantina_senai/core/configs/theme/app_images.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ItemPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Recuperar o produto passado como argumento
+    final product = Get.arguments as Map<String, dynamic>;
+
     // Obter o tamanho da tela
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
@@ -14,38 +17,49 @@ class ItemPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Stack(  // Usando Stack para empilhar a imagem e o botão
+          Stack(
             clipBehavior: Clip.none,
             children: [
               // Imagem de fundo
               SizedBox(
                 width: double.infinity,
-                height: screenHeight * 0.525, // Ajusta a altura da imagem com base no tamanho da tela
-                child: Image.asset(
-                  AppImages.imgBurguer,
+                height: screenHeight * 0.525,
+                child: Image.network(
+                  product['imageUrl'], // Usar a URL do produto
                   fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => const Center(
+                    child: Text('Erro ao carregar imagem'),
+                  ),
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                (loadingProgress.expectedTotalBytes ?? 1)
+                            : null,
+                      ),
+                    );
+                  },
                 ),
               ),
-              // IconButton sobrepondo a imagem
+              // Botão voltar
               Positioned(
-                top: 20, // Ajuste para colocar o ícone no topo
-                left: 10, // Ajuste para colocar o ícone à esquerda
+                top: screenHeight * 0.045,
+                left: screenWidth * 0.02,
                 child: IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: const Icon(Icons.arrow_back_ios, color: Colors.white), // Cor do ícone
+                  icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
                 ),
               ),
-              // Restante do conteúdo, abaixo da imagem
+              // Preço e botão adicionar
               Positioned(
-                top: screenHeight * 0.425,  // Ajusta com base no tamanho da tela
-                left: 5,
-                right: 10,
+                top: screenHeight * 0.45,
+                left: screenWidth * 0.03,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Container para o conteúdo
                     Container(
                       margin: const EdgeInsets.all(10),
                       padding: const EdgeInsets.all(10),
@@ -54,18 +68,17 @@ class ItemPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(14),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            offset: Offset(2, 2),
+                            color: Colors.black.withOpacity(0.1),
                             blurRadius: 10,
-                            spreadRadius: 5,
+                            spreadRadius: 3,
+                            offset: Offset(0, 3),
                           ),
                         ],
                       ),
-                      width: screenWidth * 0.4, // Tornando o width responsivo
-                      height: 100,
+                      width: screenWidth * 0.35,
+                      height: screenHeight * 0.075,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Row(
                             mainAxisSize: MainAxisSize.min,
@@ -74,9 +87,9 @@ class ItemPage extends StatelessWidget {
                                 'R\$',
                                 style: AppFonts.textFont(context),
                               ),
-                              const SizedBox(width: 5),
+                              SizedBox(width: screenWidth * 0.01),
                               Text(
-                                '9,20',
+                                product['price'].toString(),
                                 style: AppFonts.titleFont(context),
                               ),
                             ],
@@ -84,11 +97,15 @@ class ItemPage extends StatelessWidget {
                         ],
                       ),
                     ),
+                    SizedBox(width: screenWidth * 0.02),
                     Container(
                       margin: const EdgeInsets.all(0),
-                      width: screenWidth * 0.5, // Ajustando a largura do botão
+                      width: screenWidth * 0.5,
+                      height: screenHeight * 0.075,
                       child: ButtonItem(
-                        onPressed: () {},
+                        onPressed: () {
+                          // Adicionar lógica de adicionar ao carrinho
+                        },
                         title: 'Adicionar ao carrinho',
                       ),
                     ),
@@ -97,32 +114,30 @@ class ItemPage extends StatelessWidget {
               ),
             ],
           ),
-          // Adicionando SizedBox responsivo com base na altura da tela
           SizedBox(height: screenHeight * 0.1),
-          
-          // Texto X-Salada
           Container(
             width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05), // Adicionando padding dinâmico
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
             child: Text(
-              'X-SALADA',
+              product['title'], // Nome do produto
               style: AppFonts.titleField(context),
-              textAlign: TextAlign.left, // Alinhando o texto à esquerda
+              textAlign: TextAlign.left,
             ),
           ),
-          // Descrição do X-Salada
           Container(
             width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05), // Adicionando padding dinâmico
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
             child: Text(
-              'O X-Salada é um sanduíche delicioso com hambúrguer, alface, tomate, maionese e pão macio, perfeito para quem busca um lanche saboroso. Variações incluem queijo, ovo frito ou batata palha, tornando-o ainda mais irresistível.',
+              product['description'], // Descrição do produto
               style: AppFonts.textFontMin(context),
-              textAlign: TextAlign.left, // Alinhando o texto à esquerda
+              textAlign: TextAlign.left,
             ),
           ),
-          // Adicionando outro SizedBox responsivo com base na altura da tela
           SizedBox(height: screenHeight * 0.1),
-          CounterButton(onPressed: () {}, title: 'Contador de Produtos'),
+          CounterButton(
+            onPressed: () {},
+            title: 'Contador de Produtos',
+          ),
         ],
       ),
     );
