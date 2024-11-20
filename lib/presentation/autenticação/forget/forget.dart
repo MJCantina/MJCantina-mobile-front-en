@@ -38,8 +38,8 @@ class _ForgetPageState extends State<ForgetPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Esqueceu sua senha?', style: AppFonts.titleFont,),
-                        Text('Enviaremos um link para redefinir sua senha', style: AppFonts.subtitle),
+                        Text('Esqueceu sua senha?', style: AppFonts.titleFont(context),),
+                        Text('Enviaremos um link para redefinir sua senha', style: AppFonts.subtitle(context)),
                       ],
                     ),
                   ),

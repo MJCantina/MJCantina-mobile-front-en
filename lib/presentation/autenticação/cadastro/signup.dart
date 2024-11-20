@@ -43,12 +43,12 @@ class _SignUpPageState extends State<SignUpPage> {
                         children: [
                           Text(
                             'Cadastre-se',
-                            style: AppFonts.titleFont,
+                            style: AppFonts.titleFont(context),
                             textAlign: TextAlign.start,
                           ),
                           Text(
                             'Venha conhecer a melhor cantina',
-                            style: AppFonts.subtitle,
+                            style: AppFonts.subtitle(context),
                           ),
                         ],
                       ),
@@ -120,8 +120,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         title: 'Criar'),
                     GestureDetector(
                       child: Text('Já possui conta? Entrar',
-                          style: AppFonts.titleField
-                              .copyWith(decoration: TextDecoration.underline)),
+                          style: AppFonts.titleFieldUnderLine(context)
+                      ),
                       onTap: () {
                         Get.to(const SignInPage(),
                             transition: Transition.rightToLeft,

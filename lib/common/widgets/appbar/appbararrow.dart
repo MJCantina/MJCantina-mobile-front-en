@@ -45,7 +45,7 @@ class AppBarArrow extends StatelessWidget implements PreferredSizeWidget {
               alignment: Alignment.centerLeft, // Alinha o título à esquerda
               child: Text(
                 namePage,
-                style: AppFonts.titleFont,
+                style: AppFonts.titleFont(context),
               ),
             ),
           ),

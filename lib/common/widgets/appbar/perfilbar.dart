@@ -60,10 +60,10 @@ class Perfilbar extends StatelessWidget implements PreferredSizeWidget {
                       children: [
                         Text(
                           user!,
-                          style: AppFonts.titleField.copyWith(fontSize: 20),
+                          style: AppFonts.titleField(context),
                         ),
                         Text(userEmail!,
-                            style: AppFonts.placeHolder.copyWith(fontSize: 12)),
+                            style: AppFonts.placeHolder(context)),
                       ],
                     ),
                   )

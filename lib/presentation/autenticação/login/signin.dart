@@ -42,8 +42,8 @@ class _SignInPageState extends State<SignInPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Login', style: AppFonts.titleFont, textAlign: TextAlign.start),
-                              Text('Aproveite tudo de bom e do \nmelhor', style: AppFonts.subtitle),
+                              Text('Login', style: AppFonts.titleFont(context), textAlign: TextAlign.start),
+                              Text('Aproveite tudo de bom e do \nmelhor', style: AppFonts.subtitle(context)),
                             ],
                           ),
                         ),
@@ -90,7 +90,7 @@ class _SignInPageState extends State<SignInPage> {
                         GestureDetector(
                           child: Text(
                             'Esqueci minha senha',
-                            style: AppFonts.titleField.copyWith(decoration: TextDecoration.underline)
+                            style: AppFonts.titleFieldUnderLine(context)
                           ),
                           onTap: () {
                             Get.to(const ForgetPage(),
