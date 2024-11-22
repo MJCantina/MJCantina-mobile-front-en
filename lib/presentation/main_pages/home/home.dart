@@ -1,5 +1,4 @@
 import 'package:cantina_senai/data/models/services/cart_controller.dart';
-import 'package:cantina_senai/presentation/main_pages/perfil/perfil.dart';
 import 'package:cantina_senai/presentation/pedidos/item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,6 @@ import 'package:cantina_senai/common/widgets/appbar/homebar.dart';
 import 'package:cantina_senai/common/widgets/base_button/favorite_button.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
-import 'package:cantina_senai/core/configs/theme/app_images.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
 import 'package:get/get.dart';
 
@@ -209,6 +207,7 @@ class _HomePageState extends State<HomePage> {
                                         softWrap: true,
                                       ),
                                       Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             'R\$${product['price']}', 
@@ -227,7 +226,8 @@ class _HomePageState extends State<HomePage> {
                                                 backgroundColor:
                                                     AppColors.primary,
                                                 minimumSize:
-                                                    Size(size.width * 0.03, 35),
+                                                    Size(size.width * 0.02, 32),
+                                                padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(8),

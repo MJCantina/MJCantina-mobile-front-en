@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\Flutter\flutter_windows_3.24.0-stable\flutter"
-export "FLUTTER_APPLICATION_PATH=D:\Aplicativos\Projects SENAI\MJCantina-mobile-front-end"
+export "FLUTTER_ROOT=C:\Users\23143159\Downloads\flutter"
+export "FLUTTER_APPLICATION_PATH=C:\Users\23143159\Documents\GitHub\MJCantina-mobile-front-end"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib\main.dart"
 export "FLUTTER_BUILD_DIR=build"

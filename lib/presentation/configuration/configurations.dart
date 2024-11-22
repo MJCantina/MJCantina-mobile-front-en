@@ -51,7 +51,7 @@ class _ConfigurationsState extends State<Configurations> {
                         onPressed: () {
                           Get.to(const Polices(), transition: Transition.rightToLeft, duration: const Duration(seconds: 1));
                         },
-                        title: 'Politicas de uso',
+                        title: 'Políticas de uso',
                         icon: AppVectors.arrowright,
                       ),
                       Listbutton(

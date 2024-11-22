@@ -216,7 +216,7 @@ class AppFonts {
 
   static TextStyle cartTxt(BuildContext context) {
     return GoogleFonts.poppins(
-      fontSize: _getFontSize(context, 0.02),  // 2% da largura da tela
+      fontSize: _getFontSize(context, 0.025),  // 2% da largura da tela
       color: AppColors.white,
       fontWeight: FontWeight.w600,
     );
