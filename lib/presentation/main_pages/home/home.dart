@@ -7,6 +7,7 @@ import 'package:cantina_senai/common/widgets/appbar/homebar.dart';
 import 'package:cantina_senai/common/widgets/base_button/favorite_button.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
+import 'package:cantina_senai/core/configs/theme/app_images.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
 import 'package:get/get.dart';
 
@@ -40,7 +41,6 @@ class _HomePageState extends State<HomePage> {
     double padding = size.width * 0.04;
     double paddingbottom = size.width * 0.02;
     double categoryItemWidth = size.width * 0.3;
-
     return SafeArea(
       child: Scaffold(
         appBar: HomeBar(
