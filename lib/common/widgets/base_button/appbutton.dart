@@ -30,8 +30,6 @@ class _BasicAppButtonState extends State<BasicAppButton> {
           minimumSize: Size.fromHeight(widget.height ?? 54),
           backgroundColor: AppColors.primary,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
-          
-           
         ),
         child: Text(
           widget.title, style: AppFonts.buttonText(context),

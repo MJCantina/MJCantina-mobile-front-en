@@ -1,19 +1,18 @@
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
-import 'package:cantina_senai/presentation/welcome/start.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ConfirmEmail extends StatefulWidget {
-  const ConfirmEmail({super.key});
+class Erropagamento extends StatefulWidget {
+  const Erropagamento({super.key});
 
   @override
-  State<ConfirmEmail> createState() => _ConfirmEmailState();
+  State<Erropagamento> createState() => _ErropagamentoState();
 }
 
-class _ConfirmEmailState extends State<ConfirmEmail> {
+class _ErropagamentoState extends State<Erropagamento> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +23,7 @@ class _ConfirmEmailState extends State<ConfirmEmail> {
           padding: const EdgeInsets.only(top: 8.0),
           child: IconButton(
             onPressed: () {
-              Get.offAll(const StartPage());
+              Get.back();
             },
             icon: const Padding(
               padding: EdgeInsets.only(bottom: 40),
@@ -35,20 +34,20 @@ class _ConfirmEmailState extends State<ConfirmEmail> {
         ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(AppVectors.confirmation),
-                Text('Confirme sua conta',
+                SvgPicture.asset(AppVectors.error),
+                Text('Erro no pagamento',
                     style: GoogleFonts.poppins(
                         fontSize: 32,
                         color: AppColors.white,
                         fontWeight: FontWeight.w700)),
                 Text(
-                  'Foi enviado um email de confirmação \n para ativar sua conta. \nAntes de reenviar verifique a caixa de \n span e lixeira.',
+                  'Alguma coisa no pagamento não deu \n certo, tente novamente mais tarde ou \n utilize outro meio de pagamento.',
                   style: GoogleFonts.poppins(
                       fontSize: 16,
                       color: AppColors.white,
@@ -68,7 +67,7 @@ class _ConfirmEmailState extends State<ConfirmEmail> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15))),
               child: Text(
-                'Reenviar',
+                'Voltar',
                 style: GoogleFonts.poppins(
                     fontSize: 16,
                     color: AppColors.black,
