@@ -90,6 +90,7 @@ class BottombarState extends State<Bottombar> {
           ),
         ),
       ),
+      extendBody: true,
     );
   }
 

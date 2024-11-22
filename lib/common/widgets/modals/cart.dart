@@ -4,6 +4,7 @@ import 'package:cantina_senai/common/widgets/module/moduleborder.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/data/models/services/cart_controller.dart';
+import 'package:cantina_senai/presentation/pagamento/payment.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -53,7 +54,6 @@ class _CartWithState extends State<CartWith> {
                   int productQuantity = product['quantity'] ?? 1;
                   double productPrice = double.tryParse(product['price'].toString()) ?? 0.0;
 
-                  // Calculando o preço total do produto (preço * quantidade)
                   double totalProductPrice = productPrice * productQuantity;
 
                   return Padding(
@@ -224,7 +224,9 @@ class _CartWithState extends State<CartWith> {
                   const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10),
               alignment: Alignment.bottomCenter,
               child: BasicAppButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.off(PaymentPage());
+                },
                 title: 'Comprar',
               ),
             ),
