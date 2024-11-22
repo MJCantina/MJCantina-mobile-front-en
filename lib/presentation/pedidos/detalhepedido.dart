@@ -190,7 +190,7 @@ class _DetalhePedidoState extends State<DetalhePedido> {
                                   borderRadius: BorderRadius.circular(15))),
                           child: Text(
                             'Pedir agora',
-                            style: AppFonts.buttonText,
+                            style: AppFonts.buttonText(context),
                           ),
                         )
                       : const SizedBox(width: 0),

@@ -46,13 +46,16 @@ class _PedidoefetivadoState extends State<Pedidoefetivado> {
                         fontSize: 32,
                         color: AppColors.white,
                         fontWeight: FontWeight.w700)),
-                Text(
-                  'Seu pedido está na seção "Pedidos" do APP, \n você pode acompanhar o status do seu \n pedido a qualquer momento.',
-                  style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      color: AppColors.white,
-                      fontWeight: FontWeight.w400),
-                  textAlign: TextAlign.center,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(
+                    'Seu pedido está na seção "Pedidos" do APP, você pode acompanhar o status do seu pedido a qualquer momento.',
+                    style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        color: AppColors.white,
+                        fontWeight: FontWeight.w400),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ],
             ),
