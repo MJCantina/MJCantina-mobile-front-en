@@ -43,7 +43,7 @@ class _PedidobuttonState extends State<Pedidobutton> {
             children: [
               Text(
                 widget.title,
-                style: AppFonts.textFont,
+                style: AppFonts.textFont(context),
               ),
               Row(
                 children: [

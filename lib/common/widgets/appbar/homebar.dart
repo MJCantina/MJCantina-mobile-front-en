@@ -56,12 +56,12 @@ class HomeBar extends StatelessWidget implements PreferredSizeWidget {
                 children: [
                   Text(
                     'Olá, ${userName ?? 'Usuário'}', // Se o nome do usuário for nulo, exibe 'Usuário'
-                    style: AppFonts.subtitle,
+                    style: AppFonts.subtitle(context),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(greeting, style: AppFonts.titleFont),
+                      Text(greeting, style: AppFonts.titleFont(context)),
                       IconButton(
                         onPressed: () {
                           Get.to(
@@ -89,7 +89,7 @@ class HomeBar extends StatelessWidget implements PreferredSizeWidget {
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Procurar por produto',
-                    hintStyle: AppFonts.placeHolder,
+                    hintStyle: AppFonts.placeHolder(context),
                     border: InputBorder.none,
                     prefixIcon: const Padding(
                       padding: EdgeInsets.only(left: 12, right: 8),
@@ -100,7 +100,7 @@ class HomeBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                     contentPadding: const EdgeInsets.all(16),
                   ),
-                  style: AppFonts.textHolder,
+                  style: AppFonts.textHolder(context),
                 ),
               ),
             ),

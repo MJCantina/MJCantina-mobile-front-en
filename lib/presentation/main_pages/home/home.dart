@@ -1,10 +1,14 @@
 import 'package:cantina_senai/common/widgets/appbar/homebar.dart';
 import 'package:cantina_senai/common/widgets/base_button/favorite_button.dart';
+import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/core/configs/theme/app_images.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
+import 'package:cantina_senai/presentation/pedidos/item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
@@ -83,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: Text(
                         categories[index]['name'],
-                        style: AppFonts.category,
+                        style: AppFonts.category(context),
                       ),
                     ),
                   );
@@ -173,7 +177,6 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
-
           ],
         ),
       ),

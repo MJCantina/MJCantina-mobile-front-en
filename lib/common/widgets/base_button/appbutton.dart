@@ -32,7 +32,7 @@ class _BasicAppButtonState extends State<BasicAppButton> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
         ),
         child: Text(
-          widget.title, style: AppFonts.buttonText,
+          widget.title, style: AppFonts.buttonText(context),
         ),
       ),
     );

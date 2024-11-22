@@ -42,7 +42,7 @@ class _DetalhePedidoState extends State<DetalhePedido> {
                                   children: [
                                     Text(
                                       'Em andamento',
-                                      style: AppFonts.textFont,
+                                      style: AppFonts.textFont(context),
                                     ),
                                     Container(
                                       width: 18,
@@ -64,7 +64,7 @@ class _DetalhePedidoState extends State<DetalhePedido> {
                                       children: [
                                         Text(
                                           'Pedido faturado',
-                                          style: AppFonts.textFont,
+                                          style: AppFonts.textFont(context),
                                         ),
                                         Container(
                                           width: 18,
@@ -85,7 +85,7 @@ class _DetalhePedidoState extends State<DetalhePedido> {
                                       children: [
                                         Text(
                                           'Pedido Feito',
-                                          style: AppFonts.textFont,
+                                          style: AppFonts.textFont(context),
                                         ),
                                         const SizedBox(
                                           width: 18,
@@ -100,18 +100,18 @@ class _DetalhePedidoState extends State<DetalhePedido> {
                           children: [
                             Text(
                               user!,
-                              style: AppFonts.titleField,
+                              style: AppFonts.titleField(context),
                             ),
                             Wrap(
                               spacing: 12,
                               children: [
                                 Text(
                                   '16/10/2024',
-                                  style: AppFonts.textDesc,
+                                  style: AppFonts.textDesc(context),
                                 ),
                                 Text(
                                   '11:16',
-                                  style: AppFonts.textDesc,
+                                  style: AppFonts.textDesc(context),
                                 ),
                               ],
                             )
@@ -126,12 +126,12 @@ class _DetalhePedidoState extends State<DetalhePedido> {
                             spacing: 12,
                             children: [
                               SvgPicture.asset(AppVectors.reserve),
-                              Text('No balcão', style: AppFonts.textFont)
+                              Text('No balcão', style: AppFonts.textFont(context))
                             ],
                           ),
                           Text(
                             '#7556',
-                            style: AppFonts.boldtitle,
+                            style: AppFonts.boldtitle(context),
                           )
                         ],
                       ))
@@ -144,7 +144,7 @@ class _DetalhePedidoState extends State<DetalhePedido> {
                       children: [
                         Text(
                           'Produtos',
-                          style: AppFonts.titleField,
+                          style: AppFonts.titleField(context),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,17 +154,17 @@ class _DetalhePedidoState extends State<DetalhePedido> {
                               children: [
                                 Text(
                                   '1x',
-                                  style: AppFonts.textFont,
+                                  style: AppFonts.textFont(context),
                                 ),
                                 Text(
                                   'Coxinha',
-                                  style: AppFonts.textFont,
+                                  style: AppFonts.textFont(context),
                                 )
                               ],
                             ),
                             Text(
                               'R\$3,80',
-                              style: AppFonts.textFont,
+                              style: AppFonts.textFont(context),
                             )
                           ],
                         )
@@ -175,8 +175,8 @@ class _DetalhePedidoState extends State<DetalhePedido> {
                       child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Total', style: AppFonts.boldtitle),
-                      Text('R\$3,80', style: AppFonts.boldtitle)
+                      Text('Total', style: AppFonts.boldtitle(context)),
+                      Text('R\$3,80', style: AppFonts.boldtitle(context))
                     ],
                   )),
                   widget.status == 'faturado'

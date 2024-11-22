@@ -45,11 +45,11 @@ class _EndCadasterState extends State<EndCadaster> {
                         children: [
                           Text(
                             'Ainda não acabou',
-                            style: AppFonts.titleFont,
+                            style: AppFonts.titleFont(context),
                             textAlign: TextAlign.start,
                           ),
                           Text('Preencha tudo corretamente',
-                              style: AppFonts.subtitle),
+                              style: AppFonts.subtitle(context)),
                         ],
                       ),
                     ),
@@ -106,13 +106,11 @@ class _EndCadasterState extends State<EndCadaster> {
                             child: RichText(
                               text: TextSpan(
                                   text: 'Eu li e aceito os ',
-                                  style: AppFonts.textHolder,
+                                  style: AppFonts.textHolder(context),
                                   children: [
                                     TextSpan(
                                         text: 'termos e condições de uso',
-                                        style: AppFonts.textHolder.copyWith(
-                                            decoration:
-                                                TextDecoration.underline),
+                                        style: AppFonts.textHolderUnderLine(context),
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
                                             Get.to(const Configurations());

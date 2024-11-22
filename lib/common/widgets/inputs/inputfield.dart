@@ -34,7 +34,7 @@ class _InputFieldState extends State<InputField> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(widget.name, style: AppFonts.titleField),
+          Text(widget.name, style: AppFonts.titleField(context)),
           const SizedBox(height: 4),
           Container(
             decoration: BoxDecoration(
@@ -47,7 +47,7 @@ class _InputFieldState extends State<InputField> {
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.all(16),
                 hintText: widget.title,
-                hintStyle: AppFonts.placeHolder,
+                hintStyle: AppFonts.placeHolder(context),
                 border: InputBorder.none,
                 suffixIcon: widget.isPassword
                     ? IconButton(
@@ -63,7 +63,7 @@ class _InputFieldState extends State<InputField> {
                     : null,
               ),
               validator: widget.validator,
-              style: AppFonts.textHolder,
+              style: AppFonts.textHolder(context),
             ),
           ),
         ],

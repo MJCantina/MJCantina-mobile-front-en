@@ -64,8 +64,8 @@ class _StartPageState extends State<StartPage> with SingleTickerProviderStateMix
           children: [
             Column(
               children: [
-                Text('Seja bem vindo!', style: AppFonts.titleFont),
-                Text('aproveite nossas comidas', style: AppFonts.subtitle),
+                Text('Seja bem vindo!', style: AppFonts.titleFont(context)),
+                Text('aproveite nossas comidas', style: AppFonts.subtitle(context)  ),
               ],
             ),
         
@@ -80,7 +80,7 @@ class _StartPageState extends State<StartPage> with SingleTickerProviderStateMix
                         duration: const Duration(seconds: 1)
                       );
                   }, title: 'Login'),
-                  Text('ou', style: AppFonts.titleField),
+                  Text('ou', style: AppFonts.titleField(context)),
                   BasicAppButton(onPressed: (){
                     Get.to(
                         () => const SignUpPage(),

@@ -36,7 +36,7 @@ class _ListbuttonState extends State<Listbutton> {
           children: [
             Text(
               widget.title,
-              style: AppFonts.textFont,
+              style: AppFonts.textFont(context),
             ),
             SvgPicture.asset(widget.icon), // Ícone sempre presente
           ],

@@ -43,11 +43,11 @@ class _ConfigChangeState extends State<ConfigChange> {
                   children: [
                     Text(
                       widget.title,
-                      style: AppFonts.titleField,
+                      style: AppFonts.titleField(context),
                     ),
                     Text(
                       widget.config,
-                      style: AppFonts.placeHolder,
+                      style: AppFonts.placeHolder(context),
                     ),
                   ],
                 ),
