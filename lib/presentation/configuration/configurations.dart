@@ -1,5 +1,6 @@
 import 'package:cantina_senai/common/widgets/appbar/appbararrow.dart';
 import 'package:cantina_senai/common/widgets/base_button/listbutton.dart';
+import 'package:cantina_senai/common/widgets/modals/addcartao.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
@@ -49,13 +50,17 @@ class _ConfigurationsState extends State<Configurations> {
                       ),
                       Listbutton(
                         onPressed: () {
-                          Get.to(const Polices(), transition: Transition.rightToLeft, duration: const Duration(seconds: 1));
+                          Get.to(const Polices(),
+                              transition: Transition.rightToLeft,
+                              duration: const Duration(seconds: 1));
                         },
                         title: 'Políticas de uso',
                         icon: AppVectors.arrowright,
                       ),
                       Listbutton(
-                        onPressed: () {},
+                        onPressed: () {
+                          addCartao(context);
+                        },
                         title: 'Deletar conta',
                         icon: AppVectors.trash,
                       ),

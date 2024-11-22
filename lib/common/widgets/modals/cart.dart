@@ -52,10 +52,9 @@ class _CartWithState extends State<CartWith> {
                 itemBuilder: (context, index) {
                   final product = cartItems[index];
                   int productQuantity = product['quantity'] ?? 1;
-                  double productPrice = double.tryParse(product['price'].toString()) ?? 0.0;
-
+                  double productPrice =
+                      double.tryParse(product['price'].toString()) ?? 0.0;
                   double totalProductPrice = productPrice * productQuantity;
-
                   return Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: padding,
@@ -124,8 +123,8 @@ class _CartWithState extends State<CartWith> {
                                               BorderRadius.circular(20),
                                           boxShadow: [
                                             BoxShadow(
-                                              color: Colors.black.withOpacity(
-                                                  0.20),
+                                              color: Colors.black
+                                                  .withOpacity(0.20),
                                               spreadRadius: 1,
                                               blurRadius: 3,
                                               offset: Offset(0, 3),

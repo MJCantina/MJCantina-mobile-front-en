@@ -128,7 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             duration: const Duration(seconds: 1));
                       },
                     ),
-                    const SizedBox(height: 16,)
+                    const SizedBox(height: 16)
                   ],
                 ),
               ],

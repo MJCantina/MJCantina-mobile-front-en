@@ -24,8 +24,6 @@ class Paybutton extends StatelessWidget {
           backgroundColor: AppColors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           side: const BorderSide(color: AppColors.primary, width: 2),
-          
-           
         ),
         child: Text(
           title, style: AppFonts.payText(context),
