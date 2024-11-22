@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 class FavoriteButton extends StatefulWidget {
   final VoidCallback onPressed;
+  final double? height;
 
   const FavoriteButton({
     required this.onPressed,
+    this.height,
     super.key,
   });
 
@@ -18,11 +20,9 @@ class _FavoriteButtonState extends State<FavoriteButton> {
 
   void _alternarEstadoCurtida() {
     setState(() {
-      _favoritar = !_favoritar;
-    });
-
-    widget.onPressed();
-    }
+  _favoritar = !_favoritar;
+});
+  }
 
   @override
   Widget build(BuildContext context) {

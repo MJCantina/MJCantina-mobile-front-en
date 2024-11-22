@@ -1,50 +1,53 @@
-import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
-import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
-import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
+import 'package:cantina_senai/common/widgets/modals/cart.dart';
+import 'package:cantina_senai/common/widgets/modals/emptycart.dart';
+import 'package:cantina_senai/data/models/services/cart_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart'; // Importar o GetX para acessar o CartController
 
-class Carrinho extends StatefulWidget {
-  const Carrinho({super.key});
+void cartItem(BuildContext context) {
+  // Obtém a instância do CartController
+  final cartController = Get.find<CartController>();
 
-  @override
-  State<Carrinho> createState() => _CarrinhoState();
-}
-
-class _CarrinhoState extends State<Carrinho> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: Center(
+  showModalBottomSheet(
+    context: context,
+    isDismissible: true,
+    enableDrag: true,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    builder: (context) {
+      return LayoutBuilder(
+        builder: (context, constraints) {
+          final maxHeight = constraints.maxHeight * 0.7;
+          return ClipRRect(
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(48)),
+            child: Container(
+              color: Colors.white,
+              constraints: BoxConstraints(
+                maxHeight: maxHeight,
+              ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(
-                    height: 100,
+                  Container(
                     width: 100,
-                    child: SvgPicture.asset(AppVectors.bagHappy),
+                    height: 5,
+                    margin: const EdgeInsets.symmetric(vertical: 12),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
-                  const SizedBox(height: 2),
-                  Text('Sua sacola está vazia!', style: AppFonts.textFont(context)),
+                  Expanded(
+                    child: cartController.cartItems.isEmpty
+                        ? CarrinhoVazio() // Carrinho vazio
+                        : CartWith(), // Carrinho com produtos
+                  )
                 ],
               ),
             ),
-          ),
-          Container(
-            padding: const EdgeInsets.all(5.0),
-            alignment: Alignment.bottomCenter,
-            child: BasicAppButton(
-              onPressed: () async {
-                Navigator.pop(context);
-              },
-              title: 'Voltar',
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+          );
+        },
+      );
+    },
+  );
 }

@@ -1,6 +1,7 @@
 import 'package:cantina_senai/core/configs/core_config/config.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
+import 'package:cantina_senai/data/models/services/cart_controller.dart';
 import 'package:cantina_senai/presentation/splash/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,6 +13,7 @@ void main() async {
 
   // Inicialize o AuthService
   await initAuthService();
+  Get.put(CartController());
 
   SystemChrome.setSystemUIOverlayStyle(
   const SystemUiOverlayStyle(
