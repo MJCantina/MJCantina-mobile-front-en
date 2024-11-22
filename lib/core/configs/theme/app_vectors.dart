@@ -30,4 +30,5 @@ class AppVectors {
   static const String bagHappy = '${basePath}bagHappy$format';
   static const String error = '${basePath}error$format';
   static const String efective = '${basePath}efectivePedido$format';
+  static const String edit = '${basePath}edit$format';
 }
