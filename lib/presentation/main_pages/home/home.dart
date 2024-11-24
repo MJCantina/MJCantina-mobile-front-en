@@ -1,5 +1,4 @@
 import 'package:cantina_senai/data/models/services/cart_controller.dart';
-import 'package:cantina_senai/presentation/main_pages/perfil/perfil.dart';
 import 'package:cantina_senai/presentation/pedidos/item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -123,7 +122,6 @@ class _HomePageState extends State<HomePage> {
                   final products = snapshot.data!.docs
                       .map((doc) => doc.data() as Map<String, dynamic>)
                       .toList();
-
                   return ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -210,6 +208,7 @@ class _HomePageState extends State<HomePage> {
                                         softWrap: true,
                                       ),
                                       Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             'R\$${product['price']}', 
@@ -228,7 +227,8 @@ class _HomePageState extends State<HomePage> {
                                                 backgroundColor:
                                                     AppColors.primary,
                                                 minimumSize:
-                                                    Size(size.width * 0.03, 35),
+                                                    Size(size.width * 0.02, 32),
+                                                padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(8),

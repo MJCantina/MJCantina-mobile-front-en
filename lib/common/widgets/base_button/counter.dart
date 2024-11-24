@@ -43,7 +43,7 @@ class _CounterButtonState extends State<CounterButton> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return SizedBox(
-      width: screenWidth * 0.4, // 60% da largura da tela
+      width: screenWidth * 0.5, // 60% da largura da tela
       height: screenHeight * 0.070, // 8% da altura da tela
       child: ElevatedButton(
         onPressed: widget.onPressed,
@@ -55,7 +55,7 @@ class _CounterButtonState extends State<CounterButton> {
           elevation: 4,
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // Ícone de remover
             IconButton(
@@ -64,7 +64,6 @@ class _CounterButtonState extends State<CounterButton> {
               color: AppColors.primary,
               iconSize: screenWidth * 0.08, // Proporcional à largura da tela
             ),
-
             // Texto centralizado
             Expanded(
               child: Center(
@@ -78,7 +77,6 @@ class _CounterButtonState extends State<CounterButton> {
                 ),
               ),
             ),
-
             // Ícone de adicionar
             IconButton(
               onPressed: _adicionarItem,

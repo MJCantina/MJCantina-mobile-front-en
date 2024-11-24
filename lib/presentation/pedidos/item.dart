@@ -124,13 +124,15 @@ class ItemPage extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
           ),
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-            child: Text(
-              product['description'], // Descrição do produto
-              style: AppFonts.textFontMin(context),
-              textAlign: TextAlign.left,
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+              child: Text(
+                product['description'], // Descrição do produto
+                style: AppFonts.textFontMin(context),
+                textAlign: TextAlign.left,
+              ),
             ),
           ),
           SizedBox(height: screenHeight * 0.1),
@@ -138,6 +140,7 @@ class ItemPage extends StatelessWidget {
             onPressed: () {},
             title: 'Contador de Produtos',
           ),
+          SizedBox(height: 24),
         ],
       ),
     );
