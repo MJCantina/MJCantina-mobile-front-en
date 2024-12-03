@@ -1,7 +1,5 @@
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-
-// Importando seus arquivos de tema personalizados
 import 'package:cantina_senai/core/configs/theme/app_images.dart';
 
 class WaveAppbar extends StatelessWidget implements PreferredSizeWidget {
@@ -9,26 +7,34 @@ class WaveAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      toolbarHeight: 128, // Altura da AppBar
-      flexibleSpace: FlexibleSpaceBar(
-        background: Image.asset(
-          AppImages.wavegradient, // Caminho da imagem no background
-          fit: BoxFit.cover, // Ajusta a imagem para cobrir a AppBar
+    final size = MediaQuery.of(context).size; // Obtém o tamanho da tela
+
+    return Container(
+      height: size.height * 0.158, // 15% da altura da tela
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(AppImages.wavegradient),
+          fit: BoxFit.cover,
         ),
       ),
-      leading: IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: const Icon(
-          Icons.arrow_back_ios,
-          color: AppColors.white,
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.white,
+              size: size.width * 0.06, // Tamanho do ícone proporcional à largura da tela
+            ),
+          ),
+        ],
       ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(128);
+  Size get preferredSize => Size.fromHeight(158); // Retorna o valor de altura 0 pois a altura é gerenciada no build
 }

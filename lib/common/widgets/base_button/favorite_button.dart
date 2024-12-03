@@ -1,34 +1,36 @@
-import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteButton extends StatefulWidget {
-  final VoidCallback onPressed;
-  final double? height;
+  final String productId;
 
-  const FavoriteButton({
-    required this.onPressed,
-    this.height,
-    super.key,
-  });
+  const FavoriteButton({Key? key, required this.productId}) : super(key: key);
 
   @override
-  State<FavoriteButton> createState() => _FavoriteButtonState();
+  _FavoriteButtonState createState() => _FavoriteButtonState();
 }
 
 class _FavoriteButtonState extends State<FavoriteButton> {
-  bool _favoritar = false;
+  // Variável para armazenar o estado atual (favoritado ou não)
+  bool isFavorited = false;
 
-  void _alternarEstadoCurtida() {
+  // Função para alternar o estado
+  void toggleFavorite() {
     setState(() {
-  _favoritar = !_favoritar;
-});
+      isFavorited = !isFavorited;
+    });
+
+    // Aqui você pode enviar o estado para o backend
+    print('${widget.productId} favoritado: $isFavorited');
   }
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        onPressed: _alternarEstadoCurtida,
-        icon: Icon(_favoritar ? Icons.favorite : Icons.favorite_border,
-            color: _favoritar ? AppColors.primary : Colors.grey));
+      icon: Icon(
+        isFavorited ? Icons.favorite : Icons.favorite_border,
+        color: isFavorited ? Colors.red : Colors.grey,
+      ),
+      onPressed: toggleFavorite,
+    );
   }
 }

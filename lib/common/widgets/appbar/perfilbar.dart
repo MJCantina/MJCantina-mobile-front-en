@@ -13,6 +13,7 @@ class Perfilbar extends StatelessWidget implements PreferredSizeWidget {
     var userEmail = AuthService.to.user?.email;
 
     return AppBar(
+      automaticallyImplyLeading: false,
       scrolledUnderElevation: 8.0,
       shadowColor: Colors.black.withOpacity(0.25), // Cor da sombra com opacidade
       toolbarHeight: 244,

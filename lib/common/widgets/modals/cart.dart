@@ -1,10 +1,9 @@
 import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
-import 'package:cantina_senai/common/widgets/base_button/counter.dart';
 import 'package:cantina_senai/common/widgets/module/moduleborder.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/data/models/services/cart_controller.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cantina_senai/presentation/pagamento/paymentchoices.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,9 +35,7 @@ class _CartWithState extends State<CartWith> {
   Widget build(BuildContext context) {
     final cartController = Get.find<CartController>();
     final size = MediaQuery.of(context).size;
-    double screenHeight = MediaQuery.of(context).size.height;
     double padding = size.width * 0.04;
-    double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: Obx(() {
@@ -51,7 +48,8 @@ class _CartWithState extends State<CartWith> {
                 itemBuilder: (context, index) {
                   final product = cartItems[index];
                   int productQuantity = product['quantity'] ?? 1;
-                  double productPrice = double.tryParse(product['price'].toString()) ?? 0.0;
+                  double productPrice =
+                      double.tryParse(product['price'].toString()) ?? 0.0;
 
                   // Calculando o preço total do produto (preço * quantidade)
                   double totalProductPrice = productPrice * productQuantity;
@@ -107,88 +105,24 @@ class _CartWithState extends State<CartWith> {
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
                                 ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 8.0),
-                                      child: Container(
-                                        width: screenWidth *
-                                            0.25, // Largura do botão
-                                        height: screenHeight * 0.04,
-                                        decoration: BoxDecoration(
-                                          color: AppColors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black.withOpacity(
-                                                  0.20),
-                                              spreadRadius: 1,
-                                              blurRadius: 3,
-                                              offset: Offset(0, 3),
-                                            ),
-                                          ],
-                                        ), // Altura do botão
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            IconButton(
-                                              onPressed: _diminuirItem,
-                                              icon: Icon(Icons.remove_circle),
-                                              color: AppColors.primary,
-                                              iconSize: screenWidth *
-                                                  0.04, // Ícone menor
-                                              padding: EdgeInsets.zero,
-                                            ),
-                                            Text(
-                                              '$_contador', // Mostra a quantidade
-                                              style: TextStyle(
-                                                fontSize: screenWidth *
-                                                    0.025, // Texto menor
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                              overflow: TextOverflow
-                                                  .ellipsis, // Evitar overflow no texto
-                                            ),
-                                            IconButton(
-                                              onPressed: _adicionarItem,
-                                              icon: Icon(Icons.add_circle),
-                                              color: AppColors.primary,
-                                              iconSize: screenWidth *
-                                                  0.04, // Ícone menor
-                                            ),
-                                          ],
-                                        ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 100,bottom: 8),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      cartController.removeFromCart(product);
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      overlayColor: AppColors.grey,
+                                      backgroundColor: AppColors.primary,
+                                      minimumSize: Size(size.width * 0.025, 35),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(bottom: 8),
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          cartController
-                                              .removeFromCart(product);
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          overlayColor: AppColors.grey,
-                                          backgroundColor: AppColors.primary,
-                                          minimumSize:
-                                              Size(size.width * 0.025, 35),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                        ),
-                                        child: Text('Remover',
-                                            style: AppFonts.cartTxt(context)
-                                                .copyWith(fontSize: 12)),
-                                      ),
-                                    ),
-                                  ],
+                                    child: Text('Remover',
+                                        style: AppFonts.cartTxt(context)
+                                            .copyWith(fontSize: 12)),
+                                  ),
                                 ),
                               ],
                             ),
@@ -224,7 +158,14 @@ class _CartWithState extends State<CartWith> {
                   const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10),
               alignment: Alignment.bottomCenter,
               child: BasicAppButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PagamentoPage(),
+                    ),
+                  );
+                },
                 title: 'Comprar',
               ),
             ),

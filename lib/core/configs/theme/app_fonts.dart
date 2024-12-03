@@ -16,6 +16,13 @@ class AppFonts {
       fontWeight: FontWeight.w700,
     );
   }
+  static TextStyle titlePrice(BuildContext context) {
+    return GoogleFonts.poppins(
+      fontSize: _getFontSize(context, 0.07),  // 8.5% da largura da tela
+      color: AppColors.black,
+      fontWeight: FontWeight.w700,
+    );
+  }
 
   static TextStyle boldtitle(BuildContext context) {
     return GoogleFonts.poppins(
@@ -142,7 +149,13 @@ class AppFonts {
       fontWeight: FontWeight.w600,
     );
   }
-
+static TextStyle labelBlackBold(BuildContext context) {
+    return GoogleFonts.poppins(
+      fontSize: _getFontSize(context, 0.03),  // 3% da largura da tela
+      color: AppColors.black,
+      fontWeight: FontWeight.w900,
+    );
+  }
   static TextStyle labelRed(BuildContext context) {
     return GoogleFonts.poppins(
       fontSize: _getFontSize(context, 0.03),  // 3% da largura da tela

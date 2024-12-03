@@ -1,7 +1,4 @@
-import 'package:cantina_senai/common/widgets/modals/cart.dart';
-import 'package:cantina_senai/common/widgets/modals/emptycart.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
-import 'package:cantina_senai/data/models/services/cart_controller.dart';
 import 'package:cantina_senai/presentation/main_pages/carrinho/carrinho.dart';
 import 'package:cantina_senai/presentation/main_pages/home/home.dart';
 import 'package:cantina_senai/presentation/main_pages/perfil/perfil.dart';
@@ -9,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:animations/animations.dart';
-import 'package:get/get.dart';
 
 class Bottombar extends StatefulWidget {
   const Bottombar({super.key});

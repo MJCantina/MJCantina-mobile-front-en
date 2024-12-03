@@ -16,6 +16,7 @@ class HomeBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final now = DateTime.now();
     final hour = now.hour;
 
@@ -31,7 +32,7 @@ class HomeBar extends StatelessWidget implements PreferredSizeWidget {
     }
 
     return AppBar(
-      toolbarHeight: 280, // Altura da AppBar
+      toolbarHeight: size.height * 0.2, // Altura da AppBar
       flexibleSpace: Stack(
         children: [
           Positioned(

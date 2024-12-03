@@ -1,5 +1,4 @@
 import 'package:cantina_senai/data/models/services/cart_controller.dart';
-import 'package:cantina_senai/presentation/main_pages/perfil/perfil.dart';
 import 'package:cantina_senai/presentation/pedidos/item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -52,22 +51,15 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(padding),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  'Últimos pedidos',
-                  style:
-                      AppFonts.boldtitle(context)
-                ),
+                child:
+                    Text('Últimos pedidos', style: AppFonts.boldtitle(context)),
               ),
             ),
             Padding(
               padding: EdgeInsets.all(padding),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  'Cardápio',
-                  style:
-                      AppFonts.boldtitle(context)
-                ),
+                child: Text('Cardápio', style: AppFonts.boldtitle(context)),
               ),
             ),
             SizedBox(
@@ -136,9 +128,8 @@ class _HomePageState extends State<HomePage> {
                           height: 130,
                           width: size.width,
                           child: GestureDetector(
-                            onTap: () => {
-                              Get.to(ItemPage(), arguments: product)
-                            },
+                            onTap: () =>
+                                {Get.to(ItemPage(), arguments: product)},
                             child: Row(
                               children: [
                                 SizedBox(
@@ -171,7 +162,8 @@ class _HomePageState extends State<HomePage> {
                                         },
                                         errorBuilder:
                                             (context, error, stackTrace) {
-                                              debugPrint('Erro ao carregar imagem da URL: ${product['imageUrl']}');
+                                          debugPrint(
+                                              'Erro ao carregar imagem da URL: ${product['imageUrl']}');
                                           return const Center(
                                               child: Text(
                                                   'Erro ao carregar imagem'));
@@ -181,7 +173,8 @@ class _HomePageState extends State<HomePage> {
                                 SizedBox(width: size.width * 0.05),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
@@ -189,21 +182,14 @@ class _HomePageState extends State<HomePage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
-                                            product[
-                                                'title'], 
-                                            style: AppFonts.boldtitle(context)
-                                          ),
-                                          FavoriteButton(
-                                            onPressed: () {
-                                              
-                                            },
-                                          ),
+                                          Text(product['title'],
+                                              style:
+                                                  AppFonts.boldtitle(context)),
+                                          FavoriteButton(productId: product['id'],),
                                         ],
                                       ),
                                       Text(
-                                        product[
-                                            'description'], 
+                                        product['description'],
                                         style: AppFonts.placeHolder(context),
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 1,
@@ -211,32 +197,33 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       Row(
                                         children: [
-                                          Text(
-                                            'R\$${product['price']}', 
-                                            style: AppFonts.titleField(context)
-                                          ),
+                                          Text('R\$${product['price']}',
+                                              style:
+                                                  AppFonts.titleField(context)),
                                           SizedBox(width: size.width * 0.035),
                                           Padding(
-                                            padding:
-                                                const EdgeInsets.only(bottom: 8),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8),
                                             child: ElevatedButton(
                                               onPressed: () {
-                                                Get.find<CartController>().addToCart(product);
+                                                Get.find<CartController>()
+                                                    .addToCart(product);
                                               },
                                               style: ElevatedButton.styleFrom(
                                                 overlayColor: AppColors.grey,
                                                 backgroundColor:
                                                     AppColors.primary,
                                                 minimumSize:
-                                                    Size(size.width * 0.03, 35),
+                                                    Size(size.width * 0.1, 40),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(8),
                                                 ),
                                               ),
                                               child: Text(
-                                                'Add ao carrinho',
-                                                style: AppFonts.cartTxt(context),
+                                                'Add ao Carrinho',
+                                                style:
+                                                    AppFonts.cartTxt(context),
                                               ),
                                             ),
                                           ),

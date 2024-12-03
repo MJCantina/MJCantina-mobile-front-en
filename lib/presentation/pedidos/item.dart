@@ -1,10 +1,13 @@
 import 'package:cantina_senai/common/widgets/base_button/buttonItem.dart';
 import 'package:cantina_senai/common/widgets/base_button/counter.dart';
+import 'package:cantina_senai/common/widgets/base_button/favorite_button.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ItemPage extends StatelessWidget {
+  const ItemPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Recuperar o produto passado como argumento
@@ -43,6 +46,7 @@ class ItemPage extends StatelessWidget {
                   },
                 ),
               ),
+
               // Botão voltar
               Positioned(
                 top: screenHeight * 0.045,
@@ -56,13 +60,14 @@ class ItemPage extends StatelessWidget {
               ),
               // Preço e botão adicionar
               Positioned(
-                top: screenHeight * 0.45,
-                left: screenWidth * 0.03,
+                top: screenHeight * 0.475,
+                left: screenWidth * 0.06,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      margin: const EdgeInsets.all(10),
-                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(14),
@@ -87,10 +92,10 @@ class ItemPage extends StatelessWidget {
                                 'R\$',
                                 style: AppFonts.textFont(context),
                               ),
-                              SizedBox(width: screenWidth * 0.01),
+                              SizedBox(width: screenWidth * 0.0),
                               Text(
                                 product['price'].toString(),
-                                style: AppFonts.titleFont(context),
+                                style: AppFonts.titlePrice(context),
                               ),
                             ],
                           ),
@@ -118,10 +123,16 @@ class ItemPage extends StatelessWidget {
           Container(
             width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-            child: Text(
-              product['title'], // Nome do produto
-              style: AppFonts.titleField(context),
-              textAlign: TextAlign.left,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  product['title'], // Nome do produto
+                  style: AppFonts.titleField(context),
+                  textAlign: TextAlign.left,
+                ),
+                FavoriteButton(productId: product['id'],),
+              ],
             ),
           ),
           Container(
@@ -134,7 +145,7 @@ class ItemPage extends StatelessWidget {
             ),
           ),
           SizedBox(height: screenHeight * 0.1),
-          CounterButton(
+          CounterButtonItem(
             onPressed: () {},
             title: 'Contador de Produtos',
           ),
