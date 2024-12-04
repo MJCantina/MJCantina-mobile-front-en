@@ -1,11 +1,9 @@
 import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
-import 'package:cantina_senai/common/widgets/base_button/counter.dart';
 import 'package:cantina_senai/common/widgets/module/moduleborder.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/data/models/services/cart_controller.dart';
-import 'package:cantina_senai/presentation/pagamento/payment.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cantina_senai/presentation/pagamento/formasPagamento.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -224,7 +222,7 @@ class _CartWithState extends State<CartWith> {
               alignment: Alignment.bottomCenter,
               child: BasicAppButton(
                 onPressed: () {
-                  Get.off(PaymentPage());
+                  Get.off(PagamentoPage());
                 },
                 title: 'Comprar',
               ),

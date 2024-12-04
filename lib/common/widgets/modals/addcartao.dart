@@ -1,3 +1,6 @@
+import 'package:cantina_senai/data/models/payment/payment_service.dart';
+import 'package:cantina_senai/data/models/services/auth_services.dart';
+import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
@@ -30,6 +33,7 @@ void addCartao(BuildContext context) {
 
       String nomeCartao = '';
       String numCartao = '';
+      final paymentController = Get.find<PaymentController>();
 
       return StatefulBuilder(
         builder: (context, setState) {
@@ -149,7 +153,6 @@ void addCartao(BuildContext context) {
                                   },
                                   onEditingComplete: () {
                                     if (index < 3) {
-                                      // Mover para a próxima página e o próximo campo
                                       _pageController.nextPage(
                                         duration: Duration(milliseconds: 300),
                                         curve: Curves.easeInOut,
@@ -178,14 +181,51 @@ void addCartao(BuildContext context) {
                       width: double.infinity,
                       height: 56,
                       child: ElevatedButton(
-                        onPressed: () {
-                          // Validação básica
-                          if (_controllers.any((controller) => controller.text.isEmpty)) {
+                        onPressed: () async {
+                          // Validações
+                          if (_controllers[0].text.length != 16) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Preencha todos os campos!')),
+                              SnackBar(content: Text('Número do cartão inválido!')),
                             );
-                          } else {
-                            print('Cartão adicionado: ${_controllers[1].text}');
+                            return;
+                          }
+
+                          if (_controllers[2].text.length != 5 || !_controllers[2].text.contains('/')) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Data de validade inválida!')),
+                            );
+                            return;
+                          }
+
+                          if (_controllers[3].text.length != 3) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('CVV inválido!')),
+                            );
+                            return;
+                          }
+                          
+                          try {
+                            String? email = '${AuthService.to.user?.email}'; // Defina o email do cliente aqui
+                            String cardToken = await paymentController.generateCardToken(
+                              cardNumber: _controllers[0].text,
+                              cardholderName: _controllers[1].text,
+                              expirationMonth: _controllers[2].text.split('/')[0],
+                              expirationYear: _controllers[2].text.split('/')[1],
+                              securityCode: _controllers[3].text,
+                            ); 
+
+                            await paymentController.addCard(
+                              email: email,
+                              cardToken: cardToken,
+                            );
+
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Cartão adicionado com sucesso!')),
+                            );
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Erro ao adicionar cartão. Tente novamente!')),
+                            );
                           }
                         },
                         style: ElevatedButton.styleFrom(

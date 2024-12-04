@@ -4,6 +4,7 @@ import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/core/configs/theme/app_images.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
+import 'package:cantina_senai/data/models/payment/payment_service.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
 import 'package:cantina_senai/data/models/services/cart_controller.dart';
 import 'package:flutter/material.dart';
@@ -11,16 +12,21 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class PaymentPage extends StatefulWidget {
-  const PaymentPage({super.key});
+  const PaymentPage({super.key, this.paymentMethod});
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
+
+  final String? paymentMethod;
 }
 
 class _PaymentPageState extends State<PaymentPage> {
   var user = AuthService.to.user?.displayName;
   var userEmail = AuthService.to.user?.email;
+
   final cartController = Get.find<CartController>();
+  final paymentController = Get.find<PaymentController>();
+
 
   int _contador = 1;
 
@@ -38,14 +44,18 @@ class _PaymentPageState extends State<PaymentPage> {
     });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     final size = MediaQuery.of(context).size;
 
+
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         leading: IconButton(onPressed: (){
           Get.back();
         }, icon: Icon(Icons.arrow_back)),
@@ -215,7 +225,7 @@ class _PaymentPageState extends State<PaymentPage> {
                           Row(
                               children: [
                                 Text(
-                                  'Débito(5059)', // Exibe o total final calculado no CartController
+                                  '${widget.paymentMethod}', 
                                   style: AppFonts.textFont(context),
                                 ),
                                 SvgPicture.asset(AppVectors.edit)
@@ -250,7 +260,13 @@ class _PaymentPageState extends State<PaymentPage> {
                         horizontal: 5.0, vertical: 10),
                     alignment: Alignment.bottomCenter,
                     child: BasicAppButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (widget.paymentMethod == 'PIX') {
+                          paymentController.generatePix(transactionAmount: '${cartController.total}', description: '${cartController.cartItems}', email: '${AuthService.to.user?.email}');
+                        } else {
+                          
+                        }
+                      },
                       title: 'Pagar',
                     ),
                   ),

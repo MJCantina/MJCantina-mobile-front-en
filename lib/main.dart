@@ -1,7 +1,6 @@
 import 'package:cantina_senai/core/configs/core_config/config.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
-import 'package:cantina_senai/data/models/services/cart_controller.dart';
 import 'package:cantina_senai/presentation/splash/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,10 +9,8 @@ import 'package:get/get.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initConfigurations();
-
-  // Inicialize o AuthService
   await initAuthService();
-  Get.put(CartController());
+  
 
   SystemChrome.setSystemUIOverlayStyle(
   const SystemUiOverlayStyle(
@@ -28,7 +25,6 @@ void main() async {
 Future<void> initAuthService() async {
   Get.put(AuthService());
 
-  // Aguarde o AuthService inicializar
   await Future.delayed(Duration.zero); // Ou qualquer outra lógica de espera que você precisa
 }
 

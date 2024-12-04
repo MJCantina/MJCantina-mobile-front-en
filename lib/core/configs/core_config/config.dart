@@ -1,3 +1,4 @@
+import 'package:cantina_senai/data/models/payment/payment_service.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
 import 'package:cantina_senai/data/models/services/cart_controller.dart';
 import 'package:cantina_senai/firebase_options.dart';
@@ -10,5 +11,7 @@ Future<void> initConfigurations() async {
   );
 
   Get.lazyPut<AuthService>(() => AuthService());
+  Get.put(CartController());
+  Get.put(PaymentController());
   
 }

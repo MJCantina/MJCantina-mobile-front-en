@@ -29,4 +29,5 @@ class AppVectors {
   static const String eyeslash = '${basePath}eyeslash$format';
   static const String bagHappy = '${basePath}bagHappy$format';
   static const String edit = '${basePath}edit$format';
+  static const String efective = '${basePath}edit$format';
 }

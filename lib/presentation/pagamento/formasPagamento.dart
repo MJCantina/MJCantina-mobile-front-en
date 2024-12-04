@@ -1,8 +1,12 @@
 import 'package:cantina_senai/common/widgets/appbar/waveappbar.dart';
 import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
+import 'package:cantina_senai/common/widgets/modals/addcartao.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
-import 'package:cantina_senai/presentation/pagamento/addCartao.dart';
+import 'package:cantina_senai/presentation/pagamento/payment.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
 class PagamentoPage extends StatefulWidget {
   const PagamentoPage({super.key});
 
@@ -12,7 +16,7 @@ class PagamentoPage extends StatefulWidget {
 
 class _PagamentoPageState extends State<PagamentoPage> {
   String? _selectedPaymentOption; // Estado para a opção selecionada
-  final List<String> _cartoesCadastrados = ['092.***.***', '093.***.913']; // Lista de cartões
+  final List<String> _cartoesCadastrados = []; // Lista de cartões
 
   void _adicionarCartao() {
     // Função para adicionar um novo cartão
@@ -109,12 +113,7 @@ class _PagamentoPageState extends State<PagamentoPage> {
                       padding: EdgeInsets.all(size.height * 0.01),
                       child: GestureDetector(
                         onTap: () {
-                          // Navega para a página de cadastro de cartão
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CadastroCartaoPage()),
-                          );
+                          addCartao(context);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -197,12 +196,7 @@ class _PagamentoPageState extends State<PagamentoPage> {
                       padding: EdgeInsets.all(size.height * 0.01),
                       child: GestureDetector(
                         onTap: () {
-                          // Navega para a página de cadastro de cartão
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CadastroCartaoPage()),
-                          );
+                          addCartao(context);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -259,13 +253,14 @@ class _PagamentoPageState extends State<PagamentoPage> {
                   padding: EdgeInsets.all(size.height * 0.02),
                   child: Text('Use o QR Code ou copie o código do PIX.'),
                 )),
-              
             ],
           ),
-
         ),
       ),
-      bottomNavigationBar: BasicAppButton(onPressed: (){}, title: 'Confirmar'),
+      bottomNavigationBar: BasicAppButton(onPressed: () {
+        // Passar a forma de pagamento para a próxima página
+        Get.to(PaymentPage(paymentMethod: _selectedPaymentOption));
+      }, title: 'Confirmar'),
     );
   }
 }

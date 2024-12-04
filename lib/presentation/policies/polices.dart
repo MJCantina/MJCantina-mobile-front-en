@@ -1,5 +1,8 @@
-import 'package:cantina_senai/common/widgets/appbar/basicappbar.dart';
+
+import 'package:cantina_senai/common/widgets/appbar/appbararrow.dart';
+import 'package:cantina_senai/common/widgets/module/moduleborder.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Polices extends StatefulWidget {
   const Polices({super.key});
