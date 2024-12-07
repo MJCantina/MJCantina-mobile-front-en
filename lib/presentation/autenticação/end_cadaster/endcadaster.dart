@@ -5,6 +5,7 @@ import 'package:cantina_senai/core/configs/auth_controller/auth_controller.dart'
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/presentation/configuration/configurations.dart';
+import 'package:cantina_senai/presentation/policies/polices.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -113,7 +114,7 @@ class _EndCadasterState extends State<EndCadaster> {
                                         style: AppFonts.textHolderUnderLine(context),
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
-                                            Get.to(const Configurations());
+                                            Get.to(const Polices());
                                           }),
                                   ]),
                             ),

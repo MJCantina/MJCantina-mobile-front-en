@@ -205,19 +205,25 @@ void addCartao(BuildContext context) {
                           }
                           
                           try {
-                            String? email = '${AuthService.to.user?.email}'; // Defina o email do cliente aqui
-                            String cardToken = await paymentController.generateCardToken(
-                              cardNumber: _controllers[0].text,
-                              cardholderName: _controllers[1].text,
-                              expirationMonth: _controllers[2].text.split('/')[0],
-                              expirationYear: _controllers[2].text.split('/')[1],
-                              securityCode: _controllers[3].text,
-                            ); 
+                            
 
-                            await paymentController.addCard(
-                              email: email,
-                              cardToken: cardToken,
-                            );
+
+
+
+
+                            // String? email = '${AuthService.to.user?.email}'; // Defina o email do cliente aqui
+                            // String cardToken = await paymentController.generateCardToken(
+                            //   cardNumber: _controllers[0].text,
+                            //   cardholderName: _controllers[1].text,
+                            //   expirationMonth: _controllers[2].text.split('/')[0],
+                            //   expirationYear: _controllers[2].text.split('/')[1],
+                            //   securityCode: _controllers[3].text,
+                            // ); 
+
+                            // await paymentController.addCard(
+                            //   email: email,
+                            //   cardToken: cardToken,
+                            // );
 
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text('Cartão adicionado com sucesso!')),
@@ -238,6 +244,7 @@ void addCartao(BuildContext context) {
                           'Adicionar cartão',
                           style: AppFonts.buttonText(context),
                         ),
+                        
                       ),
                     ),
                   ],

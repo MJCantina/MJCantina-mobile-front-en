@@ -1,3 +1,4 @@
+import 'package:cantina_senai/common/widgets/appbar/confirmperfilbar.dart';
 import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
 import 'package:cantina_senai/common/widgets/module/moduleborder.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
@@ -7,17 +8,20 @@ import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
 import 'package:cantina_senai/data/models/payment/payment_service.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
 import 'package:cantina_senai/data/models/services/cart_controller.dart';
+import 'package:cantina_senai/presentation/pagamento/finalscreen/pedidoefetivado.dart';
+import 'package:cantina_senai/presentation/pagamento/finalscreen/pix_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 
 class PaymentPage extends StatefulWidget {
-  const PaymentPage({super.key, this.paymentMethod});
+  const PaymentPage({super.key, this.paymentOption});
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
 
-  final String? paymentMethod;
+  final String? paymentOption;
 }
 
 class _PaymentPageState extends State<PaymentPage> {
@@ -54,70 +58,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: IconButton(onPressed: (){
-          Get.back();
-        }, icon: Icon(Icons.arrow_back)),
-        scrolledUnderElevation: 8.0,
-        shadowColor: Colors.black.withOpacity(0.25),
-        toolbarHeight: 244,
-        flexibleSpace: Stack(
-          children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: Image.asset(
-                AppImages.wavegradient,
-                fit: BoxFit.fitWidth,
-              ),
-            ),
-            Positioned(
-                top: 72,
-                left: 16,
-                child: Container(
-                  width: 104,
-                  height: 104,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: AppColors.white,
-                      width: 4,
-                    ),
-                  ),
-                  child: const CircleAvatar(
-                    backgroundImage: AssetImage('assets/imgs/profile.png'),
-                  ),
-                )),
-            Positioned(
-              top: 180,
-              right: 0,
-              left: 0,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 16, top: 4),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            user!,
-                            style: AppFonts.titleField(context),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      appBar: PerfilbarConfirma(),
       body: Obx(() {
         final cartItems = cartController.cartItems;
         return Padding(
@@ -193,7 +134,7 @@ class _PaymentPageState extends State<PaymentPage> {
                                         icon: Icon(Icons.add_circle),
                                         color: AppColors.primary,
                                         iconSize:
-                                            screenWidth * 0.04, // Ícone menor
+                                            screenWidth * 0.04, // Ícone menor  
                                       ),
                                     ],
                                   ),
@@ -225,7 +166,7 @@ class _PaymentPageState extends State<PaymentPage> {
                           Row(
                               children: [
                                 Text(
-                                  '${widget.paymentMethod}', 
+                                  '${widget.paymentOption}', 
                                   style: AppFonts.textFont(context),
                                 ),
                                 SvgPicture.asset(AppVectors.edit)
@@ -261,10 +202,10 @@ class _PaymentPageState extends State<PaymentPage> {
                     alignment: Alignment.bottomCenter,
                     child: BasicAppButton(
                       onPressed: () {
-                        if (widget.paymentMethod == 'PIX') {
-                          paymentController.generatePix(transactionAmount: '${cartController.total}', description: '${cartController.cartItems}', email: '${AuthService.to.user?.email}');
+                        if (widget.paymentOption == 'PIX') {
+                          Get.to(PixPage());
                         } else {
-                          
+                          Get.to(Pedidoefetivado());
                         }
                       },
                       title: 'Pagar',

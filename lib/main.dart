@@ -1,6 +1,7 @@
 import 'package:cantina_senai/core/configs/core_config/config.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
+import 'package:cantina_senai/data/models/services/favorite_controller.dart';
 import 'package:cantina_senai/presentation/splash/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,6 +12,9 @@ void main() async {
   await initConfigurations();
   await initAuthService();
   
+ 
+  
+  
 
   SystemChrome.setSystemUIOverlayStyle(
   const SystemUiOverlayStyle(
@@ -20,13 +24,17 @@ void main() async {
 
 
   runApp(const MyApp());
+  Get.put(FavoritesController());
 }
 
 Future<void> initAuthService() async {
   Get.put(AuthService());
+  
 
   await Future.delayed(Duration.zero); // Ou qualquer outra lógica de espera que você precisa
 }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

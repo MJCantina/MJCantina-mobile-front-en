@@ -75,6 +75,17 @@ class AuthService extends GetxController {
     }
   }
 
+  String? getCurrentUserId() {
+  User? user = FirebaseAuth.instance.currentUser;
+  
+  if (user != null) {
+    return user.uid; 
+  }
+  
+  return null;
+}
+
+
   Future<void> salvarInformacoesAdicionais(String telefone, String cpf) async {
   try {
     User? user = _auth.currentUser;
@@ -166,14 +177,18 @@ class AuthService extends GetxController {
   }
 
   Future<void> sendPasswordResetEmail(String email) async {
-    try {
-      await _auth.sendPasswordResetEmail(email: email);
-      showSnack('Sucesso', 'Link de redefinição de senha enviado para $email.');
-    } catch (e) {
-      showSnack('Erro ao enviar link de redefinição de senha', e.toString());
-    }
+  if (email.isEmpty) {
+    showSnack('Erro', 'Por favor, insira um e-mail válido.');
+    return;
   }
 
+  try {
+    await _auth.sendPasswordResetEmail(email: email);
+    showSnack('Sucesso', 'Link de redefinição de senha enviado para $email.');
+  } catch (e) {
+    showSnack('Erro ao enviar link de redefinição de senha', e.toString());
+  }
+}
 
   Future<String?> getPhoneNumber() async {
   try {
@@ -196,5 +211,60 @@ class AuthService extends GetxController {
     return null;
   }
 }
+
+Future<void> deleteUserAccount(String password) async {
+  try {
+    User? user = _auth.currentUser;
+
+    if (user != null) {
+      AuthCredential credential = EmailAuthProvider.credential(
+        email: user.email!,
+        password: password,
+      );
+
+      await user.reauthenticateWithCredential(credential); // Reautenticação
+
+      // Exclui todas as coleções associadas ao usuário
+      await deleteUserCollections(user.uid);
+
+      await user.delete(); // Exclui a conta do Firebase
+      showSnack('Sucesso', 'Conta excluída com sucesso.');
+
+      // Redireciona o usuário após excluir a conta
+      userIsAuthenticated.value = false;
+      Get.offAll(const SplashPage(), transition: Transition.rightToLeft, duration: const Duration(seconds: 1, milliseconds: 500));
+    }
+  } catch (e) {
+    showSnack('Erro ao excluir conta', e.toString());
+  }
+}
+
+Future<void> deleteUserCollections(String userId) async {
+  try {
+    // Exemplo: excluir documentos da coleção 'favorites'
+    await FirebaseFirestore.instance
+      .collection('favorites')
+      .doc(userId)
+      .delete();
+
+    // Adicione aqui mais coleções a serem excluídas, se necessário
+    await FirebaseFirestore.instance
+      .collection('outraColecao')
+      .where('userId', isEqualTo: userId)
+      .get()
+      .then((snapshot) {
+        for (DocumentSnapshot doc in snapshot.docs) {
+          doc.reference.delete();
+        }
+      });
+
+    // Continue adicionando outras coleções associadas que você deseja excluir...
+  } catch (e) {
+    showSnack('Erro ao excluir coleções do usuário', e.toString());
+  }
+}
+
+
+
 
 }

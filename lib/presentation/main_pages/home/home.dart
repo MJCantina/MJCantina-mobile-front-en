@@ -1,9 +1,9 @@
 import 'package:cantina_senai/data/models/services/cart_controller.dart';
+import 'package:cantina_senai/data/models/services/favorite_controller.dart';
 import 'package:cantina_senai/presentation/pedidos/item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:cantina_senai/common/widgets/appbar/homebar.dart';
-import 'package:cantina_senai/common/widgets/base_button/favorite_button.dart';
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
 import 'package:cantina_senai/data/models/services/auth_services.dart';
@@ -17,6 +17,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  TextEditingController searchController = TextEditingController();
+  String searchQuery = "";
+  String selectedCategory = "";
+
   List<Map<String, dynamic>> categories = [
     {'name': 'Salgados', 'isSelected': false},
     {'name': 'Bebidas', 'isSelected': false},
@@ -25,11 +29,31 @@ class _HomePageState extends State<HomePage> {
     {'name': 'Sobremesas', 'isSelected': false},
   ];
 
+  final FavoritesController favoritesController =
+      Get.find<FavoritesController>();
+
+  @override
+  void initState() {
+    super.initState();
+    searchController.addListener(() {
+      setState(() {
+        searchQuery = searchController.text.toLowerCase();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
   void _selectCategory(int index) {
     setState(() {
       for (var i = 0; i < categories.length; i++) {
         categories[i]['isSelected'] = i == index;
       }
+      selectedCategory = categories[index]['name'].toLowerCase();
     });
   }
 
@@ -44,6 +68,7 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         appBar: HomeBar(
           userName: AuthService.to.user?.displayName,
+          searchController: searchController,
         ),
         body: ListView(
           children: [
@@ -51,22 +76,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(padding),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  'Últimos pedidos',
-                  style:
-                      AppFonts.boldtitle(context)
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(padding),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Cardápio',
-                  style:
-                      AppFonts.boldtitle(context)
-                ),
+                child: Text('Cardápio', style: AppFonts.boldtitle(context)),
               ),
             ),
             SizedBox(
@@ -119,9 +129,20 @@ class _HomePageState extends State<HomePage> {
                   if (!snapshot.hasData) {
                     return const Text('Nenhum produto encontrado.');
                   }
-                  final products = snapshot.data!.docs
-                      .map((doc) => doc.data() as Map<String, dynamic>)
-                      .toList();
+
+                  final products = snapshot.data!.docs.map((doc) {
+                    final data = doc.data() as Map<String, dynamic>;
+                    data['id'] = doc.id; 
+                    return data;
+                  }).where((product) {
+                    // Filtragem por categoria e busca
+                    final matchesSearch =
+                        product['title'].toLowerCase().contains(searchQuery);
+                    final matchesCategory = selectedCategory.isEmpty ||
+                        product['category'].toLowerCase() == selectedCategory;
+                    return matchesSearch && matchesCategory;
+                  }).toList();
+
                   return ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -134,52 +155,48 @@ class _HomePageState extends State<HomePage> {
                           height: 130,
                           width: size.width,
                           child: GestureDetector(
-                            onTap: () => {
-                              Get.to(ItemPage(), arguments: product)
-                            },
+                            onTap: () => Get.to(ItemPage(), arguments: product),
                             child: Row(
                               children: [
                                 SizedBox(
                                   width: size.width * 0.35,
                                   child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(12),
-                                      child: Image.network(
-                                        product['imageUrl'],
-                                        fit: BoxFit.fill,
-                                        loadingBuilder: (BuildContext context,
-                                            Widget child,
-                                            ImageChunkEvent? loadingProgress) {
-                                          if (loadingProgress == null) {
-                                            return child;
-                                          } else {
-                                            return Center(
-                                              child: CircularProgressIndicator(
-                                                value: loadingProgress
-                                                            .expectedTotalBytes !=
-                                                        null
-                                                    ? loadingProgress
-                                                            .cumulativeBytesLoaded /
-                                                        (loadingProgress
-                                                                .expectedTotalBytes ??
-                                                            1)
-                                                    : null,
-                                              ),
-                                            );
-                                          }
-                                        },
-                                        errorBuilder:
-                                            (context, error, stackTrace) {
-                                              debugPrint('Erro ao carregar imagem da URL: ${product['imageUrl']}');
-                                          return const Center(
-                                              child: Text(
-                                                  'Erro ao carregar imagem'));
-                                        },
-                                      )),
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.network(
+                                      product['imageUrl'],
+                                      fit: BoxFit.fill,
+                                      loadingBuilder:
+                                          (context, child, loadingProgress) {
+                                        if (loadingProgress == null)
+                                          return child;
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            value: loadingProgress
+                                                        .expectedTotalBytes !=
+                                                    null
+                                                ? loadingProgress
+                                                        .cumulativeBytesLoaded /
+                                                    (loadingProgress
+                                                            .expectedTotalBytes ??
+                                                        1)
+                                                : null,
+                                          ),
+                                        );
+                                      },
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        return const Center(
+                                            child: Text(
+                                                'Erro ao carregar imagem'));
+                                      },
+                                    ),
+                                  ),
                                 ),
                                 SizedBox(width: size.width * 0.05),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
@@ -187,48 +204,53 @@ class _HomePageState extends State<HomePage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
-                                            product[
-                                                'title'], 
-                                            style: AppFonts.boldtitle(context)
-                                          ),
+                                          Text(product['title'],
+                                              style:
+                                                  AppFonts.boldtitle(context)),
                                           FavoriteButton(
+                                             productId: product['id'],
                                             onPressed: () {
-                                              
+                                              final productId =
+                                                  product['id'];
+                                              print(
+                                                  'ID do produto: $productId');
+                                              favoritesController
+                                                  .toggleFavorite(productId);
                                             },
                                           ),
                                         ],
                                       ),
                                       Text(
-                                        product[
-                                            'description'], 
+                                        product['description'],
                                         style: AppFonts.placeHolder(context),
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 1,
                                         softWrap: true,
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
-                                            'R\$${product['price']}', 
-                                            style: AppFonts.titleField(context)
-                                          ),
+                                          Text('R\$${product['price']}',
+                                              style:
+                                                  AppFonts.titleField(context)),
                                           SizedBox(width: size.width * 0.035),
                                           Padding(
-                                            padding:
-                                                const EdgeInsets.only(bottom: 8),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8),
                                             child: ElevatedButton(
                                               onPressed: () {
-                                                Get.find<CartController>().addToCart(product);
+                                                Get.find<CartController>()
+                                                    .addToCart(product);
                                               },
                                               style: ElevatedButton.styleFrom(
-                                                overlayColor: AppColors.grey,
                                                 backgroundColor:
                                                     AppColors.primary,
                                                 minimumSize:
                                                     Size(size.width * 0.02, 32),
-                                                padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal:
+                                                        size.width * 0.04),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(8),
@@ -236,7 +258,8 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                               child: Text(
                                                 'Add ao carrinho',
-                                                style: AppFonts.cartTxt(context),
+                                                style:
+                                                    AppFonts.cartTxt(context),
                                               ),
                                             ),
                                           ),

@@ -3,6 +3,7 @@ import 'package:cantina_senai/common/widgets/base_button/appbutton.dart';
 import 'package:cantina_senai/common/widgets/inputs/inputfield.dart';
 import 'package:cantina_senai/core/configs/auth_controller/auth_controller.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
+import 'package:cantina_senai/data/models/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -63,7 +64,7 @@ class _ForgetPageState extends State<ForgetPage> {
                 padding: const EdgeInsets.only(bottom: 32.0),
                 child: BasicAppButton(onPressed: (){
                   if (_formKey.currentState!.validate()) {
-                      _controller.sendPasswordResetEmail();
+                      AuthService.to.sendPasswordResetEmail(_emailController.text);
                   }       
                 },
                 title: 'Enviar'),

@@ -14,4 +14,6 @@ Future<void> initConfigurations() async {
   Get.put(CartController());
   Get.put(PaymentController());
   
+  
+  
 }

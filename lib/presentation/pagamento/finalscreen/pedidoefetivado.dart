@@ -1,5 +1,6 @@
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
+import 'package:cantina_senai/presentation/pedidos/detalhepedido.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -66,7 +67,9 @@ class _PedidoefetivadoState extends State<Pedidoefetivado> {
               runSpacing: 16,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(DetalhePedido(status: 'andamento'));
+                  },
                   style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(54),
                       backgroundColor: AppColors.white,
@@ -81,7 +84,10 @@ class _PedidoefetivadoState extends State<Pedidoefetivado> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(DetalhePedido(status: 'faturado'));
+                    
+                  },
                   style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(54),
                       backgroundColor: AppColors.white,
