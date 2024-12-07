@@ -1,24 +1,28 @@
 import 'package:cantina_senai/core/configs/theme/app_colors.dart';
 import 'package:cantina_senai/core/configs/theme/app_fonts.dart';
-import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
-import 'package:flutter/material.dart';
-
-// Importando seus arquivos de tema personalizados
 import 'package:cantina_senai/core/configs/theme/app_images.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:cantina_senai/core/configs/theme/app_vectors.dart';
+import 'package:cantina_senai/presentation/pedidos/pagepedidos.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class HomeBar extends StatelessWidget implements PreferredSizeWidget {
-  final String? userName; // Adiciona uma propriedade para o nome do usuário
+  final String? userName;
+  final TextEditingController searchController;
 
   const HomeBar({
-    Key? key,
-    this.userName, // Adiciona o nome do usuário como parâmetro
-  }) : super(key: key);
+    required this.userName,
+    required this.searchController,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
     final hour = now.hour;
+
+    var pedido = true;
 
     String greeting;
     if (hour >= 5 && hour < 12) {
@@ -38,8 +42,8 @@ class HomeBar extends StatelessWidget implements PreferredSizeWidget {
             left: 0,
             right: 0,
             child: Image.asset(
-              AppImages.wave, // Caminho da imagem no background
-              fit: BoxFit.fitWidth, // Ajusta a imagem para cobrir a AppBar
+              AppImages.wave, 
+              fit: BoxFit.fitWidth, 
             ),
           )
         ],
@@ -55,15 +59,23 @@ class HomeBar extends StatelessWidget implements PreferredSizeWidget {
                 children: [
                   Text(
                     'Olá, ${userName ?? 'Usuário'}', // Se o nome do usuário for nulo, exibe 'Usuário'
-                    style: AppFonts.subtitle,
+                    style: AppFonts.subtitle(context),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(greeting, style: AppFonts.titleFont),
+                      Text(greeting, style: AppFonts.titleFont(context)),
                       IconButton(
-                        onPressed: () {},
-                        icon: SvgPicture.asset(AppVectors.notification),
+                        onPressed: () {
+                          Get.to(
+                            const PagePedidos(),
+                            transition: Transition.rightToLeft,
+                            duration: const Duration(seconds: 1),
+                          );
+                        },
+                        icon: pedido
+                            ? SvgPicture.asset(AppVectors.pedidosred)
+                            : SvgPicture.asset(AppVectors.pedidos),
                       ),
                     ],
                   ),
@@ -78,9 +90,10 @@ class HomeBar extends StatelessWidget implements PreferredSizeWidget {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: TextField(
+                  controller: searchController,
                   decoration: InputDecoration(
                     hintText: 'Procurar por produto',
-                    hintStyle: AppFonts.placeHolder,
+                    hintStyle: AppFonts.placeHolder(context),
                     border: InputBorder.none,
                     prefixIcon: const Padding(
                       padding: EdgeInsets.only(left: 12, right: 8),
@@ -91,7 +104,7 @@ class HomeBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                     contentPadding: const EdgeInsets.all(16),
                   ),
-                  style: AppFonts.textHolder,
+                  style: AppFonts.textHolder(context),
                 ),
               ),
             ),

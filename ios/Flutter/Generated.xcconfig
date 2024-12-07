@@ -1,6 +1,6 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=C:\Users\23143668\Documents\flutter
-FLUTTER_APPLICATION_PATH=C:\Users\23143668\Documents\Cantina\cantina_senai
+FLUTTER_ROOT=C:\Flutter\flutter_windows_3.24.0-stable\flutter
+FLUTTER_APPLICATION_PATH=D:\Aplicativos\Projects SENAI\MJCantina-mobile-front-end
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_TARGET=lib\main.dart
 FLUTTER_BUILD_DIR=build
